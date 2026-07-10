@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Spline+Sans:wght@300;400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  @apply bg-neu-100 text-neu-800 font-body;
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(145deg, #e2e8f0, #f1f5f9);
+}
+
+body.dark {
+  @apply bg-night-900 text-slate-100;
+  background-image: linear-gradient(180deg, #0a0e14 0%, #101722 48%, #0a0e14 100%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Neumorphic utilities */
+.neu-card {
+  @apply rounded-3xl bg-neu-100 shadow-neu;
+}
+
+.neu-card-inset {
+  @apply rounded-3xl bg-neu-100 shadow-neu-inset;
+}
+
+.neu-button {
+  @apply rounded-2xl bg-neu-100 shadow-neu transition-all duration-200;
+}
+
+.neu-button:hover {
+  @apply shadow-neu-hover;
+}
+
+.neu-button:active {
+  @apply shadow-neu-inset;
+}
+
+.neu-input {
+  @apply rounded-2xl bg-neu-100 shadow-neu-inset border-0 px-6 py-3 text-neu-800 placeholder:text-neu-400 focus:outline-none focus:ring-2 focus:ring-blue-400;
+}
+
+.glass {
+  background: rgba(15, 20, 29, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  backdrop-filter: blur(18px);
+}
+
+.dark .glass {
+  background: rgba(15, 20, 29, 0.72);
+  border-color: rgba(148, 163, 184, 0.2);
+}
+
+.hero-orbit {
+  background: conic-gradient(from 180deg at 50% 50%, rgba(120, 255, 214, 0.25), rgba(56, 189, 248, 0.2), rgba(255, 106, 61, 0.2), rgba(120, 255, 214, 0.25));
+  mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, transparent 65%);
+}
+
+/* Smooth animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Admin Theme - Purple/Dark scheme */
+body.admin-mode {
+  @apply bg-gradient-to-br from-purple-900 via-indigo-900 to-purple-900;
+  background-image: linear-gradient(145deg, #2d1b69, #1e1b4b, #312e81);
+}
+
+.admin-theme .neu-card {
+  @apply bg-purple-900/40 border border-purple-500/30 backdrop-blur-xl;
+  box-shadow: 
+    0 8px 32px rgba(139, 92, 246, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.admin-theme .neu-card-inset {
+  @apply bg-purple-950/60 border border-purple-500/20;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.admin-theme .neu-button {
+  @apply bg-purple-800/50 border border-purple-400/30 text-purple-100;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+}
+
+.admin-theme .neu-button:hover {
+  @apply bg-purple-700/60 border-purple-300/40;
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+}
+
+.admin-theme .neu-input {
+  @apply bg-purple-950/50 border border-purple-400/30 text-purple-100 placeholder:text-purple-300/50;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Admin Badge */
+.admin-badge {
+  @apply inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-3 py-1 text-xs font-bold text-white shadow-lg;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.8);
+  }
+}
+
+/* Admin Text Colors */
+.admin-theme h1,
+.admin-theme h2,
+.admin-theme h3 {
+  @apply text-purple-100;
+}
+
+.admin-theme p {
+  @apply text-purple-200/90;
+}
+
+/* Admin specific card highlights */
+.admin-theme .stat-card {
+  @apply bg-gradient-to-br from-purple-800/50 to-indigo-900/50 border border-purple-400/30;
+}
+
+/* Admin Navbar styling */
+body.admin-mode nav {
+  @apply bg-purple-900/80 backdrop-blur-xl border-b border-purple-500/30;
+}

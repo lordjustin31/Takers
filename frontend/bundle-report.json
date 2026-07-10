@@ -1,0 +1,1649 @@
+assets/app-UeZgPB7L.js:
+  __vite-optional-peer-dep:@emotion/is-prop-valid:framer-motion:
+    rendered: 468
+    gzip: 256
+    brotli: 206
+  C:/Users/Lord Justin/Desktop/My website/frontend/index.html:
+    rendered: 0
+    gzip: 0
+    brotli: 0
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/@reduxjs/toolkit/dist/redux-toolkit.modern.mjs:
+    rendered: 16384
+    gzip: 4450
+    brotli: 3985
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/adapters/adapters.js:
+    rendered: 1740
+    gzip: 809
+    brotli: 679
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/adapters/fetch.js:
+    rendered: 9981
+    gzip: 2990
+    brotli: 2662
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/adapters/xhr.js:
+    rendered: 4408
+    gzip: 1445
+    brotli: 1267
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/axios.js:
+    rendered: 1189
+    gzip: 477
+    brotli: 399
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/cancel/CanceledError.js:
+    rendered: 312
+    gzip: 217
+    brotli: 182
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/cancel/CancelToken.js:
+    rendered: 1814
+    gzip: 681
+    brotli: 591
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/cancel/isCancel.js:
+    rendered: 133
+    gzip: 130
+    brotli: 105
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/core/Axios.js:
+    rendered: 5805
+    gzip: 1777
+    brotli: 1578
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/core/AxiosError.js:
+    rendered: 3763
+    gzip: 1341
+    brotli: 1132
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/core/AxiosHeaders.js:
+    rendered: 6773
+    gzip: 2176
+    brotli: 1913
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/core/buildFullPath.js:
+    rendered: 317
+    gzip: 205
+    brotli: 173
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/core/dispatchRequest.js:
+    rendered: 1493
+    gzip: 543
+    brotli: 456
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/core/InterceptorManager.js:
+    rendered: 622
+    gzip: 326
+    brotli: 279
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/core/mergeConfig.js:
+    rendered: 3231
+    gzip: 980
+    brotli: 834
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/core/settle.js:
+    rendered: 497
+    gzip: 278
+    brotli: 233
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/core/transformData.js:
+    rendered: 444
+    gzip: 267
+    brotli: 227
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/defaults/index.js:
+    rendered: 3553
+    gzip: 1317
+    brotli: 1171
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/defaults/transitional.js:
+    rendered: 223
+    gzip: 175
+    brotli: 144
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/env/data.js:
+    rendered: 82
+    gzip: 98
+    brotli: 78
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/AxiosURLSearchParams.js:
+    rendered: 851
+    gzip: 441
+    brotli: 353
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/bind.js:
+    rendered: 162
+    gzip: 142
+    brotli: 117
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/buildURL.js:
+    rendered: 928
+    gzip: 443
+    brotli: 377
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/combineURLs.js:
+    rendered: 219
+    gzip: 167
+    brotli: 123
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/composeSignals.js:
+    rendered: 1157
+    gzip: 526
+    brotli: 458
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/cookies.js:
+    rendered: 1195
+    gzip: 569
+    brotli: 439
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/estimateDataURLDecodedBytes.js:
+    rendered: 1843
+    gzip: 756
+    brotli: 662
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/formDataToJSON.js:
+    rendered: 1509
+    gzip: 648
+    brotli: 573
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/HttpStatusCode.js:
+    rendered: 1726
+    gzip: 930
+    brotli: 728
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/isAbsoluteURL.js:
+    rendered: 196
+    gzip: 177
+    brotli: 131
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/isAxiosError.js:
+    rendered: 179
+    gzip: 151
+    brotli: 118
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/isURLSameOrigin.js:
+    rendered: 475
+    gzip: 278
+    brotli: 251
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/parseHeaders.js:
+    rendered: 912
+    gzip: 492
+    brotli: 421
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/parseProtocol.js:
+    rendered: 190
+    gzip: 172
+    brotli: 135
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/progressEventReducer.js:
+    rendered: 1200
+    gzip: 549
+    brotli: 488
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/resolveConfig.js:
+    rendered: 2091
+    gzip: 916
+    brotli: 762
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/sanitizeHeaderValue.js:
+    rendered: 1367
+    gzip: 600
+    brotli: 538
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/speedometer.js:
+    rendered: 886
+    gzip: 429
+    brotli: 374
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/spread.js:
+    rendered: 163
+    gzip: 138
+    brotli: 100
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/throttle.js:
+    rendered: 702
+    gzip: 344
+    brotli: 318
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/toFormData.js:
+    rendered: 3995
+    gzip: 1444
+    brotli: 1279
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/toURLEncodedForm.js:
+    rendered: 461
+    gzip: 301
+    brotli: 231
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/trackStream.js:
+    rendered: 1498
+    gzip: 661
+    brotli: 589
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/helpers/validator.js:
+    rendered: 2014
+    gzip: 873
+    brotli: 728
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/platform/browser/classes/Blob.js:
+    rendered: 141
+    gzip: 132
+    brotli: 102
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/platform/browser/classes/FormData.js:
+    rendered: 157
+    gzip: 137
+    brotli: 108
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/platform/browser/classes/URLSearchParams.js:
+    rendered: 201
+    gzip: 148
+    brotli: 112
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/platform/browser/index.js:
+    rendered: 304
+    gzip: 213
+    brotli: 166
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/platform/common/utils.js:
+    rendered: 867
+    gzip: 411
+    brotli: 316
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/platform/index.js:
+    rendered: 131
+    gzip: 124
+    brotli: 90
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/axios/lib/utils.js:
+    rendered: 12067
+    gzip: 3851
+    brotli: 3426
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs:
+    rendered: 3232
+    gzip: 1076
+    brotli: 947
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/components/AnimatePresence/PopChild.mjs:
+    rendered: 2848
+    gzip: 1110
+    brotli: 964
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/components/AnimatePresence/PresenceChild.mjs:
+    rendered: 1522
+    gzip: 620
+    brotli: 520
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/components/AnimatePresence/use-presence.mjs:
+    rendered: 666
+    gzip: 344
+    brotli: 292
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/components/AnimatePresence/utils.mjs:
+    rendered: 345
+    gzip: 247
+    brotli: 195
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/context/LayoutGroupContext.mjs:
+    rendered: 151
+    gzip: 135
+    brotli: 97
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/context/LazyContext.mjs:
+    rendered: 152
+    gzip: 140
+    brotli: 126
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/context/MotionConfigContext.mjs:
+    rendered: 227
+    gzip: 184
+    brotli: 135
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/context/MotionContext/create.mjs:
+    rendered: 482
+    gzip: 283
+    brotli: 240
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/context/MotionContext/index.mjs:
+    rendered: 163
+    gzip: 147
+    brotli: 105
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/context/MotionContext/utils.mjs:
+    rendered: 416
+    gzip: 261
+    brotli: 202
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/context/PresenceContext.mjs:
+    rendered: 163
+    gzip: 144
+    brotli: 110
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/context/SwitchLayoutGroupContext.mjs:
+    rendered: 163
+    gzip: 142
+    brotli: 102
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/events/add-pointer-event.mjs:
+    rendered: 227
+    gzip: 166
+    brotli: 130
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/events/event-info.mjs:
+    rendered: 290
+    gzip: 206
+    brotli: 154
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/gestures/drag/index.mjs:
+    rendered: 942
+    gzip: 361
+    brotli: 312
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/gestures/drag/utils/constraints.mjs:
+    rendered: 2628
+    gzip: 814
+    brotli: 727
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/gestures/drag/VisualElementDragControls.mjs:
+    rendered: 13424
+    gzip: 3334
+    brotli: 2960
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/gestures/focus.mjs:
+    rendered: 831
+    gzip: 369
+    brotli: 305
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/gestures/hover.mjs:
+    rendered: 719
+    gzip: 391
+    brotli: 318
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/gestures/pan/index.mjs:
+    rendered: 1247
+    gzip: 529
+    brotli: 435
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/gestures/pan/PanSession.mjs:
+    rendered: 6570
+    gzip: 1764
+    brotli: 1558
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/gestures/press.mjs:
+    rendered: 1004
+    gzip: 519
+    brotli: 427
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/motion/features/animation/exit.mjs:
+    rendered: 1609
+    gzip: 628
+    brotli: 517
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/motion/features/animation/index.mjs:
+    rendered: 773
+    gzip: 318
+    brotli: 265
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/motion/features/animations.mjs:
+    rendered: 195
+    gzip: 140
+    brotli: 124
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/motion/features/definitions.mjs:
+    rendered: 1087
+    gzip: 473
+    brotli: 406
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/motion/features/drag.mjs:
+    rendered: 220
+    gzip: 173
+    brotli: 147
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/motion/features/gestures.mjs:
+    rendered: 255
+    gzip: 170
+    brotli: 138
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/motion/features/layout.mjs:
+    rendered: 167
+    gzip: 144
+    brotli: 110
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/motion/features/layout/MeasureLayout.mjs:
+    rendered: 2995
+    gzip: 916
+    brotli: 769
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/motion/features/load-features.mjs:
+    rendered: 346
+    gzip: 197
+    brotli: 184
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/motion/features/viewport/index.mjs:
+    rendered: 1785
+    gzip: 714
+    brotli: 595
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/motion/features/viewport/observers.mjs:
+    rendered: 1144
+    gzip: 461
+    brotli: 393
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/motion/index.mjs:
+    rendered: 2536
+    gzip: 938
+    brotli: 803
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/motion/utils/symbol.mjs:
+    rendered: 147
+    gzip: 126
+    brotli: 100
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/motion/utils/use-motion-ref.mjs:
+    rendered: 938
+    gzip: 386
+    brotli: 329
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/motion/utils/use-visual-element.mjs:
+    rendered: 3817
+    gzip: 1155
+    brotli: 1001
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/motion/utils/use-visual-state.mjs:
+    rendered: 2237
+    gzip: 804
+    brotli: 712
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/motion/utils/valid-prop.mjs:
+    rendered: 877
+    gzip: 430
+    brotli: 359
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/render/components/create-proxy.mjs:
+    rendered: 808
+    gzip: 360
+    brotli: 295
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/render/components/motion/feature-bundle.mjs:
+    rendered: 187
+    gzip: 149
+    brotli: 117
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs:
+    rendered: 180
+    gzip: 159
+    brotli: 114
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/render/dom/create-visual-element.mjs:
+    rendered: 328
+    gzip: 230
+    brotli: 179
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/render/dom/use-render.mjs:
+    rendered: 791
+    gzip: 408
+    brotli: 339
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/render/dom/utils/filter-props.mjs:
+    rendered: 933
+    gzip: 461
+    brotli: 383
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/render/dom/utils/is-svg-component.mjs:
+    rendered: 324
+    gzip: 233
+    brotli: 182
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/render/html/use-html-visual-state.mjs:
+    rendered: 265
+    gzip: 201
+    brotli: 166
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/render/html/use-props.mjs:
+    rendered: 1303
+    gzip: 606
+    brotli: 536
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/render/html/utils/create-render-state.mjs:
+    rendered: 201
+    gzip: 165
+    brotli: 132
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/render/svg/lowercase-elements.mjs:
+    rendered: 375
+    gzip: 228
+    brotli: 196
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/render/svg/use-props.mjs:
+    rendered: 615
+    gzip: 352
+    brotli: 295
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/render/svg/use-svg-visual-state.mjs:
+    rendered: 230
+    gzip: 187
+    brotli: 163
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/render/svg/utils/create-render-state.mjs:
+    rendered: 179
+    gzip: 154
+    brotli: 128
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/utils/distance.mjs:
+    rendered: 267
+    gzip: 191
+    brotli: 166
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/utils/get-context-window.mjs:
+    rendered: 192
+    gzip: 165
+    brotli: 140
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/utils/is-browser.mjs:
+    rendered: 128
+    gzip: 125
+    brotli: 98
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/utils/is-ref-object.mjs:
+    rendered: 208
+    gzip: 177
+    brotli: 135
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/utils/use-composed-ref.mjs:
+    rendered: 794
+    gzip: 391
+    brotli: 332
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/utils/use-constant.mjs:
+    rendered: 227
+    gzip: 176
+    brotli: 152
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/framer-motion/dist/es/utils/use-isomorphic-effect.mjs:
+    rendered: 193
+    gzip: 153
+    brotli: 128
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/immer/dist/immer.mjs:
+    rendered: 19979
+    gzip: 5516
+    brotli: 4957
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/context.mjs:
+    rendered: 201
+    gzip: 144
+    brotli: 134
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/createLucideIcon.mjs:
+    rendered: 466
+    gzip: 285
+    brotli: 242
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/defaultAttributes.mjs:
+    rendered: 302
+    gzip: 222
+    brotli: 184
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/Icon.mjs:
+    rendered: 1184
+    gzip: 542
+    brotli: 481
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/bell.mjs:
+    rendered: 376
+    gzip: 281
+    brotli: 256
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/camera.mjs:
+    rendered: 432
+    gzip: 298
+    brotli: 270
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/check.mjs:
+    rendered: 203
+    gzip: 184
+    brotli: 159
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/circle-user-round.mjs:
+    rendered: 402
+    gzip: 268
+    brotli: 237
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/clock.mjs:
+    rendered: 263
+    gzip: 211
+    brotli: 185
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/eye-off.mjs:
+    rendered: 557
+    gzip: 327
+    brotli: 300
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/eye.mjs:
+    rendered: 346
+    gzip: 248
+    brotli: 227
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/file-text.mjs:
+    rendered: 529
+    gzip: 306
+    brotli: 281
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/flame.mjs:
+    rendered: 278
+    gzip: 229
+    brotli: 204
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/gavel.mjs:
+    rendered: 453
+    gzip: 274
+    brotli: 251
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/heart.mjs:
+    rendered: 337
+    gzip: 261
+    brotli: 248
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/house.mjs:
+    rendered: 369
+    gzip: 260
+    brotli: 247
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/image-plus.mjs:
+    rendered: 517
+    gzip: 308
+    brotli: 275
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/lock.mjs:
+    rendered: 307
+    gzip: 239
+    brotli: 219
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/log-out.mjs:
+    rendered: 344
+    gzip: 241
+    brotli: 222
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/mail.mjs:
+    rendered: 311
+    gzip: 248
+    brotli: 221
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/map-pin.mjs:
+    rendered: 356
+    gzip: 274
+    brotli: 252
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/message-circle.mjs:
+    rendered: 337
+    gzip: 259
+    brotli: 234
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/mic.mjs:
+    rendered: 358
+    gzip: 256
+    brotli: 229
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/minus.mjs:
+    rendered: 196
+    gzip: 177
+    brotli: 165
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/paperclip.mjs:
+    rendered: 320
+    gzip: 243
+    brotli: 225
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/phone.mjs:
+    rendered: 401
+    gzip: 275
+    brotli: 253
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/plus.mjs:
+    rendered: 239
+    gzip: 193
+    brotli: 173
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/search.mjs:
+    rendered: 270
+    gzip: 217
+    brotli: 205
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/send.mjs:
+    rendered: 376
+    gzip: 277
+    brotli: 254
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/settings.mjs:
+    rendered: 587
+    gzip: 304
+    brotli: 272
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/share-2.mjs:
+    rendered: 545
+    gzip: 289
+    brotli: 253
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/shield-check.mjs:
+    rendered: 421
+    gzip: 300
+    brotli: 287
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/shield.mjs:
+    rendered: 353
+    gzip: 272
+    brotli: 258
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/shopping-bag.mjs:
+    rendered: 464
+    gzip: 296
+    brotli: 265
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/smile.mjs:
+    rendered: 449
+    gzip: 267
+    brotli: 234
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/star.mjs:
+    rendered: 549
+    gzip: 339
+    brotli: 307
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/store.mjs:
+    rendered: 607
+    gzip: 337
+    brotli: 320
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/tag.mjs:
+    rendered: 417
+    gzip: 293
+    brotli: 265
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/trending-up.mjs:
+    rendered: 272
+    gzip: 220
+    brotli: 199
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/user-check.mjs:
+    rendered: 369
+    gzip: 261
+    brotli: 228
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/user-plus.mjs:
+    rendered: 471
+    gzip: 289
+    brotli: 259
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/user-x.mjs:
+    rendered: 461
+    gzip: 285
+    brotli: 260
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/user.mjs:
+    rendered: 286
+    gzip: 230
+    brotli: 217
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/users.mjs:
+    rendered: 436
+    gzip: 273
+    brotli: 245
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/video.mjs:
+    rendered: 346
+    gzip: 266
+    brotli: 237
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/icons/x.mjs:
+    rendered: 228
+    gzip: 189
+    brotli: 181
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/shared/src/utils/hasA11yProp.mjs:
+    rendered: 249
+    gzip: 194
+    brotli: 186
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/shared/src/utils/mergeClasses.mjs:
+    rendered: 287
+    gzip: 207
+    brotli: 178
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/shared/src/utils/toCamelCase.mjs:
+    rendered: 223
+    gzip: 192
+    brotli: 175
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/shared/src/utils/toKebabCase.mjs:
+    rendered: 182
+    gzip: 168
+    brotli: 146
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/lucide-react/dist/esm/shared/src/utils/toPascalCase.mjs:
+    rendered: 232
+    gzip: 177
+    brotli: 167
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/animate/single-value.mjs:
+    rendered: 337
+    gzip: 199
+    brotli: 167
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/AsyncMotionValueAnimation.mjs:
+    rendered: 3685
+    gzip: 1184
+    brotli: 1029
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/drivers/frame.mjs:
+    rendered: 381
+    gzip: 244
+    brotli: 202
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/generators/inertia.mjs:
+    rendered: 1929
+    gzip: 789
+    brotli: 718
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/generators/keyframes.mjs:
+    rendered: 929
+    gzip: 456
+    brotli: 399
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/generators/spring.mjs:
+    rendered: 9006
+    gzip: 2301
+    brotli: 2094
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/generators/utils/calc-duration.mjs:
+    rendered: 409
+    gzip: 247
+    brotli: 218
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/generators/utils/create-generator-easing.mjs:
+    rendered: 517
+    gzip: 301
+    brotli: 266
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/generators/utils/is-generator.mjs:
+    rendered: 194
+    gzip: 160
+    brotli: 121
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/generators/utils/velocity.mjs:
+    rendered: 312
+    gzip: 222
+    brotli: 185
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/interfaces/motion-value.mjs:
+    rendered: 2094
+    gzip: 793
+    brotli: 710
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/interfaces/visual-element-target.mjs:
+    rendered: 2714
+    gzip: 954
+    brotli: 833
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/interfaces/visual-element-variant.mjs:
+    rendered: 1828
+    gzip: 660
+    brotli: 577
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/interfaces/visual-element.mjs:
+    rendered: 845
+    gzip: 357
+    brotli: 308
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/JSAnimation.mjs:
+    rendered: 7644
+    gzip: 2105
+    brotli: 1875
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/keyframes/DOMKeyframesResolver.mjs:
+    rendered: 3372
+    gzip: 997
+    brotli: 851
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/keyframes/get-final.mjs:
+    rendered: 491
+    gzip: 296
+    brotli: 242
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/keyframes/KeyframesResolver.mjs:
+    rendered: 3582
+    gzip: 1062
+    brotli: 939
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/keyframes/offsets/default.mjs:
+    rendered: 201
+    gzip: 165
+    brotli: 125
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/keyframes/offsets/fill.mjs:
+    rendered: 322
+    gzip: 230
+    brotli: 197
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/keyframes/offsets/time.mjs:
+    rendered: 185
+    gzip: 157
+    brotli: 126
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/keyframes/utils/fill-wildcards.mjs:
+    rendered: 233
+    gzip: 174
+    brotli: 139
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/keyframes/utils/is-none.mjs:
+    rendered: 287
+    gzip: 203
+    brotli: 174
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/keyframes/utils/make-none-animatable.mjs:
+    rendered: 738
+    gzip: 368
+    brotli: 311
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/keyframes/utils/unit-conversion.mjs:
+    rendered: 1567
+    gzip: 657
+    brotli: 550
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/NativeAnimation.mjs:
+    rendered: 3435
+    gzip: 1130
+    brotli: 991
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/NativeAnimationExtended.mjs:
+    rendered: 1137
+    gzip: 492
+    brotli: 421
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/optimized-appear/data-id.mjs:
+    rendered: 221
+    gzip: 159
+    brotli: 128
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/optimized-appear/get-appear-id.mjs:
+    rendered: 208
+    gzip: 170
+    brotli: 140
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/utils/calc-child-stagger.mjs:
+    rendered: 569
+    gzip: 298
+    brotli: 277
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/utils/can-animate.mjs:
+    rendered: 1088
+    gzip: 472
+    brotli: 386
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/utils/css-variables-conversion.mjs:
+    rendered: 1018
+    gzip: 538
+    brotli: 464
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/utils/default-transitions.mjs:
+    rendered: 752
+    gzip: 402
+    brotli: 347
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/utils/get-value-transition.mjs:
+    rendered: 347
+    gzip: 199
+    brotli: 167
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/utils/is-animatable.mjs:
+    rendered: 368
+    gzip: 238
+    brotli: 185
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/utils/is-css-variable.mjs:
+    rendered: 743
+    gzip: 402
+    brotli: 320
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/utils/is-transition-defined.mjs:
+    rendered: 412
+    gzip: 258
+    brotli: 235
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/utils/make-animation-instant.mjs:
+    rendered: 193
+    gzip: 155
+    brotli: 120
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/utils/replace-transition-type.mjs:
+    rendered: 337
+    gzip: 211
+    brotli: 188
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/utils/resolve-transition.mjs:
+    rendered: 323
+    gzip: 195
+    brotli: 170
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/utils/WithPromise.mjs:
+    rendered: 432
+    gzip: 240
+    brotli: 194
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/waapi/easing/cubic-bezier.mjs:
+    rendered: 179
+    gzip: 159
+    brotli: 141
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/waapi/easing/map-easing.mjs:
+    rendered: 565
+    gzip: 302
+    brotli: 262
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/waapi/easing/supported.mjs:
+    rendered: 538
+    gzip: 277
+    brotli: 254
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/waapi/start-waapi-animation.mjs:
+    rendered: 979
+    gzip: 484
+    brotli: 418
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/waapi/supports/waapi.mjs:
+    rendered: 952
+    gzip: 522
+    brotli: 429
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/waapi/utils/accelerated-values.mjs:
+    rendered: 187
+    gzip: 162
+    brotli: 133
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/waapi/utils/apply-generator.mjs:
+    rendered: 363
+    gzip: 240
+    brotli: 211
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/waapi/utils/is-browser-color.mjs:
+    rendered: 382
+    gzip: 272
+    brotli: 205
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/waapi/utils/linear.mjs:
+    rendered: 412
+    gzip: 281
+    brotli: 244
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/animation/waapi/utils/unsupported-easing.mjs:
+    rendered: 441
+    gzip: 250
+    brotli: 215
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/events/add-dom-event.mjs:
+    rendered: 279
+    gzip: 189
+    brotli: 146
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/frameloop/batcher.mjs:
+    rendered: 1913
+    gzip: 719
+    brotli: 622
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/frameloop/frame.mjs:
+    rendered: 281
+    gzip: 213
+    brotli: 160
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/frameloop/microtask.mjs:
+    rendered: 194
+    gzip: 165
+    brotli: 132
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/frameloop/order.mjs:
+    rendered: 201
+    gzip: 156
+    brotli: 138
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/frameloop/render-step.mjs:
+    rendered: 1477
+    gzip: 582
+    brotli: 495
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/frameloop/sync-time.mjs:
+    rendered: 382
+    gzip: 273
+    brotli: 222
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/gestures/drag/state/is-active.mjs:
+    rendered: 198
+    gzip: 162
+    brotli: 131
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/gestures/drag/state/set-active.mjs:
+    rendered: 444
+    gzip: 229
+    brotli: 215
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/gestures/hover.mjs:
+    rendered: 1843
+    gzip: 586
+    brotli: 506
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/gestures/press/index.mjs:
+    rendered: 1877
+    gzip: 732
+    brotli: 631
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/gestures/press/utils/is-keyboard-accessible.mjs:
+    rendered: 543
+    gzip: 276
+    brotli: 223
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/gestures/press/utils/keyboard.mjs:
+    rendered: 1054
+    gzip: 440
+    brotli: 365
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/gestures/press/utils/state.mjs:
+    rendered: 134
+    gzip: 134
+    brotli: 109
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/gestures/utils/is-node-or-child.mjs:
+    rendered: 260
+    gzip: 183
+    brotli: 154
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/gestures/utils/is-primary-pointer.mjs:
+    rendered: 270
+    gzip: 200
+    brotli: 168
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/gestures/utils/setup.mjs:
+    rendered: 447
+    gzip: 258
+    brotli: 216
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/projection/animation/mix-values.mjs:
+    rendered: 1975
+    gzip: 764
+    brotli: 677
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/projection/geometry/conversion.mjs:
+    rendered: 712
+    gzip: 332
+    brotli: 298
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/projection/geometry/copy.mjs:
+    rendered: 504
+    gzip: 235
+    brotli: 208
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/projection/geometry/delta-apply.mjs:
+    rendered: 2742
+    gzip: 922
+    brotli: 793
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/projection/geometry/delta-calc.mjs:
+    rendered: 1937
+    gzip: 625
+    brotli: 548
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/projection/geometry/delta-remove.mjs:
+    rendered: 1575
+    gzip: 549
+    brotli: 484
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/projection/geometry/models.mjs:
+    rendered: 362
+    gzip: 199
+    brotli: 167
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/projection/geometry/utils.mjs:
+    rendered: 864
+    gzip: 329
+    brotli: 299
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/projection/node/create-projection-node.mjs:
+    rendered: 39148
+    gzip: 8360
+    brotli: 7456
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/projection/node/DocumentProjectionNode.mjs:
+    rendered: 442
+    gzip: 259
+    brotli: 219
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/projection/node/HTMLProjectionNode.mjs:
+    rendered: 779
+    gzip: 401
+    brotli: 326
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/projection/node/state.mjs:
+    rendered: 168
+    gzip: 152
+    brotli: 111
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/projection/shared/stack.mjs:
+    rendered: 2223
+    gzip: 797
+    brotli: 676
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/projection/styles/scale-border-radius.mjs:
+    rendered: 521
+    gzip: 296
+    brotli: 243
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/projection/styles/scale-box-shadow.mjs:
+    rendered: 808
+    gzip: 377
+    brotli: 305
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/projection/styles/scale-correction.mjs:
+    rendered: 505
+    gzip: 222
+    brotli: 183
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/projection/styles/transform.mjs:
+    rendered: 1356
+    gzip: 470
+    brotli: 406
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/projection/utils/compare-by-depth.mjs:
+    rendered: 143
+    gzip: 135
+    brotli: 105
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/projection/utils/each-axis.mjs:
+    rendered: 158
+    gzip: 144
+    brotli: 105
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/projection/utils/flat-tree.mjs:
+    rendered: 473
+    gzip: 254
+    brotli: 202
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/projection/utils/has-transform.mjs:
+    rendered: 651
+    gzip: 276
+    brotli: 250
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/projection/utils/measure.mjs:
+    rendered: 569
+    gzip: 290
+    brotli: 243
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/dom/DOMVisualElement.mjs:
+    rendered: 851
+    gzip: 466
+    brotli: 395
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/dom/is-css-var.mjs:
+    rendered: 129
+    gzip: 130
+    brotli: 106
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/dom/parse-transform.mjs:
+    rendered: 2223
+    gzip: 814
+    brotli: 718
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/dom/style-set.mjs:
+    rendered: 212
+    gzip: 168
+    brotli: 139
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/dom/utils/camel-to-dash.mjs:
+    rendered: 191
+    gzip: 175
+    brotli: 134
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/Feature.mjs:
+    rendered: 182
+    gzip: 158
+    brotli: 123
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/html/HTMLVisualElement.mjs:
+    rendered: 1128
+    gzip: 535
+    brotli: 419
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/html/utils/build-styles.mjs:
+    rendered: 1094
+    gzip: 474
+    brotli: 403
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/html/utils/build-transform.mjs:
+    rendered: 1579
+    gzip: 610
+    brotli: 514
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/html/utils/render.mjs:
+    rendered: 378
+    gzip: 237
+    brotli: 197
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/html/utils/scrape-motion-values.mjs:
+    rendered: 533
+    gzip: 300
+    brotli: 268
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/store.mjs:
+    rendered: 128
+    gzip: 132
+    brotli: 98
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/svg/SVGVisualElement.mjs:
+    rendered: 1128
+    gzip: 520
+    brotli: 426
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/svg/utils/build-attrs.mjs:
+    rendered: 1284
+    gzip: 540
+    brotli: 453
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/svg/utils/camel-case-attrs.mjs:
+    rendered: 519
+    gzip: 325
+    brotli: 275
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/svg/utils/is-svg-tag.mjs:
+    rendered: 167
+    gzip: 156
+    brotli: 123
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/svg/utils/path.mjs:
+    rendered: 474
+    gzip: 282
+    brotli: 245
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/svg/utils/render.mjs:
+    rendered: 347
+    gzip: 233
+    brotli: 210
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/svg/utils/scrape-motion-values.mjs:
+    rendered: 529
+    gzip: 322
+    brotli: 259
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/utils/animation-state.mjs:
+    rendered: 7026
+    gzip: 2068
+    brotli: 1832
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/utils/get-variant-context.mjs:
+    rendered: 697
+    gzip: 335
+    brotli: 292
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/utils/is-animation-controls.mjs:
+    rendered: 208
+    gzip: 166
+    brotli: 125
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/utils/is-controlling-variants.mjs:
+    rendered: 341
+    gzip: 215
+    brotli: 193
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/utils/is-forced-motion-value.mjs:
+    rendered: 300
+    gzip: 237
+    brotli: 179
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/utils/is-keyframes-target.mjs:
+    rendered: 154
+    gzip: 144
+    brotli: 121
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/utils/is-variant-label.mjs:
+    rendered: 171
+    gzip: 157
+    brotli: 120
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/utils/keys-position.mjs:
+    rendered: 203
+    gzip: 171
+    brotli: 126
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/utils/keys-transform.mjs:
+    rendered: 409
+    gzip: 244
+    brotli: 204
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/utils/motion-values.mjs:
+    rendered: 932
+    gzip: 385
+    brotli: 319
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/utils/reduced-motion/index.mjs:
+    rendered: 607
+    gzip: 309
+    brotli: 241
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/utils/reduced-motion/state.mjs:
+    rendered: 190
+    gzip: 146
+    brotli: 122
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/utils/resolve-dynamic-variants.mjs:
+    rendered: 311
+    gzip: 209
+    brotli: 166
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/utils/resolve-variants.mjs:
+    rendered: 876
+    gzip: 357
+    brotli: 314
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/utils/setters.mjs:
+    rendered: 677
+    gzip: 338
+    brotli: 288
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/utils/shallow-compare.mjs:
+    rendered: 340
+    gzip: 224
+    brotli: 171
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/utils/variant-props.mjs:
+    rendered: 268
+    gzip: 188
+    brotli: 146
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/render/VisualElement.mjs:
+    rendered: 11020
+    gzip: 2982
+    brotli: 2618
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/resize/handle-element.mjs:
+    rendered: 1677
+    gzip: 631
+    brotli: 554
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/resize/handle-window.mjs:
+    rendered: 828
+    gzip: 371
+    brotli: 308
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/resize/index.mjs:
+    rendered: 171
+    gzip: 149
+    brotli: 117
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/stats/animation-count.mjs:
+    rendered: 147
+    gzip: 137
+    brotli: 116
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/stats/buffer.mjs:
+    rendered: 137
+    gzip: 131
+    brotli: 103
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/utils/delay.mjs:
+    rendered: 389
+    gzip: 233
+    brotli: 204
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/utils/interpolate.mjs:
+    rendered: 1473
+    gzip: 636
+    brotli: 573
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/utils/is-html-element.mjs:
+    rendered: 210
+    gzip: 170
+    brotli: 132
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/utils/is-svg-element.mjs:
+    rendered: 176
+    gzip: 149
+    brotli: 120
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/utils/is-svg-svg-element.mjs:
+    rendered: 182
+    gzip: 152
+    brotli: 117
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/utils/mix/color.mjs:
+    rendered: 1168
+    gzip: 562
+    brotli: 479
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/utils/mix/complex.mjs:
+    rendered: 2397
+    gzip: 936
+    brotli: 784
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/utils/mix/immediate.mjs:
+    rendered: 141
+    gzip: 138
+    brotli: 103
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/utils/mix/index.mjs:
+    rendered: 254
+    gzip: 177
+    brotli: 141
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/utils/mix/number.mjs:
+    rendered: 162
+    gzip: 147
+    brotli: 121
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/utils/mix/visibility.mjs:
+    rendered: 294
+    gzip: 216
+    brotli: 190
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/utils/resolve-elements.mjs:
+    rendered: 604
+    gzip: 306
+    brotli: 254
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/utils/supports/flags.mjs:
+    rendered: 104
+    gzip: 107
+    brotli: 81
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/utils/supports/linear-easing.mjs:
+    rendered: 312
+    gzip: 241
+    brotli: 196
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/utils/supports/memo.mjs:
+    rendered: 220
+    gzip: 169
+    brotli: 148
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/utils/supports/scroll-timeline.mjs:
+    rendered: 207
+    gzip: 163
+    brotli: 125
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/index.mjs:
+    rendered: 3907
+    gzip: 1215
+    brotli: 1044
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/auto.mjs:
+    rendered: 137
+    gzip: 131
+    brotli: 101
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/color/hex.mjs:
+    rendered: 663
+    gzip: 357
+    brotli: 288
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/color/hsla-to-rgba.mjs:
+    rendered: 881
+    gzip: 410
+    brotli: 373
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/color/hsla.mjs:
+    rendered: 476
+    gzip: 290
+    brotli: 248
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/color/index.mjs:
+    rendered: 543
+    gzip: 299
+    brotli: 251
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/color/rgba.mjs:
+    rendered: 540
+    gzip: 318
+    brotli: 269
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/color/utils.mjs:
+    rendered: 588
+    gzip: 362
+    brotli: 301
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/complex/filter.mjs:
+    rendered: 772
+    gzip: 457
+    brotli: 405
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/complex/index.mjs:
+    rendered: 2521
+    gzip: 1032
+    brotli: 898
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/complex/mask.mjs:
+    rendered: 322
+    gzip: 241
+    brotli: 194
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/dimensions.mjs:
+    rendered: 243
+    gzip: 180
+    brotli: 150
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/int.mjs:
+    rendered: 125
+    gzip: 127
+    brotli: 95
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/maps/defaults.mjs:
+    rendered: 460
+    gzip: 250
+    brotli: 208
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/maps/number.mjs:
+    rendered: 1183
+    gzip: 396
+    brotli: 338
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/maps/transform.mjs:
+    rendered: 547
+    gzip: 259
+    brotli: 198
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/numbers/index.mjs:
+    rendered: 285
+    gzip: 201
+    brotli: 153
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/numbers/units.mjs:
+    rendered: 690
+    gzip: 352
+    brotli: 282
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/test.mjs:
+    rendered: 127
+    gzip: 124
+    brotli: 97
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/utils/animatable-none.mjs:
+    rendered: 411
+    gzip: 254
+    brotli: 214
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/utils/color-regex.mjs:
+    rendered: 224
+    gzip: 199
+    brotli: 173
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/utils/find.mjs:
+    rendered: 208
+    gzip: 163
+    brotli: 149
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/utils/float-regex.mjs:
+    rendered: 137
+    gzip: 133
+    brotli: 109
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/utils/get-as-type.mjs:
+    rendered: 207
+    gzip: 173
+    brotli: 132
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/utils/is-nullish.mjs:
+    rendered: 133
+    gzip: 130
+    brotli: 106
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/utils/sanitize.mjs:
+    rendered: 135
+    gzip: 132
+    brotli: 112
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/types/utils/single-color-regex.mjs:
+    rendered: 238
+    gzip: 209
+    brotli: 183
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/utils/is-motion-value.mjs:
+    rendered: 155
+    gzip: 137
+    brotli: 113
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/utils/resolve-motion-value.mjs:
+    rendered: 183
+    gzip: 143
+    brotli: 115
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/will-change/add-will-change.mjs:
+    rendered: 484
+    gzip: 257
+    brotli: 225
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-dom/dist/es/value/will-change/is.mjs:
+    rendered: 176
+    gzip: 149
+    brotli: 126
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/array.mjs:
+    rendered: 260
+    gzip: 179
+    brotli: 145
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/clamp.mjs:
+    rendered: 164
+    gzip: 142
+    brotli: 112
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/easing/anticipate.mjs:
+    rendered: 187
+    gzip: 164
+    brotli: 152
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/easing/back.mjs:
+    rendered: 244
+    gzip: 178
+    brotli: 170
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/easing/circ.mjs:
+    rendered: 196
+    gzip: 153
+    brotli: 139
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/easing/cubic-bezier.mjs:
+    rendered: 906
+    gzip: 472
+    brotli: 423
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/easing/ease.mjs:
+    rendered: 247
+    gzip: 162
+    brotli: 153
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/easing/modifiers/mirror.mjs:
+    rendered: 211
+    gzip: 176
+    brotli: 166
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/easing/modifiers/reverse.mjs:
+    rendered: 171
+    gzip: 155
+    brotli: 120
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/easing/utils/is-bezier-definition.mjs:
+    rendered: 215
+    gzip: 182
+    brotli: 151
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/easing/utils/is-easing-array.mjs:
+    rendered: 212
+    gzip: 186
+    brotli: 158
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/easing/utils/map.mjs:
+    rendered: 802
+    gzip: 423
+    brotli: 377
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/errors.mjs:
+    rendered: 122
+    gzip: 114
+    brotli: 96
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/global-config.mjs:
+    rendered: 104
+    gzip: 110
+    brotli: 80
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/is-numerical-string.mjs:
+    rendered: 152
+    gzip: 143
+    brotli: 113
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/is-object.mjs:
+    rendered: 144
+    gzip: 135
+    brotli: 107
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/is-zero-value-string.mjs:
+    rendered: 136
+    gzip: 136
+    brotli: 113
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/memo.mjs:
+    rendered: 217
+    gzip: 180
+    brotli: 139
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/noop.mjs:
+    rendered: 120
+    gzip: 131
+    brotli: 109
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/pipe.mjs:
+    rendered: 145
+    gzip: 132
+    brotli: 121
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/progress.mjs:
+    rendered: 208
+    gzip: 179
+    brotli: 144
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/subscription-manager.mjs:
+    rendered: 687
+    gzip: 322
+    brotli: 265
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/time-conversion.mjs:
+    rendered: 253
+    gzip: 169
+    brotli: 144
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/motion-utils/dist/es/velocity-per-second.mjs:
+    rendered: 215
+    gzip: 172
+    brotli: 154
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/react-dom/cjs/react-dom-client.production.js:
+    rendered: 452058
+    gzip: 84849
+    brotli: 69458
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/react-dom/cjs/react-dom.production.js:
+    rendered: 5708
+    gzip: 1613
+    brotli: 1394
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/react-dom/client.js:
+    rendered: 473
+    gzip: 297
+    brotli: 224
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/react-dom/index.js:
+    rendered: 468
+    gzip: 293
+    brotli: 239
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/react-redux/dist/react-redux.mjs:
+    rendered: 6166
+    gzip: 1791
+    brotli: 1576
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/react-router/dist/development/chunk-4N6VE7H7.mjs:
+    rendered: 89184
+    gzip: 22000
+    brotli: 18974
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/react/cjs/react-jsx-runtime.production.js:
+    rendered: 866
+    gzip: 448
+    brotli: 372
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/react/cjs/react.production.js:
+    rendered: 15098
+    gzip: 4047
+    brotli: 3553
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/react/index.js:
+    rendered: 176
+    gzip: 155
+    brotli: 122
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/react/jsx-runtime.js:
+    rendered: 200
+    gzip: 167
+    brotli: 139
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/redux-thunk/dist/redux-thunk.mjs:
+    rendered: 408
+    gzip: 238
+    brotli: 197
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/redux/dist/redux.mjs:
+    rendered: 6665
+    gzip: 1865
+    brotli: 1643
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/scheduler/cjs/scheduler.production.js:
+    rendered: 8994
+    gzip: 2294
+    brotli: 1990
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/scheduler/index.js:
+    rendered: 188
+    gzip: 159
+    brotli: 124
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/use-sync-external-store/cjs/use-sync-external-store-with-selector.production.js:
+    rendered: 2318
+    gzip: 794
+    brotli: 702
+  C:/Users/Lord Justin/Desktop/My website/frontend/node_modules/use-sync-external-store/with-selector.js:
+    rendered: 242
+    gzip: 189
+    brotli: 145
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/api/client.ts:
+    rendered: 1774
+    gzip: 696
+    brotli: 610
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/App.tsx:
+    rendered: 5189
+    gzip: 1363
+    brotli: 1205
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/auth/AuthContext.tsx:
+    rendered: 5495
+    gzip: 1615
+    brotli: 1435
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/auth/storage.ts:
+    rendered: 877
+    gzip: 306
+    brotli: 256
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/components/chat/FloatingChat.tsx:
+    rendered: 21279
+    gzip: 4414
+    brotli: 3871
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/components/layout/Navbar.tsx:
+    rendered: 20982
+    gzip: 4047
+    brotli: 3485
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/components/marketplace/ProductGrid.tsx:
+    rendered: 6054
+    gzip: 1883
+    brotli: 1613
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/components/marketplace/SellItemModal.tsx:
+    rendered: 10987
+    gzip: 2675
+    brotli: 2301
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/components/search/GlobalSearchResults.tsx:
+    rendered: 9163
+    gzip: 2126
+    brotli: 1848
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/contexts/ChatContext.tsx:
+    rendered: 1053
+    gzip: 439
+    brotli: 374
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/features/uiSlice.ts:
+    rendered: 571
+    gzip: 283
+    brotli: 245
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/index.css:
+    rendered: 0
+    gzip: 0
+    brotli: 0
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/main.tsx:
+    rendered: 404
+    gzip: 221
+    brotli: 181
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/pages/admin/AdminDashboard.tsx:
+    rendered: 23627
+    gzip: 3480
+    brotli: 2971
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/pages/auth/AuthPage.tsx:
+    rendered: 11142
+    gzip: 2669
+    brotli: 2258
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/pages/chat/ChatHubPage.tsx:
+    rendered: 13944
+    gzip: 2927
+    brotli: 2525
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/pages/FavoritesPage.tsx:
+    rendered: 10383
+    gzip: 2552
+    brotli: 2227
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/pages/FriendsPage.tsx:
+    rendered: 14391
+    gzip: 2755
+    brotli: 2379
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/pages/HomePage.tsx:
+    rendered: 31159
+    gzip: 5738
+    brotli: 5019
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/pages/marketplace/ProductDetailPage.tsx:
+    rendered: 24782
+    gzip: 4719
+    brotli: 4160
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/pages/MarketplacePage.tsx:
+    rendered: 7399
+    gzip: 1777
+    brotli: 1531
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/pages/profile/UserProfilePage.tsx:
+    rendered: 20846
+    gzip: 4129
+    brotli: 3592
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/pages/SettingsPage.tsx:
+    rendered: 31649
+    gzip: 4580
+    brotli: 3810
+  C:/Users/Lord Justin/Desktop/My website/frontend/src/store.ts:
+    rendered: 136
+    gzip: 128
+    brotli: 104
+  rolldown/runtime.js:
+    rendered: 1614
+    gzip: 728
+    brotli: 642
+  vite/modulepreload-polyfill.js:
+    rendered: 1205
+    gzip: 533
+    brotli: 450
+  vite/preload-helper.js:
+    rendered: 2104
+    gzip: 988
+    brotli: 830
