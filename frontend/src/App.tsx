@@ -17,6 +17,11 @@ import UserProfilePage from "./pages/profile/UserProfilePage"
 import SettingsPage from "./pages/SettingsPage"
 import FriendsPage from "./pages/FriendsPage"
 import FavoritesPage from "./pages/FavoritesPage"
+import PrivacyPolicyPage from "./pages/legal/PrivacyPolicyPage"
+import TermsPage from "./pages/legal/TermsPage"
+import CookiePolicyPage from "./pages/legal/CookiePolicyPage"
+import Footer from "./components/layout/Footer"
+import CookieConsent from "./components/legal/CookieConsent"
 import { useAuth } from "./auth/AuthContext"
 import { ChatProvider } from "./contexts/ChatContext"
 import { useAppSelector } from "./store"
@@ -60,7 +65,7 @@ function AppShell() {
     
     if (user) {
       fetchUnreadCount()
-      // Poll less aggressively to avoid API throttling
+      // Poll every 30 seconds instead of 3 seconds to reduce load
       const interval = setInterval(fetchUnreadCount, 30000)
       return () => clearInterval(interval)
     }
@@ -86,8 +91,12 @@ function AppShell() {
           <Route path="/favorites" element={requireAuth(<FavoritesPage />)} />
           <Route path="/settings" element={requireAuth(<SettingsPage />)} />
           <Route path="/admin" element={requireStaff(<AdminDashboard />)} />
+          <Route path="/legal/privacy" element={<PrivacyPolicyPage />} />
+          <Route path="/legal/terms" element={<TermsPage />} />
+          <Route path="/legal/cookies" element={<CookiePolicyPage />} />
         </Routes>
       </main>
+      <Footer />
       {user && (
         <>
           <SellItemModal
@@ -103,6 +112,7 @@ function AppShell() {
           <FloatingChat messageCount={unreadMessageCount} />
         </>
       )}
+      <CookieConsent />
       <AnimatePresence>
         {toast && (
           <motion.div

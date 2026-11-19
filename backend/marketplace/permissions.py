@@ -19,3 +19,9 @@ class IsSellerOrReadOnly(BasePermission):
         owner = getattr(obj, "seller", None) or getattr(obj, "user", None)
         return bool(request.user and (owner == request.user or request.user.is_staff))
 
+
+class MessageOwnerPermission(BasePermission):
+    """Allow only participants (sender or recipient) to access a message."""
+    def has_object_permission(self, request, view, obj):
+        user = request.user
+        return bool(user and (obj.sender == user or obj.recipient == user))

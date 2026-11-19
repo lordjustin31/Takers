@@ -55,40 +55,40 @@ function MarketplacePage({ refreshKey }: { refreshKey: number }) {
 
   return (
     <div className="mx-auto flex max-w-6xl gap-8 px-6 pb-20 pt-28 md:px-10 lg:pl-24">
-      <aside className="sticky top-28 hidden h-fit w-72 flex-col gap-6 rounded-2xl border border-white/10 bg-night-800/80 p-5 text-slate-100 shadow-glass lg:flex">
+      <aside className="sticky top-28 hidden h-fit w-72 flex-col gap-6 glass-card p-5 lg:flex">
         <div>
-          <p className="text-xs uppercase tracking-[0.24em] text-slate-400">
+          <p className="text-xs uppercase tracking-[0.24em] text-moonstone-400">
             Filters
           </p>
-          <h3 className="mt-2 font-display text-lg font-semibold text-white">
+          <h3 className="mt-2 font-display text-lg font-semibold text-moonstone-100">
             Refine your feed
           </h3>
         </div>
 
         <div className="space-y-3">
-          <label className="text-xs uppercase tracking-[0.3em] text-slate-400">
+          <label className="text-xs uppercase tracking-[0.3em] text-moonstone-300">
             Search
           </label>
           <input
             value={search}
             onChange={(event) => setSearch(event.target.value)}
             placeholder="Try headphones"
-            className="w-full rounded-lg border border-white/10 bg-night-900/70 px-4 py-2 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-300/40"
+            className="glass-input w-full px-5 py-4 text-sm text-moonstone-100 placeholder:text-moonstone-400"
           />
         </div>
 
         <div className="space-y-3">
-          <label className="text-xs uppercase tracking-[0.3em] text-slate-400">
+          <label className="text-xs uppercase tracking-[0.3em] text-moonstone-300">
             Location
           </label>
           <select
             value={location}
             onChange={(event) => setLocation(event.target.value)}
-            className="w-full rounded-lg border border-white/10 bg-night-900/70 px-4 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-300/40"
+            className="glass-input w-full px-5 py-4 text-sm text-moonstone-100 bg-moonstone-900/90"
           >
-            <option value="">All locations</option>
+            <option value="" className="bg-moonstone-900 text-moonstone-100">All locations</option>
             {locations.map((city) => (
-              <option key={city} value={city}>
+              <option key={city} value={city} className="bg-moonstone-900 text-moonstone-100">
                 {city}
               </option>
             ))}
@@ -96,7 +96,7 @@ function MarketplacePage({ refreshKey }: { refreshKey: number }) {
         </div>
 
         <div className="space-y-3">
-          <label className="text-xs uppercase tracking-[0.3em] text-slate-400">
+          <label className="text-xs uppercase tracking-[0.3em] text-moonstone-300">
             Price range
           </label>
           <div className="space-y-2">
@@ -112,7 +112,7 @@ function MarketplacePage({ refreshKey }: { refreshKey: number }) {
                   setPriceMax(value)
                 }
               }}
-              className="w-full accent-emerald-300"
+              className="w-full accent-moonstone-400"
             />
             <input
               type="range"
@@ -126,31 +126,31 @@ function MarketplacePage({ refreshKey }: { refreshKey: number }) {
                   setPriceMin(value)
                 }
               }}
-              className="w-full accent-emerald-300"
+              className="w-full accent-moonstone-400"
             />
           </div>
-          <div className="flex items-center justify-between text-xs text-slate-300">
+          <div className="flex items-center justify-between text-xs text-moonstone-300">
             <span>₱{priceMin}</span>
             <span>₱{priceMax}</span>
           </div>
         </div>
 
         <div className="space-y-3">
-          <label className="text-xs uppercase tracking-[0.3em] text-slate-400">
+          <label className="text-xs uppercase tracking-[0.3em] text-moonstone-300">
             Categories
           </label>
           <div className="grid gap-2">
             {categories.map((category) => (
               <label
                 key={category.id}
-                className="flex items-center justify-between rounded-lg border border-white/10 bg-night-900/60 px-3 py-2 text-sm text-slate-100"
+                className="flex items-center justify-between glass-card px-4 py-3 text-sm text-moonstone-200 cursor-pointer hover:text-moonstone-100 transition"
               >
                 <span>{category.name}</span>
                 <input
                   type="checkbox"
                   checked={selectedCategories.includes(category.id)}
                   onChange={() => toggleCategory(category.id)}
-                  className="h-4 w-4 rounded border-white/20 bg-transparent text-emerald-300"
+                  className="h-4 w-4 rounded border-moonstone-600/50 bg-moonstone-900/50 text-moonstone-400 focus:ring-moonstone-500/40"
                 />
               </label>
             ))}
@@ -162,17 +162,17 @@ function MarketplacePage({ refreshKey }: { refreshKey: number }) {
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative overflow-hidden rounded-2xl border border-white/10 bg-night-800/85 px-8 py-10 shadow-glass"
+          className="relative overflow-hidden rounded-2xl glass-card px-8 py-10 shadow-glass"
         >
-          <div className="absolute inset-y-0 left-0 w-1 bg-emerald-300" />
+          <div className="absolute inset-y-0 left-0 w-1 bg-moonstone-400" />
           <div className="relative z-10 max-w-2xl">
-            <p className="text-xs uppercase tracking-[0.24em] text-emerald-200/70">
+            <p className="text-xs uppercase tracking-[0.24em] text-moonstone-400 font-semibold">
               Social Commerce
             </p>
-            <h1 className="mt-3 font-display text-3xl font-semibold text-white md:text-4xl">
+            <h1 className="mt-3 font-display text-3xl font-semibold text-moonstone-100 md:text-4xl">
               Take what you want, sell what you don't.
             </h1>
-            <p className="mt-3 text-sm text-slate-200/80">
+            <p className="mt-3 text-sm text-moonstone-300">
               Discover trending picks, negotiate instantly, and build your
               marketplace presence with verified sellers.
             </p>

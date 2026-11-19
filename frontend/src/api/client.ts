@@ -39,7 +39,15 @@ apiClient.interceptors.response.use(
     const originalRequest = error.config as InternalAxiosRequestConfig & {
       _retry?: boolean
     }
-    if (error.response?.status !== 401 || originalRequest._retry) {
+    
+    // Do not attempt refresh on auth login/register endpoints or non-401 errors or retried requests
+    const requestUrl = originalRequest?.url || ""
+    if (
+      error.response?.status !== 401 ||
+      originalRequest?._retry ||
+      requestUrl.includes("/auth/token") ||
+      requestUrl.includes("/auth/register")
+    ) {
       return Promise.reject(error)
     }
 

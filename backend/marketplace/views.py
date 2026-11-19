@@ -17,7 +17,7 @@ from rest_framework.views import APIView
 
 from .filters import ProductFilter
 from .models import AdminLog, Category, Comment, CommentReaction, Dispute, Favorite, Friendship, Message, Notification, Offer, Product, Review, User
-from .permissions import IsAdminUserOrReadOnly, IsSellerOrReadOnly
+from .permissions import IsAdminUserOrReadOnly, IsSellerOrReadOnly, MessageOwnerPermission
 from .throttles import CommentRateThrottle, MessageRateThrottle, UploadRateThrottle
 from .serializers import (
 	AdminLogSerializer,
@@ -165,14 +165,90 @@ class ProductViewSet(viewsets.ModelViewSet):
 			return Response({"status": "removed"})
 		return Response({"status": "added"})
 
+	@action(detail=True, methods=["post"], permission_classes=[permissions.IsAuthenticated])
+	def checkout(self, request, pk=None):
+		"""
+		Atomic checkout endpoint to purchase a listing.
+		Prevents double-purchase / race conditions using select_for_update.
+		"""
+		from django.db import transaction as db_transaction
+		from .models import Transaction
+
+		# Atomic transaction block with SELECT FOR UPDATE
+		with db_transaction.atomic():
+			# Obtain lock on the product row
+			product = Product.objects.select_for_update().get(pk=pk)
+
+			if not product.is_active:
+				raise ValidationError("This product is no longer available.")
+
+			if product.seller == request.user:
+				raise ValidationError("You cannot buy your own product.")
+
+			if product.moderation_status != Product.ModerationStatus.APPROVED:
+				raise ValidationError("This product is not available for purchase.")
+
+			# Mark product as sold/inactive
+			product.is_active = False
+			product.save(update_fields=["is_active", "updated_at"])
+
+			# Create a completed transaction record
+			txn = Transaction.objects.create(
+				buyer=request.user,
+				seller=product.seller,
+				product=product,
+				final_price=product.price,
+				status=Transaction.Status.COMPLETED,
+				completed_at=timezone.now()
+			)
+
+			# Increment seller's total_sales safely
+			seller = product.seller
+			seller.total_sales = models.F("total_sales") + 1
+			seller.save(update_fields=["total_sales"])
+
+			# Notify seller
+			Notification.objects.create(
+				user=product.seller,
+				notification_type=Notification.Type.PAYMENT,
+				title="Product Sold!",
+				message=f"Congratulations! Your product '{product.title}' has been purchased by {request.user.username}.",
+				link=f"/products/{product.id}",
+				related_product=product,
+				related_user=request.user
+			)
+
+			# Notify buyer
+			Notification.objects.create(
+				user=request.user,
+				notification_type=Notification.Type.PAYMENT,
+				title="Purchase Successful",
+				message=f"You have successfully purchased '{product.title}' from {product.seller.username}.",
+				link=f"/products/{product.id}",
+				related_product=product,
+				related_user=product.seller
+			)
+
+		return Response({
+			"status": "success",
+			"transaction_id": txn.id,
+			"final_price": txn.final_price
+		})
+
 
 class MessageViewSet(viewsets.ModelViewSet):
 	serializer_class = MessageSerializer
-	permission_classes = [permissions.IsAuthenticated]
+	permission_classes = [permissions.IsAuthenticated, MessageOwnerPermission]
 	throttle_classes = [MessageRateThrottle]  # Rate limit messages
 	filterset_fields = ["thread_id", "product", "recipient", "message_type"]
 	ordering_fields = ["created_at"]
 	ordering = ["-created_at"]
+
+	def get_throttles(self):
+		"""Apply message throttle only for write operations (create), not read (list/retrieve)"""
+		if self.action in ["create"]:
+			return [MessageRateThrottle()]
+		return super().get_throttles()
 
 	def get_queryset(self):
 		user = self.request.user
@@ -187,11 +263,19 @@ class MessageViewSet(viewsets.ModelViewSet):
 		if recipient == sender:
 			raise ValidationError({"recipient": "Cannot message yourself"})
 		
-		# Find existing thread between these two users
-		existing_thread = Message.objects.filter(
-			models.Q(sender=sender, recipient=recipient) |
-			models.Q(sender=recipient, recipient=sender)
-		).first()
+		product = serializer.validated_data.get("product")
+		
+		# Find existing thread between these two users (matching product if provided, or product-less if general message)
+		if product:
+			existing_thread = Message.objects.filter(
+				(models.Q(sender=sender, recipient=recipient) | models.Q(sender=recipient, recipient=sender)),
+				product=product
+			).first()
+		else:
+			existing_thread = Message.objects.filter(
+				(models.Q(sender=sender, recipient=recipient) | models.Q(sender=recipient, recipient=sender)),
+				product__isnull=True
+			).first()
 		
 		# Use existing thread_id or let the model generate a new one
 		if existing_thread:
@@ -769,7 +853,7 @@ class CommentViewSet(viewsets.ModelViewSet):
 	ViewSet for managing comments on products.
 	"""
 	serializer_class = CommentSerializer
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsSellerOrReadOnly]
 	throttle_classes = [CommentRateThrottle]  # Rate limit comments
 	filterset_fields = ["product", "parent"]
 	ordering = ["-created_at"]

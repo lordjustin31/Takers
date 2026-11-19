@@ -157,12 +157,12 @@ function ChatHubPage() {
 
   return (
     <section className="mx-auto flex max-w-6xl gap-6 px-6 pb-20 pt-28 md:px-10">
-      <aside className="glass hidden w-80 flex-col gap-4 rounded-3xl border border-white/10 p-5 shadow-glass md:flex">
+      <aside className="glass-card hidden w-80 flex-col gap-4 rounded-3xl p-5 shadow-glass md:flex">
         <div>
-          <p className="text-xs uppercase tracking-[0.4em] text-slate-400">
+          <p className="text-xs uppercase tracking-[0.4em] text-moonstone-400">
             Messages
           </p>
-          <h2 className="mt-2 font-display text-xl font-semibold text-white">
+          <h2 className="mt-2 font-display text-xl font-semibold text-moonstone-100">
             Conversations
           </h2>
         </div>
@@ -172,13 +172,13 @@ function ChatHubPage() {
               key={thread.threadId}
               type="button"
               onClick={() => setActiveThreadId(thread.threadId)}
-              className={`flex w-full items-center gap-3 rounded-2xl border px-3 py-3 text-left transition ${
+              className={`flex w-full items-center gap-3 rounded-2xl px-3 py-3 text-left transition ${
                 activeThreadId === thread.threadId
-                  ? "border-emerald-300/40 bg-emerald-300/10"
-                  : "border-white/10 bg-white/5"
+                  ? "glass-button-primary shadow-glow-moonstone"
+                  : "glass-button text-moonstone-200 hover:bg-white/10"
               }`}
             >
-              <div className="h-10 w-10 overflow-hidden rounded-full bg-white/10">
+              <div className="glass-card h-10 w-10 overflow-hidden rounded-full">
                 {thread.participant.avatar_url ? (
                   <img
                     src={thread.participant.avatar_url}
@@ -186,7 +186,7 @@ function ChatHubPage() {
                     className="h-full w-full object-cover"
                   />
                 ) : (
-                  <div className="grid h-full w-full place-items-center text-xs text-slate-200">
+                  <div className="grid h-full w-full place-items-center text-xs text-moonstone-300">
                     {(thread.participant.display_name || thread.participant.username || "U")
                       ?.slice(0, 2)
                       .toUpperCase()}
@@ -195,16 +195,16 @@ function ChatHubPage() {
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-2">
-                  <p className="text-sm font-semibold text-white">
+                  <p className="text-sm font-semibold text-moonstone-100">
                     {thread.participant.display_name || thread.participant.username}
                   </p>
                   {thread.messageType === "marketplace" && (
-                    <span className="rounded-full bg-blue-500 px-2 py-0.5 text-xs font-medium text-white">
+                    <span className="glass-button text-xs font-medium text-moonstone-200 px-2 py-0.5 border border-moonstone-400/30">
                       Marketplace
                     </span>
                   )}
                 </div>
-                <p className="text-xs text-slate-300 line-clamp-1">
+                <p className="text-xs text-moonstone-300 line-clamp-1">
                   {thread.lastMessage.body}
                 </p>
               </div>
@@ -224,19 +224,19 @@ function ChatHubPage() {
       </aside>
 
       <div className="flex-1">
-        <div className="glass flex items-center justify-between rounded-3xl border border-white/10 px-6 py-4 shadow-glass">
+        <div className="glass-card flex items-center justify-between rounded-3xl px-6 py-4 shadow-glass">
           <div>
             <div className="flex items-center gap-2">
-              <p className="text-sm font-semibold text-white">
+              <p className="text-sm font-semibold text-moonstone-100">
                 {activeThread?.participant.display_name || activeThread?.participant.username || "Unknown User"}
               </p>
               {activeThread?.messageType === "marketplace" && (
-                <span className="rounded-full bg-blue-500 px-2 py-0.5 text-xs font-medium text-white">
+                <span className="glass-button text-xs font-medium text-moonstone-200 px-2 py-0.5 border border-moonstone-400/30">
                   Marketplace
                 </span>
               )}
             </div>
-            <p className="text-xs text-slate-300">
+            <p className="text-xs text-moonstone-400">
               {activeThread?.product ? activeThread.product.title : "Direct chat"}
             </p>
           </div>
@@ -245,7 +245,7 @@ function ChatHubPage() {
               <button
                 type="button"
                 onClick={() => setShowOffer(true)}
-                className="rounded-full bg-emerald-300/20 px-3 py-2 text-xs text-emerald-100"
+                className="glass-button text-emerald-400 px-3 py-2 text-xs hover:text-emerald-300"
               >
                 Make offer
               </button>
@@ -253,7 +253,7 @@ function ChatHubPage() {
             <button
               type="button"
               onClick={() => setShowDispute(true)}
-              className="rounded-full bg-amber-300/20 px-3 py-2 text-xs text-amber-100"
+              className="glass-button text-amber-400 px-3 py-2 text-xs hover:text-amber-300"
             >
               Dispute
             </button>
@@ -269,8 +269,8 @@ function ChatHubPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className={`max-w-[70%] rounded-2xl px-4 py-3 text-sm shadow-glass ${
                   message.sender.id === user?.id
-                    ? "ml-auto bg-emerald-300/20 text-emerald-50"
-                    : "bg-white/10 text-slate-100"
+                    ? "ml-auto glass-card bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-medium"
+                    : "glass-card bg-moonstone-800/90 text-moonstone-100 border border-moonstone-700/60"
                 }`}
               >
                 {message.body}
@@ -279,20 +279,20 @@ function ChatHubPage() {
           </AnimatePresence>
         </div>
 
-        <div className="glass mt-6 flex items-center gap-3 rounded-2xl border border-white/10 px-4 py-3 shadow-glass">
-          <button type="button" className="text-slate-300">
+        <div className="glass-card mt-6 flex items-center gap-3 rounded-2xl px-4 py-3 shadow-glass">
+          <button type="button" className="text-moonstone-400 hover:text-moonstone-200">
             <Paperclip className="h-5 w-5" />
           </button>
           <input
             value={messageText}
             onChange={(event) => setMessageText(event.target.value)}
             placeholder="Write a message"
-            className="flex-1 bg-transparent text-sm text-slate-100 placeholder:text-slate-400 focus:outline-none"
+            className="flex-1 bg-transparent text-sm text-moonstone-100 placeholder:text-moonstone-400 focus:outline-none"
           />
           <button
             type="button"
             onClick={handleSend}
-            className="flex items-center gap-2 rounded-full bg-emerald-300/20 px-4 py-2 text-xs text-emerald-100"
+            className="glass-button-primary flex items-center gap-2 px-4 py-2 text-xs shadow-glow-moonstone hover:shadow-glow-moonstone-lg"
           >
             <Send className="h-4 w-4" />
             Send
@@ -306,20 +306,20 @@ function ChatHubPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-moonstone-900/60"
           >
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 20, opacity: 0 }}
-              className="glass w-[min(420px,92vw)] rounded-3xl border border-white/10 p-5"
+              className="glass-card w-[min(420px,92vw)] rounded-3xl p-5 shadow-glow-moonstone-lg"
             >
               <div className="flex items-center justify-between">
-                <p className="text-sm font-semibold text-white">Send offer</p>
+                <p className="text-sm font-semibold text-moonstone-900">Send offer</p>
                 <button
                   type="button"
                   onClick={() => setShowOffer(false)}
-                  className="text-xs uppercase tracking-[0.3em] text-slate-400"
+                  className="glass-button text-xs uppercase tracking-[0.3em] text-moonstone-500"
                 >
                   Close
                 </button>
@@ -329,12 +329,12 @@ function ChatHubPage() {
                   value={offerPrice}
                   onChange={(event) => setOfferPrice(event.target.value)}
                   placeholder="Proposed price"
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white"
+                  className="glass-input w-full rounded-xl px-4 py-3 text-sm text-moonstone-900"
                 />
                 <button
                   type="button"
                   onClick={handleOffer}
-                  className="w-full rounded-full bg-emerald-300/20 px-4 py-2 text-sm text-emerald-100"
+                  className="glass-button-primary w-full rounded-full px-4 py-2 text-sm shadow-glow-moonstone hover:shadow-glow-moonstone-lg"
                 >
                   Submit offer
                 </button>
@@ -350,20 +350,20 @@ function ChatHubPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-moonstone-900/60"
           >
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 20, opacity: 0 }}
-              className="glass w-[min(420px,92vw)] rounded-3xl border border-white/10 p-5"
+              className="glass-card w-[min(420px,92vw)] rounded-3xl p-5 shadow-glow-moonstone-lg"
             >
               <div className="flex items-center justify-between">
-                <p className="text-sm font-semibold text-white">Open dispute</p>
+                <p className="text-sm font-semibold text-moonstone-900">Open dispute</p>
                 <button
                   type="button"
                   onClick={() => setShowDispute(false)}
-                  className="text-xs uppercase tracking-[0.3em] text-slate-400"
+                  className="glass-button text-xs uppercase tracking-[0.3em] text-moonstone-500"
                 >
                   Close
                 </button>
@@ -373,12 +373,12 @@ function ChatHubPage() {
                   value={disputeReason}
                   onChange={(event) => setDisputeReason(event.target.value)}
                   placeholder="Describe the issue"
-                  className="min-h-[120px] w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white"
+                  className="glass-input min-h-[120px] w-full rounded-xl px-4 py-3 text-sm text-moonstone-900"
                 />
                 <button
                   type="button"
                   onClick={handleDispute}
-                  className="w-full rounded-full bg-amber-300/20 px-4 py-2 text-sm text-amber-100"
+                  className="glass-button bg-gradient-to-r from-amber-500 to-amber-600 w-full rounded-full px-4 py-2 text-sm text-white shadow-glow-amber hover:shadow-glow-amber-lg"
                 >
                   Submit dispute
                 </button>

@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence } from "framer-motion"
 import {
   Bell,
   Home,
@@ -166,31 +166,31 @@ function Navbar({ onOpenSell }: NavbarProps) {
   }
 
   return (
-    <nav className="fixed left-0 right-0 top-0 z-50 border-b border-neu-200 bg-neu-50 shadow-neu-sm">
+    <nav className="fixed left-0 right-0 top-0 z-50 border-b border-moonstone-200 bg-moonstone-50/80 backdrop-blur-md shadow-glass">
       <div className="mx-auto flex h-16 max-w-[1920px] items-center justify-between gap-4 px-4">
         {/* Left: Logo & Search */}
         <div className="flex items-center gap-4">
           {/* Logo */}
           <button
             onClick={() => navigate("/")}
-            className="neu-button flex items-center gap-2 px-3 py-2"
+            className="glass-button flex items-center gap-2 px-3 py-2"
           >
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 shadow-glow-blue">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-moonstone-400 to-moonstone-600 shadow-glow-moonstone">
               <ShoppingBag className="h-6 w-6 text-white" />
             </div>
-            <span className="hidden text-xl font-bold text-blue-600 lg:block">Takers</span>
+            <span className="hidden text-xl font-bold text-moonstone-700 lg:block">Takers</span>
           </button>
 
           {/* Search */}
-          <div className="neu-card-inset hidden items-center gap-2 px-4 py-2 md:flex">
-            <Search className="h-5 w-5 text-neu-400" />
+          <div className="glass-card hidden items-center gap-2 px-4 py-2 md:flex">
+            <Search className="h-5 w-5 text-moonstone-400" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => searchQuery && setShowSearchResults(true)}
               placeholder="Search users and products..."
-              className="w-64 bg-transparent text-sm text-neu-800 placeholder:text-neu-400 focus:outline-none"
+              className="w-64 bg-transparent text-sm text-moonstone-900 placeholder:text-moonstone-400 focus:outline-none"
             />
           </div>
         </div>
@@ -199,43 +199,43 @@ function Navbar({ onOpenSell }: NavbarProps) {
         <div className="flex items-center gap-2">
           <button
             onClick={() => navigate("/")}
-            className="neu-button relative px-6 py-2 transition"
+            className="glass-button relative px-6 py-2 transition"
           >
             <Home
               className={`h-6 w-6 transition ${
-                isActive("/") ? "text-blue-600" : "text-neu-600"
+                isActive("/") ? "text-moonstone-700" : "text-moonstone-500"
               }`}
             />
             {isActive("/") && (
-              <div className="absolute bottom-0 left-1/2 h-1 w-12 -translate-x-1/2 rounded-t-full bg-blue-600" />
+              <div className="absolute bottom-0 left-1/2 h-1 w-12 -translate-x-1/2 rounded-t-full bg-moonstone-600" />
             )}
           </button>
 
           <button
             onClick={() => navigate("/marketplace")}
-            className="neu-button relative px-6 py-2 transition"
+            className="glass-button relative px-6 py-2 transition"
           >
             <ShoppingBag
               className={`h-6 w-6 transition ${
-                isActive("/marketplace") ? "text-blue-600" : "text-neu-600"
+                isActive("/marketplace") ? "text-moonstone-700" : "text-moonstone-500"
               }`}
             />
             {isActive("/marketplace") && (
-              <div className="absolute bottom-0 left-1/2 h-1 w-12 -translate-x-1/2 rounded-t-full bg-blue-600" />
+              <div className="absolute bottom-0 left-1/2 h-1 w-12 -translate-x-1/2 rounded-t-full bg-moonstone-600" />
             )}
           </button>
 
           <button
             onClick={() => navigate("/friends")}
-            className="neu-button relative px-6 py-2 transition"
+            className="glass-button relative px-6 py-2 transition"
           >
             <Users
               className={`h-6 w-6 transition ${
-                isActive("/friends") ? "text-blue-600" : "text-neu-600"
+                isActive("/friends") ? "text-moonstone-700" : "text-moonstone-500"
               }`}
             />
             {isActive("/friends") && (
-              <div className="absolute bottom-0 left-1/2 h-1 w-12 -translate-x-1/2 rounded-t-full bg-blue-600" />
+              <div className="absolute bottom-0 left-1/2 h-1 w-12 -translate-x-1/2 rounded-t-full bg-moonstone-600" />
             )}
           </button>
         </div>
@@ -246,7 +246,7 @@ function Navbar({ onOpenSell }: NavbarProps) {
           {user && (
             <button
               onClick={onOpenSell}
-              className="neu-button hidden items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-glow-blue hover:from-blue-600 hover:to-blue-700 md:flex"
+              className="glass-button-primary hidden items-center gap-2 px-4 py-2 text-sm font-semibold shadow-glow-moonstone hover:shadow-glow-moonstone-lg md:flex"
             >
               <Plus className="h-5 w-5" />
               Sell
@@ -258,11 +258,11 @@ function Navbar({ onOpenSell }: NavbarProps) {
             <div className="relative">
               <button
                 onClick={() => setShowNotifications(!showNotifications)}
-                className="neu-button relative p-2"
+                className="glass-button relative p-2"
               >
-                <Bell className="h-6 w-6 text-neu-600" />
+                <Bell className="h-6 w-6 text-moonstone-600" />
                 {notificationCount > 0 && (
-                  <span className="absolute right-1 top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">
+                  <span className="absolute right-1 top-1 flex h-5 w-5 items-center justify-center rounded-full bg-rose-500 text-xs font-bold text-white">
                     {notificationCount}
                   </span>
                 )}
@@ -270,18 +270,16 @@ function Navbar({ onOpenSell }: NavbarProps) {
 
               <AnimatePresence>
                 {showNotifications && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    className="absolute right-0 top-14 w-96 neu-card p-4 shadow-neu-lg"
+                  <div
+                    className="absolute right-0 top-14 w-96 glass-card p-4 shadow-glow-moonstone-lg transition-all duration-150"
+                    style={{ opacity: 1, transform: 'translateY(0)' }}
                   >
                     <div className="mb-3 flex items-center justify-between">
-                      <h3 className="text-lg font-bold text-neu-900">Notifications</h3>
+                      <h3 className="text-lg font-bold text-moonstone-900">Notifications</h3>
                       {notificationCount > 0 && (
                         <button
                           onClick={markAllAsRead}
-                          className="text-xs font-semibold text-blue-600 hover:text-blue-700"
+                          className="text-xs font-semibold text-moonstone-600 hover:text-moonstone-700"
                         >
                           Mark all as read
                         </button>
@@ -290,39 +288,39 @@ function Navbar({ onOpenSell }: NavbarProps) {
                     <div className="max-h-96 space-y-2 overflow-y-auto">
                       {notifications.length === 0 ? (
                         <div className="py-8 text-center">
-                          <Bell className="mx-auto mb-2 h-12 w-12 text-neu-300" />
-                          <p className="text-sm text-neu-500">No notifications yet</p>
+                          <Bell className="mx-auto mb-2 h-12 w-12 text-moonstone-300" />
+                          <p className="text-sm text-moonstone-500">No notifications yet</p>
                         </div>
                       ) : (
                         notifications.map((notification) => (
                           <div
                             key={notification.id}
                             onClick={() => handleNotificationClick(notification)}
-                            className={`neu-card cursor-pointer p-3 transition hover:shadow-neu-sm ${
-                              !notification.isRead ? "border-l-4 border-blue-500" : ""
+                            className={`glass-card cursor-pointer p-3 transition hover:shadow-glass ${
+                              !notification.isRead ? "border-l-4 border-moonstone-500" : ""
                             }`}
                           >
                             <div className="flex items-start gap-3">
                               <div className="flex-1">
-                                <p className="text-sm font-semibold text-neu-800">
+                                <p className="text-sm font-semibold text-moonstone-900">
                                   {notification.title}
                                 </p>
-                                <p className="mt-1 text-xs text-neu-600">
+                                <p className="mt-1 text-xs text-moonstone-600">
                                   {notification.message}
                                 </p>
-                                <p className="mt-1 text-xs text-neu-400">
+                                <p className="mt-1 text-xs text-moonstone-400">
                                   {notification.time}
                                 </p>
                               </div>
                               {!notification.isRead && (
-                                <div className="mt-1 h-2 w-2 rounded-full bg-blue-500" />
+                                <div className="mt-1 h-2 w-2 rounded-full bg-moonstone-500" />
                               )}
                             </div>
                           </div>
                         ))
                       )}
                     </div>
-                  </motion.div>
+                  </div>
                 )}
               </AnimatePresence>
             </div>
@@ -333,9 +331,9 @@ function Navbar({ onOpenSell }: NavbarProps) {
             <div className="relative">
               <button
                 onClick={() => setShowProfileMenu(!showProfileMenu)}
-                className="neu-button flex items-center gap-2 p-1 pr-3"
+                className="glass-button flex items-center gap-2 p-1 pr-3"
               >
-                <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-400 to-blue-600">
+                <div className="glass-card flex h-10 w-10 items-center justify-center overflow-hidden rounded-full">
                   {user.avatar_url ? (
                     <img
                       src={user.avatar_url}
@@ -343,13 +341,15 @@ function Navbar({ onOpenSell }: NavbarProps) {
                       className="h-full w-full object-cover"
                     />
                   ) : (
-                    <span className="text-sm font-bold text-white">
-                      {(user.display_name || user.username).slice(0, 2).toUpperCase()}
-                    </span>
+                    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-moonstone-400 to-moonstone-600">
+                      <span className="text-sm font-bold text-white">
+                        {(user.display_name || user.username).slice(0, 2).toUpperCase()}
+                      </span>
+                    </div>
                   )}
                 </div>
                 <svg
-                  className="h-4 w-4 text-neu-600"
+                  className="h-4 w-4 text-moonstone-500"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -363,14 +363,12 @@ function Navbar({ onOpenSell }: NavbarProps) {
 
               <AnimatePresence>
                 {showProfileMenu && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    className="absolute right-0 top-14 w-72 neu-card p-3"
+                  <div
+                    className="absolute right-0 top-14 w-72 glass-card p-3 shadow-glow-moonstone-lg transition-all duration-150"
+                    style={{ opacity: 1, transform: 'translateY(0)' }}
                   >
-                    <div className="neu-card-inset mb-3 flex items-center gap-3 p-3">
-                      <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-400 to-blue-600">
+                    <div className="glass-card mb-3 flex items-center gap-3 p-3">
+                      <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-moonstone-400 to-moonstone-600">
                         {user.avatar_url ? (
                           <img
                             src={user.avatar_url}
@@ -384,10 +382,10 @@ function Navbar({ onOpenSell }: NavbarProps) {
                         )}
                       </div>
                       <div className="flex-1">
-                        <p className="font-semibold text-neu-900">
+                        <p className="font-semibold text-moonstone-900">
                           {user.display_name || user.username}
                         </p>
-                        <p className="text-xs text-neu-500">{user.email}</p>
+                        <p className="text-xs text-moonstone-500">{user.email}</p>
                         {(user.is_staff || user.is_superuser) && (
                           <span className="mt-1 inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-2 py-0.5 text-xs font-bold text-white">
                             <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
@@ -405,10 +403,10 @@ function Navbar({ onOpenSell }: NavbarProps) {
                           navigate(`/shop/${user.id}`)
                           setShowProfileMenu(false)
                         }}
-                        className="neu-button flex w-full items-center gap-3 px-3 py-2 text-left"
+                        className="glass-button flex w-full items-center gap-3 px-3 py-2 text-left text-moonstone-700 hover:bg-moonstone-100"
                       >
-                        <Store className="h-5 w-5 text-neu-600" />
-                        <span className="text-sm font-medium text-neu-800">My Shop</span>
+                        <Store className="h-5 w-5 text-moonstone-600" />
+                        <span className="text-sm font-medium text-moonstone-800">My Shop</span>
                       </button>
 
                       <button
@@ -416,10 +414,10 @@ function Navbar({ onOpenSell }: NavbarProps) {
                           navigate("/favorites")
                           setShowProfileMenu(false)
                         }}
-                        className="neu-button flex w-full items-center gap-3 px-3 py-2 text-left"
+                        className="glass-button flex w-full items-center gap-3 px-3 py-2 text-left text-moonstone-700 hover:bg-moonstone-100"
                       >
-                        <Heart className="h-5 w-5 text-neu-600" />
-                        <span className="text-sm font-medium text-neu-800">Saved Items</span>
+                        <Heart className="h-5 w-5 text-moonstone-600" />
+                        <span className="text-sm font-medium text-moonstone-800">Saved Items</span>
                       </button>
 
                       <button
@@ -427,10 +425,10 @@ function Navbar({ onOpenSell }: NavbarProps) {
                           navigate("/settings")
                           setShowProfileMenu(false)
                         }}
-                        className="neu-button flex w-full items-center gap-3 px-3 py-2 text-left"
+                        className="glass-button flex w-full items-center gap-3 px-3 py-2 text-left text-moonstone-700 hover:bg-moonstone-100"
                       >
-                        <Settings className="h-5 w-5 text-neu-600" />
-                        <span className="text-sm font-medium text-neu-800">Settings</span>
+                        <Settings className="h-5 w-5 text-moonstone-600" />
+                        <span className="text-sm font-medium text-moonstone-800">Settings</span>
                       </button>
 
                       {user.is_staff && (
@@ -439,10 +437,10 @@ function Navbar({ onOpenSell }: NavbarProps) {
                             navigate("/admin")
                             setShowProfileMenu(false)
                           }}
-                          className="neu-button flex w-full items-center gap-3 px-3 py-2 text-left"
+                          className="glass-button flex w-full items-center gap-3 px-3 py-2 text-left text-moonstone-700 hover:bg-moonstone-100"
                         >
                           <svg
-                            className="h-5 w-5 text-neu-600"
+                            className="h-5 w-5 text-moonstone-600"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                           >
@@ -452,31 +450,31 @@ function Navbar({ onOpenSell }: NavbarProps) {
                               clipRule="evenodd"
                             />
                           </svg>
-                          <span className="text-sm font-medium text-neu-800">Admin Panel</span>
+                          <span className="text-sm font-medium text-moonstone-800">Admin Panel</span>
                         </button>
                       )}
 
-                      <div className="my-2 h-px bg-neu-200" />
+                      <div className="my-2 h-px bg-moonstone-200" />
 
                       <button
                         onClick={() => {
                           logout()
                           setShowProfileMenu(false)
                         }}
-                        className="neu-button flex w-full items-center gap-3 px-3 py-2 text-left"
+                        className="glass-button flex w-full items-center gap-3 px-3 py-2 text-left text-rose-600 hover:bg-rose-50"
                       >
-                        <LogOut className="h-5 w-5 text-red-600" />
-                        <span className="text-sm font-medium text-red-600">Log Out</span>
+                        <LogOut className="h-5 w-5 text-rose-600" />
+                        <span className="text-sm font-medium text-rose-600">Log Out</span>
                       </button>
                     </div>
-                  </motion.div>
+                  </div>
                 )}
               </AnimatePresence>
             </div>
           ) : (
             <button
               onClick={() => navigate('/auth')}
-              className="neu-button bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-2 text-sm font-semibold text-white shadow-glow-blue hover:from-blue-600 hover:to-blue-700"
+              className="glass-button-primary px-6 py-2 text-sm font-semibold shadow-glow-moonstone hover:shadow-glow-moonstone-lg"
             >
               Log In
             </button>
@@ -485,16 +483,16 @@ function Navbar({ onOpenSell }: NavbarProps) {
       </div>
 
       {/* Mobile Search */}
-      <div className="border-t border-neu-200 px-4 py-2 md:hidden">
-        <div className="neu-card-inset flex items-center gap-2 px-4 py-2">
-          <Search className="h-4 w-4 text-neu-400" />
+      <div className="border-t border-moonstone-200 px-4 py-2 md:hidden">
+        <div className="glass-card flex items-center gap-2 px-4 py-2">
+          <Search className="h-4 w-4 text-moonstone-400" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => searchQuery && setShowSearchResults(true)}
             placeholder="Search users and products..."
-            className="flex-1 bg-transparent text-sm text-neu-800 placeholder:text-neu-400 focus:outline-none"
+            className="flex-1 bg-transparent text-sm text-moonstone-900 placeholder:text-moonstone-400 focus:outline-none"
           />
         </div>
       </div>

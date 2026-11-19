@@ -30,8 +30,8 @@ interface AuthContextValue {
   isLoading: boolean
   authError: string | null
   loginWithGoogle: (payload: { accessToken?: string; code?: string }) => Promise<void>
-  loginWithCredentials: (payload: { username: string; password: string }) => Promise<void>
-  registerWithEmail: (payload: { username: string; email: string; password: string }) => Promise<void>
+  loginWithCredentials: (payload: { username: string; password: string }) => Promise<boolean>
+  registerWithEmail: (payload: { username: string; email: string; password: string }) => Promise<boolean>
   startGoogleAuth: () => void
   logout: () => Promise<void>
   setSession: (access: string, refresh: string, user: AuthUser) => void
@@ -112,7 +112,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   )
 
   const loginWithCredentials = useCallback(
-    async (payload: { username: string; password: string }) => {
+    async (payload: { username: string; password: string }): Promise<boolean> => {
       setIsLoading(true)
       setAuthError(null)
       try {
@@ -128,16 +128,36 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setAccessToken(access)
         setRefreshToken(refresh)
         await fetchProfile()
+        return true
       } catch (error: unknown) {
-        const message =
-          error instanceof Error
-            ? error.message
-            : "Incorrect username or password."
-        const detail =
+        const responseStatus =
           typeof error === "object" && error !== null && "response" in error
-            ? (error as { response?: { data?: { detail?: string } } }).response?.data?.detail
+            ? (error as { response?: { status?: number; data?: Record<string, unknown> } }).response?.status
             : null
-        setAuthError(detail || message)
+
+        const responseData =
+          typeof error === "object" && error !== null && "response" in error
+            ? (error as { response?: { status?: number; data?: Record<string, unknown> } }).response?.data
+            : null
+
+        if (responseStatus === 429) {
+          setAuthError("Too many login attempts. Please wait a moment before trying again.")
+          return false
+        }
+
+        const detail = responseData?.detail || responseData?.non_field_errors
+        let formattedMessage = "Incorrect username or password, or account does not exist."
+        
+        if (detail) {
+          const detailStr = Array.isArray(detail) ? String(detail[0]) : String(detail)
+          if (detailStr.toLowerCase().includes("no active account") || detailStr.toLowerCase().includes("credentials")) {
+            formattedMessage = "Account does not exist or incorrect password."
+          } else {
+            formattedMessage = detailStr
+          }
+        }
+        setAuthError(formattedMessage)
+        return false
       } finally {
         setIsLoading(false)
       }
@@ -146,7 +166,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   )
 
   const registerWithEmail = useCallback(
-    async (payload: { username: string; email: string; password: string }) => {
+    async (payload: { username: string; email: string; password: string }): Promise<boolean> => {
       setIsLoading(true)
       setAuthError(null)
       try {
@@ -157,10 +177,37 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           user: AuthUser
         }
         setSession(access, refresh, profile)
+        return true
       } catch (error: unknown) {
-        const message =
-          error instanceof Error ? error.message : "Unable to create account. Please try again."
+        const responseStatus =
+          typeof error === "object" && error !== null && "response" in error
+            ? (error as { response?: { status?: number; data?: Record<string, unknown> } }).response?.status
+            : null
+
+        const responseData =
+          typeof error === "object" && error !== null && "response" in error
+            ? (error as { response?: { status?: number; data?: Record<string, unknown> } }).response?.data
+            : null
+        
+        if (responseStatus === 429) {
+          setAuthError("Too many registration attempts. Please wait a moment before trying again.")
+          return false
+        }
+
+        let message = "Unable to create account. Please check your information."
+        if (responseData) {
+          if (responseData.username) {
+            const uErr = Array.isArray(responseData.username) ? responseData.username[0] : responseData.username
+            message = `Username error: ${uErr}`
+          } else if (responseData.email) {
+            const eErr = Array.isArray(responseData.email) ? responseData.email[0] : responseData.email
+            message = `Email error: ${eErr}`
+          } else if (responseData.detail) {
+            message = String(responseData.detail)
+          }
+        }
         setAuthError(message)
+        return false
       } finally {
         setIsLoading(false)
       }

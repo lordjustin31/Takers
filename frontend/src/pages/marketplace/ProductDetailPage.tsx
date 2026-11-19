@@ -56,6 +56,7 @@ function ProductDetailPage() {
   const [offerPrice, setOfferPrice] = useState("")
   const [comments, setComments] = useState<Comment[]>([])
   const [commentText, setCommentText] = useState("")
+  const [isPrivate, setIsPrivate] = useState(false)
   const [replyDrafts, setReplyDrafts] = useState<{ [key: number]: string }>({})
   const [replyingCommentId, setReplyingCommentId] = useState<number | null>(null)
   const [loadingComments, setLoadingComments] = useState(false)
@@ -106,9 +107,11 @@ function ProductDetailPage() {
       const response = await apiClient.post<Comment>("/comments/", {
         product: parseInt(id),
         body: commentText,
+        is_private: isPrivate,
       })
       setComments([response.data, ...comments])
       setCommentText("")
+      setIsPrivate(false)
     } catch (error) {
       console.error("Failed to post comment:", error)
     }
@@ -227,7 +230,7 @@ function ProductDetailPage() {
   const renderComment = (comment: Comment, depth = 0) => (
     <div key={comment.id} className={`flex gap-3 ${depth > 0 ? "ml-3 sm:ml-6" : ""}`}>
       <div
-        className="h-8 w-8 overflow-hidden rounded-full bg-white/10 flex-shrink-0 cursor-pointer"
+        className="glass-card h-8 w-8 overflow-hidden rounded-full flex-shrink-0 cursor-pointer"
         onClick={() => navigate(`/shop/${comment.user.id}`)}
       >
         {comment.user.avatar_url ? (
@@ -237,44 +240,44 @@ function ProductDetailPage() {
             className="h-full w-full object-cover"
           />
         ) : (
-          <div className="grid h-full w-full place-items-center text-xs text-slate-200">
+          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-moonstone-400 to-moonstone-600 text-xs font-bold text-white">
             {(comment.user.display_name || comment.user.username).slice(0, 2).toUpperCase()}
           </div>
         )}
       </div>
       <div className="flex-1 min-w-0">
-        <div className="rounded-lg border border-white/10 bg-white/5 p-3">
+        <div className="glass-card p-3">
           <div className="flex items-center justify-between gap-3">
-            <p className="font-semibold text-sm text-white truncate">
+            <p className="font-semibold text-sm text-moonstone-100 truncate">
               {comment.user.display_name || comment.user.username}
             </p>
-            <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-slate-400 flex-shrink-0">
+            <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-moonstone-400 flex-shrink-0">
               {comment.is_private && <span>Private</span>}
               <span>{timeAgo(comment.created_at)}</span>
             </div>
           </div>
-          <p className="text-sm text-slate-300 mt-1 break-words whitespace-pre-wrap">{comment.body}</p>
+          <p className="text-sm text-moonstone-200 mt-1 break-words whitespace-pre-wrap">{comment.body}</p>
         </div>
-        <div className="mt-2 flex flex-wrap gap-2 px-1 text-xs text-slate-400">
-          <button type="button" onClick={() => handleReact(comment.id)} className="rounded-full border border-white/10 px-3 py-1 hover:border-emerald-300/50 hover:text-emerald-200">
+        <div className="mt-2 flex flex-wrap gap-2 px-1 text-xs text-moonstone-400">
+          <button type="button" onClick={() => handleReact(comment.id)} className="glass-button rounded-full px-3 py-1 text-xs hover:text-emerald-400">
             React {comment.reaction_count ? `(${comment.reaction_count})` : ""}
           </button>
-          <button type="button" onClick={() => handleReply(comment.id)} className="rounded-full border border-white/10 px-3 py-1 hover:border-sky-300/50 hover:text-sky-200">
+          <button type="button" onClick={() => handleReply(comment.id)} className="glass-button rounded-full px-3 py-1 text-xs hover:text-blue-400">
             Reply {comment.reply_count ? `(${comment.reply_count})` : ""}
           </button>
           {canManageComment(comment) && (
-            <button type="button" onClick={() => handleDeleteComment(comment.id)} className="rounded-full border border-white/10 px-3 py-1 hover:border-rose-300/50 hover:text-rose-200">
+            <button type="button" onClick={() => handleDeleteComment(comment.id)} className="glass-button rounded-full px-3 py-1 text-xs hover:text-rose-400">
               Delete
             </button>
           )}
           {user && user.id === comment.user.id && (
-            <button type="button" onClick={() => handleTogglePrivacy(comment)} className="rounded-full border border-white/10 px-3 py-1 hover:border-amber-300/50 hover:text-amber-200">
+            <button type="button" onClick={() => handleTogglePrivacy(comment)} className="glass-button rounded-full px-3 py-1 text-xs hover:text-amber-400">
               {comment.is_private ? "Make Public" : "Make Private"}
             </button>
           )}
         </div>
         {replyingCommentId === comment.id && user && (
-          <div className="mt-3 rounded-lg border border-white/10 bg-night-900/60 p-3">
+          <div className="mt-3 glass-card p-3">
             <textarea
               value={replyDrafts[comment.id] || ""}
               onChange={(event) =>
@@ -282,13 +285,13 @@ function ProductDetailPage() {
               }
               placeholder="Write a reply..."
               rows={3}
-              className="w-full rounded-lg border border-white/10 bg-night-900/80 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-sky-500/50"
+              className="w-full glass-input px-3 py-2 text-sm text-moonstone-100 placeholder:text-moonstone-400 focus:outline-none"
             />
             <div className="mt-2 flex justify-end gap-2">
               <button
                 type="button"
                 onClick={() => setReplyingCommentId(null)}
-                className="rounded-lg border border-white/10 px-3 py-2 text-xs uppercase tracking-[0.18em] text-slate-400 hover:text-white"
+                className="glass-button rounded-lg px-3 py-2 text-xs uppercase tracking-[0.18em] text-moonstone-400"
               >
                 Cancel
               </button>
@@ -296,7 +299,7 @@ function ProductDetailPage() {
                 type="button"
                 onClick={() => handleReplySubmit(comment.id)}
                 disabled={!replyDrafts[comment.id]?.trim()}
-                className="rounded-lg bg-sky-500 px-3 py-2 text-xs uppercase tracking-[0.18em] text-white disabled:opacity-50"
+                className="glass-button-primary rounded-lg px-3 py-2 text-xs uppercase tracking-[0.18em] disabled:opacity-50"
               >
                 Reply
               </button>
@@ -340,8 +343,8 @@ function ProductDetailPage() {
   if (!product) {
     return (
       <section className="mx-auto max-w-6xl px-6 pb-20 pt-28 md:px-10">
-        <div className="rounded-2xl border border-white/10 bg-night-800/80 p-8">
-          <p className="text-sm text-slate-200">Loading listing...</p>
+        <div className="glass-card p-8">
+          <p className="text-sm text-moonstone-500">Loading listing...</p>
         </div>
       </section>
     )
@@ -353,9 +356,9 @@ function ProductDetailPage() {
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          className="overflow-hidden rounded-2xl border border-white/10 bg-night-800/80 p-4 shadow-glass"
+          className="overflow-hidden rounded-2xl glass-card p-4 shadow-glass"
         >
-          <div className="relative h-[420px] overflow-hidden rounded-xl bg-night-700">
+          <div className="relative h-[420px] overflow-hidden rounded-xl bg-moonstone-100">
             {product.image_urls?.length ? (
               <img
                 src={product.image_urls[activeImage]}
@@ -363,7 +366,7 @@ function ProductDetailPage() {
                 className="h-full w-full object-cover"
               />
             ) : (
-              <div className="grid h-full w-full place-items-center text-xs uppercase tracking-[0.24em] text-slate-300">
+              <div className="grid h-full w-full place-items-center text-xs uppercase tracking-[0.24em] text-moonstone-400">
                 Takers
               </div>
             )}
@@ -376,8 +379,8 @@ function ProductDetailPage() {
                 onClick={() => setActiveImage(index)}
                 className={`h-16 w-20 overflow-hidden rounded-lg border ${
                   activeImage === index
-                    ? "border-emerald-300/70"
-                    : "border-white/10"
+                    ? "border-moonstone-500"
+                    : "border-moonstone-200"
                 }`}
               >
                 <img src={url} alt="Thumbnail" className="h-full w-full object-cover" />
@@ -388,39 +391,39 @@ function ProductDetailPage() {
       </div>
 
       <div className="space-y-6">
-        <div className="rounded-2xl border border-white/10 bg-night-800/80 p-6 shadow-glass">
+        <div className="glass-card p-6 shadow-glass">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="rounded-lg border border-emerald-300/40 bg-emerald-300/10 px-3 py-1 text-xs uppercase tracking-[0.2em] text-emerald-100">
+            <span className="rounded-lg bg-moonstone-800/60 border border-moonstone-700/50 px-3 py-1 text-xs uppercase tracking-[0.2em] text-moonstone-300">
               Live
             </span>
             {product.seller.is_verified_seller && (
-              <span className="flex items-center gap-2 rounded-lg border border-sky-300/40 bg-sky-300/10 px-3 py-1 text-xs uppercase tracking-[0.2em] text-sky-100">
+              <span className="flex items-center gap-2 rounded-lg bg-blue-950/60 border border-blue-800/40 px-3 py-1 text-xs uppercase tracking-[0.2em] text-blue-300">
                 <ShieldCheck className="h-4 w-4" />
                 Verified
               </span>
             )}
           </div>
-          <h1 className="mt-4 font-display text-3xl font-semibold text-white">
+          <h1 className="mt-4 font-display text-3xl font-semibold text-moonstone-100">
             {product.title}
           </h1>
-          <p className="mt-2 text-sm text-slate-300">{product.description}</p>
+          <p className="mt-2 text-sm text-moonstone-200">{product.description}</p>
           <div className="mt-4 flex items-center gap-3">
-            <span className="text-2xl font-semibold text-emerald-200">
-              ₱{product.price}
+            <span className="text-2xl font-semibold text-emerald-400">
+              {product.currency} {product.price}
             </span>
-            <span className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200">
+            <span className="flex items-center gap-2 rounded-lg glass-input px-3 py-1 text-xs text-moonstone-300">
               <Tag className="h-3 w-3" />
               {product.location}
             </span>
           </div>
         </div>
 
-        <div className="rounded-2xl border border-white/10 bg-night-800/80 p-6 shadow-glass">
-          <p className="text-xs uppercase tracking-[0.24em] text-slate-400">
+        <div className="glass-card p-6 shadow-glass">
+          <p className="text-xs uppercase tracking-[0.24em] text-moonstone-400">
             Seller
           </p>
           <div className="mt-3 flex items-center gap-3">
-            <div className="h-12 w-12 overflow-hidden rounded-full bg-white/10">
+            <div className="glass-card h-12 w-12 overflow-hidden rounded-full">
               {product.seller.avatar_url ? (
                 <img
                   src={product.seller.avatar_url}
@@ -428,24 +431,24 @@ function ProductDetailPage() {
                   className="h-full w-full object-cover"
                 />
               ) : (
-                <div className="grid h-full w-full place-items-center text-xs text-slate-200">
+                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-moonstone-400 to-moonstone-600 text-xs font-bold text-white">
                   {product.seller.display_name?.slice(0, 2) ||
                     product.seller.username.slice(0, 2)}
                 </div>
               )}
             </div>
             <div>
-              <p className="text-sm font-semibold text-white">
+              <p className="text-sm font-semibold text-moonstone-100">
                 {product.seller.display_name || product.seller.username}
               </p>
-              <p className="text-xs text-slate-300">{product.brand}</p>
+              <p className="text-xs text-moonstone-400">{product.brand}</p>
             </div>
           </div>
           <div className="mt-4 flex flex-wrap gap-3">
             <button
               type="button"
               onClick={() => navigate(`/shop/${product.seller.id}`)}
-              className="group flex items-center gap-2 rounded-xl border-2 border-white/20 bg-slate-800/50 px-5 py-2.5 text-sm font-semibold text-slate-100 backdrop-blur-sm transition-all hover:border-white/40 hover:bg-slate-800/70 active:scale-95"
+              className="glass-button flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-moonstone-200"
             >
               View Seller Shop
             </button>
@@ -453,7 +456,7 @@ function ProductDetailPage() {
               type="button"
               onClick={() => (isOwner ? null : handleMessage())}
               disabled={isOwner}
-              className="group flex items-center gap-2 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:from-sky-600 hover:to-blue-700 hover:shadow-xl hover:shadow-sky-500/25 disabled:cursor-not-allowed disabled:opacity-40 active:scale-95"
+              className="glass-button-primary flex items-center gap-2 px-5 py-2.5 text-sm font-semibold shadow-glow-moonstone hover:shadow-glow-moonstone-lg disabled:opacity-40 disabled:cursor-not-allowed active:scale-95"
             >
               <MessageCircle className="h-4 w-4 transition-transform group-hover:scale-110" />
               Chat with Seller
@@ -462,7 +465,7 @@ function ProductDetailPage() {
               type="button"
               onClick={() => (isOwner ? null : setShowOffer(true))}
               disabled={isOwner}
-              className="group flex items-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-green-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:from-emerald-600 hover:to-green-700 hover:shadow-xl hover:shadow-emerald-500/25 disabled:cursor-not-allowed disabled:opacity-40 active:scale-95"
+              className="glass-button-primary flex items-center gap-2 px-5 py-2.5 text-sm font-semibold shadow-glow-moonstone hover:shadow-glow-moonstone-lg disabled:opacity-40 disabled:cursor-not-allowed active:scale-95"
             >
               Make an Offer
             </button>
@@ -473,10 +476,10 @@ function ProductDetailPage() {
             <button
               type="button"
               onClick={toggleFavorite}
-              className={`group flex-1 flex items-center justify-center gap-2 rounded-xl border-2 px-4 py-2.5 text-sm font-semibold transition-all active:scale-95 ${
+              className={`flex-1 flex items-center justify-center gap-2 rounded-xl border-2 px-4 py-2.5 text-sm font-semibold transition-all active:scale-95 ${
                 product.is_favorite
-                  ? "border-rose-500/50 bg-rose-500/20 text-rose-300"
-                  : "border-white/20 bg-slate-800/50 text-slate-100 hover:border-rose-500/50 hover:bg-rose-500/10"
+                  ? "border-rose-500/50 bg-rose-500/20 text-rose-400"
+                  : "glass-button hover:border-rose-500/50 hover:bg-rose-500/10 text-moonstone-200"
               }`}
             >
               <Heart className={`h-4 w-4 ${product.is_favorite ? "fill-current" : ""}`} />
@@ -485,7 +488,7 @@ function ProductDetailPage() {
             <button
               type="button"
               onClick={handleShare}
-              className="group flex-1 flex items-center justify-center gap-2 rounded-xl border-2 border-white/20 bg-slate-800/50 px-4 py-2.5 text-sm font-semibold text-slate-100 transition-all hover:border-green-500/50 hover:bg-green-500/10 active:scale-95"
+              className="glass-button flex-1 flex items-center justify-center gap-2 rounded-xl border-2 px-4 py-2.5 text-sm font-semibold text-moonstone-200 transition-all hover:border-green-500/50 hover:bg-green-500/10 active:scale-95"
             >
               <Share2 className="h-4 w-4" />
               Share
@@ -494,15 +497,15 @@ function ProductDetailPage() {
         </div>
 
         {/* Comments Section */}
-        <div className="rounded-2xl border border-white/10 bg-night-800/80 p-6 shadow-glass">
-          <h3 className="text-xs uppercase tracking-[0.24em] text-slate-400 mb-4">
+        <div className="glass-card p-6 shadow-glass">
+          <h3 className="text-xs uppercase tracking-[0.24em] text-moonstone-400 mb-4">
             Comments ({comments.length})
           </h3>
 
           {/* Comment Input */}
           {user ? (
             <div className="flex gap-3 mb-6">
-              <div className="h-10 w-10 overflow-hidden rounded-full bg-white/10 flex-shrink-0">
+              <div className="glass-card h-10 w-10 overflow-hidden rounded-full flex-shrink-0">
                 {user.avatar_url ? (
                   <img
                     src={user.avatar_url}
@@ -510,44 +513,58 @@ function ProductDetailPage() {
                     className="h-full w-full object-cover"
                   />
                 ) : (
-                  <div className="grid h-full w-full place-items-center text-xs text-slate-200">
+                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-moonstone-400 to-moonstone-600 text-xs font-bold text-white">
                     {(user.display_name || user.username).slice(0, 2).toUpperCase()}
                   </div>
                 )}
               </div>
-              <div className="flex-1 flex gap-2">
-                <input
-                  type="text"
-                  value={commentText}
-                  onChange={(e) => setCommentText(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" && !e.shiftKey) {
-                      e.preventDefault()
-                      handleCommentSubmit()
-                    }
-                  }}
-                  placeholder="Write a comment..."
-                  className="flex-1 rounded-lg border border-white/10 bg-night-900/70 px-4 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-sky-500/50"
-                />
-                <button
-                  onClick={handleCommentSubmit}
-                  disabled={!commentText.trim()}
-                  className="rounded-lg bg-gradient-to-r from-sky-500 to-blue-600 px-4 py-2 text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:from-sky-600 hover:to-blue-700 active:scale-95"
-                >
-                  <Send className="h-4 w-4" />
-                </button>
+              <div className="flex-1 flex flex-col gap-2">
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={commentText}
+                    onChange={(e) => setCommentText(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" && !e.shiftKey) {
+                        e.preventDefault()
+                        handleCommentSubmit()
+                      }
+                    }}
+                    placeholder={isPrivate ? "Write a private comment to seller..." : "Write a public comment..."}
+                    className={`flex-1 glass-input px-4 py-2 text-sm text-moonstone-100 placeholder:text-moonstone-400 focus:outline-none ${
+                      isPrivate ? "border-amber-400/50 placeholder:text-amber-300" : ""
+                    }`}
+                  />
+                  <button
+                    onClick={handleCommentSubmit}
+                    disabled={!commentText.trim()}
+                    className="glass-button-primary px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    <Send className="h-4 w-4" />
+                  </button>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-moonstone-400">
+                  <label className="flex items-center gap-1.5 cursor-pointer hover:text-moonstone-200 transition">
+                    <input
+                      type="checkbox"
+                      checked={isPrivate}
+                      onChange={(e) => setIsPrivate(e.target.checked)}
+                      className="rounded border-moonstone-400/40 text-moonstone-500 focus:ring-moonstone-500/50"
+                    />
+                    <span>Private comment (visible to seller only)</span>
+                  </label>
+                </div>
               </div>
             </div>
           ) : (
-            <div className="mb-6 p-4 rounded-lg border border-white/10 bg-white/5 text-center">
-              <p className="text-sm text-slate-300">
+            <div className="mb-6 glass-card p-4 text-center">
+              <p className="text-sm text-moonstone-400">
                 <button
                   onClick={() => navigate("/?auth=1")}
-                  className="text-sky-400 hover:text-sky-300 underline"
+                  className="text-moonstone-300 hover:text-moonstone-100 underline"
                 >
                   Login
-                </button>{" "}
-                to comment
+                </button>{" "} to comment
               </p>
             </div>
           )}
@@ -555,11 +572,11 @@ function ProductDetailPage() {
           {/* Comments List */}
           <div className="space-y-4 max-h-96 overflow-y-auto">
             {loadingComments ? (
-              <div className="text-center py-4 text-sm text-slate-400">Loading comments...</div>
+              <div className="text-center py-4 text-sm text-moonstone-400">Loading comments...</div>
             ) : comments.length > 0 ? (
               comments.map((comment) => renderComment(comment))
             ) : (
-              <div className="text-center py-8 text-sm text-slate-400">
+              <div className="text-center py-8 text-sm text-moonstone-400">
                 No comments yet. Be the first to comment!
               </div>
             )}
@@ -573,20 +590,20 @@ function ProductDetailPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-moonstone-900/60"
           >
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 20, opacity: 0 }}
-              className="w-[min(420px,92vw)] rounded-2xl border border-white/10 bg-night-800/95 p-5"
+              className="w-[min(420px,92vw)] glass-card p-5 shadow-glow-moonstone-lg"
             >
               <div className="flex items-center justify-between">
-                <p className="text-sm font-semibold text-white">Make an offer</p>
+                <p className="text-sm font-semibold text-moonstone-900">Make an offer</p>
                 <button
                   type="button"
                   onClick={() => setShowOffer(false)}
-                  className="text-xs uppercase tracking-[0.2em] text-slate-400"
+                  className="glass-button text-xs uppercase tracking-[0.2em] text-moonstone-500"
                 >
                   Close
                 </button>
@@ -596,12 +613,12 @@ function ProductDetailPage() {
                   value={offerPrice}
                   onChange={(event) => setOfferPrice(event.target.value)}
                   placeholder="Offer price"
-                  className="w-full rounded-lg border border-white/10 bg-night-900/70 px-4 py-3 text-sm text-white"
+                  className="w-full glass-input px-4 py-3 text-sm text-moonstone-800"
                 />
                 <button
                   type="button"
                   onClick={handleOffer}
-                  className="w-full rounded-lg bg-emerald-300/20 px-4 py-2 text-sm text-emerald-100"
+                  className="glass-button-primary w-full py-2 text-sm disabled:opacity-50"
                 >
                   Send offer
                 </button>

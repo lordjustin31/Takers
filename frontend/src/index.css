@@ -6,140 +6,240 @@
 
 :root {
   color-scheme: light dark;
+
+  /* Moonstone aesthetic palette - Updated for better contrast/visibility */
+  --moonstone-primary: #5D6E8A;
+  --moonstone-secondary: #D0D8E0;
+  --moonstone-bg: #E0E4E8;
+  --moonstone-card: rgba(255, 255, 255, 0.7);
+  --moonstone-card-border: rgba(208, 216, 224, 0.7);
+
+  /* Glassmorphism settings */
+  --glass-blur: 20px;
+  --glass-shadow: 0 8px 32px 0 rgba(93, 110, 138, 0.15);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 body {
-  @apply bg-neu-100 text-neu-800 font-body;
+  @apply text-moonstone-900 font-body antialiased;
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(145deg, #e2e8f0, #f1f5f9);
+  background: radial-gradient(circle at 50% 0%, #F0F1F2 0%, #D0D8E0 60%, #B8C4D0 100%);
+  /* background-attachment: fixed; REMOVED - causes severe scroll jank */
 }
 
 body.dark {
-  @apply bg-night-900 text-slate-100;
-  background-image: linear-gradient(180deg, #0a0e14 0%, #101722 48%, #0a0e14 100%);
+  @apply text-moonstone-50 font-body antialiased;
+  background: radial-gradient(circle at 50% 0%, #2D3440 0%, #1F2530 60%, #151920 100%);
+  /* background-attachment: fixed; REMOVED - causes severe scroll jank */
 }
 
 * {
   box-sizing: border-box;
 }
 
-/* Neumorphic utilities */
+/* ==========================================================================
+   GLASSMORPHISM & TELEGRAM / APPLE IPHONE AESTHETIC UI COMPONENTS
+   ========================================================================== */
+
+/* Glass Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 16px 0 rgba(93, 110, 138, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.dark .glass-card {
+  background: rgba(31, 37, 48, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  color: #F0F1F2;
+}
+
+.glass-card:hover {
+  box-shadow: 0 8px 24px 0 rgba(93, 110, 138, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  transform: translateY(-1px);
+}
+
+/* Apple/Telegram Style Glass Button - Optimized for performance */
+.glass-button {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.55) 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 2px 8px rgba(93, 110, 138, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  color: #1F2530;
+  font-weight: 600;
+  border-radius: 9999px;
+  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dark .glass-button {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #F0F1F2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.glass-button:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 100%);
+  box-shadow: 0 4px 12px rgba(93, 110, 138, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  transform: translateY(-1px);
+}
+
+.dark .glass-button:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 100%);
+  color: #FFFFFF;
+}
+
+.glass-button:active {
+  transform: translateY(0);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* Primary Accent Glass Button (Moonstone filled) - Optimized */
+.glass-button-primary {
+  background: linear-gradient(135deg, #5D6E8A 0%, #4A576E 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(93, 110, 138, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 9999px;
+  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.glass-button-primary:hover {
+  background: linear-gradient(135deg, #6E7FA5 0%, #5A677E 100%);
+  box-shadow: 0 6px 16px rgba(93, 110, 138, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.glass-button-primary:active {
+  transform: translateY(0);
+}
+
+/* Glass Input Field - Optimized */
+.glass-input {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(208, 216, 224, 0.8);
+  box-shadow: inset 0 1px 2px rgba(93, 110, 138, 0.05);
+  border-radius: 16px;
+  color: #1F2530;
+  transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.glass-input::placeholder {
+  color: #7A8CA8;
+}
+
+.glass-input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.9);
+  border-color: #5D6E8A;
+  box-shadow: 0 0 0 3px rgba(93, 110, 138, 0.12), inset 0 1px 2px rgba(93, 110, 138, 0.05);
+}
+
+.dark .glass-input {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #F0F1F2;
+}
+
+.dark .glass-input::placeholder {
+  color: #99A8BB;
+}
+
+.dark .glass-input:focus {
+  background: rgba(15, 23, 42, 0.75);
+  border-color: #7A8CA8;
+  box-shadow: 0 0 0 3px rgba(122, 140, 168, 0.2);
+}
+
+/* Glass Navigation Bar - Optimized */
+.glass-nav {
+  background: rgba(240, 241, 242, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(208, 216, 224, 0.6);
+  box-shadow: 0 2px 12px rgba(93, 110, 138, 0.06);
+}
+
+.dark .glass-nav {
+  background: rgba(31, 37, 48, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Backward compatibility aliases mapping old .neu- classes to sleek glass components */
 .neu-card {
-  @apply rounded-3xl bg-neu-100 shadow-neu;
+  @apply glass-card;
 }
 
 .neu-card-inset {
-  @apply rounded-3xl bg-neu-100 shadow-neu-inset;
+  background: rgba(208, 216, 224, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: inset 0 2px 6px rgba(93, 110, 138, 0.1);
+  border-radius: 24px;
 }
 
 .neu-button {
-  @apply rounded-2xl bg-neu-100 shadow-neu transition-all duration-200;
-}
-
-.neu-button:hover {
-  @apply shadow-neu-hover;
-}
-
-.neu-button:active {
-  @apply shadow-neu-inset;
+  @apply glass-button px-5 py-2.5 text-sm;
 }
 
 .neu-input {
-  @apply rounded-2xl bg-neu-100 shadow-neu-inset border-0 px-6 py-3 text-neu-800 placeholder:text-neu-400 focus:outline-none focus:ring-2 focus:ring-blue-400;
+  @apply glass-input px-5 py-3 text-sm;
 }
 
 .glass {
-  background: rgba(15, 20, 29, 0.72);
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .dark .glass {
-  background: rgba(15, 20, 29, 0.72);
-  border-color: rgba(148, 163, 184, 0.2);
+  background: rgba(31, 37, 48, 0.75);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
-.hero-orbit {
-  background: conic-gradient(from 180deg at 50% 50%, rgba(120, 255, 214, 0.25), rgba(56, 189, 248, 0.2), rgba(255, 106, 61, 0.2), rgba(120, 255, 214, 0.25));
-  mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, transparent 65%);
-}
-
-/* Smooth animations */
+/* Animations */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-8px); }
 }
 
 .animate-float {
-  animation: float 3s ease-in-out infinite;
+  animation: float 4s ease-in-out infinite;
 }
 
-/* Admin Theme - Purple/Dark scheme */
-body.admin-mode {
-  @apply bg-gradient-to-br from-purple-900 via-indigo-900 to-purple-900;
-  background-image: linear-gradient(145deg, #2d1b69, #1e1b4b, #312e81);
+/* Scrollbar aesthetic */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-.admin-theme .neu-card {
-  @apply bg-purple-900/40 border border-purple-500/30 backdrop-blur-xl;
-  box-shadow: 
-    0 8px 32px rgba(139, 92, 246, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+::-webkit-scrollbar-track {
+  background: rgba(208, 216, 224, 0.25);
 }
 
-.admin-theme .neu-card-inset {
-  @apply bg-purple-950/60 border border-purple-500/20;
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+::-webkit-scrollbar-thumb {
+  background: rgba(93, 110, 138, 0.35);
+  border-radius: 9999px;
+  backdrop-filter: blur(10px);
 }
 
-.admin-theme .neu-button {
-  @apply bg-purple-800/50 border border-purple-400/30 text-purple-100;
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
-}
-
-.admin-theme .neu-button:hover {
-  @apply bg-purple-700/60 border-purple-300/40;
-  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
-}
-
-.admin-theme .neu-input {
-  @apply bg-purple-950/50 border border-purple-400/30 text-purple-100 placeholder:text-purple-300/50;
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-/* Admin Badge */
-.admin-badge {
-  @apply inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-3 py-1 text-xs font-bold text-white shadow-lg;
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(168, 85, 247, 0.8);
-  }
-}
-
-/* Admin Text Colors */
-.admin-theme h1,
-.admin-theme h2,
-.admin-theme h3 {
-  @apply text-purple-100;
-}
-
-.admin-theme p {
-  @apply text-purple-200/90;
-}
-
-/* Admin specific card highlights */
-.admin-theme .stat-card {
-  @apply bg-gradient-to-br from-purple-800/50 to-indigo-900/50 border border-purple-400/30;
-}
-
-/* Admin Navbar styling */
-body.admin-mode nav {
-  @apply bg-purple-900/80 backdrop-blur-xl border-b border-purple-500/30;
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(93, 110, 138, 0.55);
 }

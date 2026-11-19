@@ -185,16 +185,16 @@ function SellItemModal({ isOpen, onClose, onCreated, productToEdit }: SellItemMo
             initial={{ y: 24, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 24, opacity: 0 }}
-            className="w-[min(620px,92vw)] rounded-2xl border border-white/10 bg-night-800/95 p-6 shadow-glass"
+            className="w-[min(620px,92vw)] rounded-2xl glass-card p-6 shadow-glass-xl"
           >
             <div className="flex items-center justify-between">
-              <p className="text-xs uppercase tracking-[0.24em] text-emerald-200/70">
+              <p className="text-xs uppercase tracking-[0.24em] text-emerald-600">
                 Sell item
               </p>
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded-lg border border-white/10 px-4 py-2 text-xs uppercase tracking-[0.2em] text-slate-300"
+                className="glass-button rounded-lg px-4 py-2 text-xs uppercase tracking-[0.2em] text-moonstone-500"
               >
                 Close
               </button>
@@ -206,8 +206,8 @@ function SellItemModal({ isOpen, onClose, onCreated, productToEdit }: SellItemMo
                   key={label}
                   className={`flex-1 rounded-lg border px-3 py-2 text-center text-xs uppercase tracking-[0.2em] ${
                     index === step
-                      ? "border-emerald-300/50 bg-emerald-300/10 text-emerald-100"
-                      : "border-white/10 bg-white/5 text-slate-400"
+                      ? "border-moonstone-400/60 bg-moonstone-600/80 text-moonstone-100 font-semibold"
+                      : "border-moonstone-700/50 bg-moonstone-900/40 text-moonstone-400"
                   }`}
                 >
                   {label}
@@ -227,18 +227,18 @@ function SellItemModal({ isOpen, onClose, onCreated, productToEdit }: SellItemMo
                     value={title}
                     onChange={(event) => setTitle(event.target.value)}
                     placeholder="Listing title"
-                    className="w-full rounded-lg border border-white/10 bg-night-900/70 px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-300/40"
+                    className="glass-input w-full rounded-lg px-4 py-3 text-sm text-moonstone-100 placeholder:text-moonstone-400 focus:outline-none focus:ring-2 focus:ring-moonstone-500/40"
                   />
                   <select
                     value={categoryId}
                     onChange={(event) =>
                       setCategoryId(event.target.value ? Number(event.target.value) : "")
                     }
-                    className="w-full rounded-lg border border-white/10 bg-night-900/70 px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-300/40"
+                    className="glass-input w-full rounded-lg px-4 py-3 text-sm text-moonstone-100 focus:outline-none focus:ring-2 focus:ring-moonstone-500/40 bg-moonstone-900/90"
                   >
-                    <option value="">Select category</option>
+                    <option value="" className="bg-moonstone-900 text-moonstone-100">Select category</option>
                     {categories.map((category) => (
-                      <option key={category.id} value={category.id}>
+                      <option key={category.id} value={category.id} className="bg-moonstone-900 text-moonstone-100">
                         {category.name}
                       </option>
                     ))}
@@ -249,9 +249,9 @@ function SellItemModal({ isOpen, onClose, onCreated, productToEdit }: SellItemMo
                       onChange={(event) => setDescription(event.target.value)}
                       maxLength={500}
                       placeholder="Describe your item (supports markdown)"
-                      className="min-h-[140px] w-full rounded-lg border border-white/10 bg-night-900/70 px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-300/40"
+                      className="glass-input min-h-[140px] w-full rounded-lg px-4 py-3 text-sm text-moonstone-100 placeholder:text-moonstone-400 focus:outline-none focus:ring-2 focus:ring-moonstone-500/40"
                     />
-                    <p className="mt-2 text-xs text-slate-400">
+                    <p className="mt-2 text-xs text-moonstone-400">
                       {descriptionCount} / 500 characters
                     </p>
                   </div>
@@ -269,13 +269,13 @@ function SellItemModal({ isOpen, onClose, onCreated, productToEdit }: SellItemMo
                     value={price}
                     onChange={(event) => setPrice(event.target.value)}
                     placeholder="Price"
-                    className="w-full rounded-lg border border-white/10 bg-night-900/70 px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-300/40"
+                    className="glass-input w-full rounded-lg px-4 py-3 text-sm text-moonstone-100 placeholder:text-moonstone-400 focus:outline-none focus:ring-2 focus:ring-moonstone-500/40"
                   />
                   <input
                     value={location}
                     onChange={(event) => setLocation(sanitizeInput(event.target.value))}
                     placeholder="Location"
-                    className="w-full rounded-lg border border-white/10 bg-night-900/70 px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-300/40"
+                    className="glass-input w-full rounded-lg px-4 py-3 text-sm text-moonstone-100 placeholder:text-moonstone-400 focus:outline-none focus:ring-2 focus:ring-moonstone-500/40"
                   />
                 </motion.div>
               )}
@@ -287,7 +287,7 @@ function SellItemModal({ isOpen, onClose, onCreated, productToEdit }: SellItemMo
                   animate={{ opacity: 1, x: 0 }}
                   className="space-y-4"
                 >
-                  <label className="flex flex-col items-center justify-center rounded-xl border border-dashed border-white/20 bg-night-900/60 px-6 py-8 text-sm text-slate-300">
+                  <label className="glass-card flex flex-col items-center justify-center rounded-xl border border-dashed border-moonstone-700/50 bg-moonstone-900/40 px-6 py-8 text-sm text-moonstone-300 cursor-pointer hover:bg-moonstone-900/60 transition">
                     <ImagePlus className="h-6 w-6" />
                     <span className="mt-2">Drag & drop or browse</span>
                     <input
@@ -302,13 +302,13 @@ function SellItemModal({ isOpen, onClose, onCreated, productToEdit }: SellItemMo
                     {uploads.map((item) => (
                       <div
                         key={item.id}
-                        className="relative overflow-hidden rounded-lg border border-white/10"
+                        className="relative overflow-hidden rounded-lg glass-card"
                       >
                         <img src={item.preview} alt="Upload" className="h-24 w-full object-cover" />
                         <button
                           type="button"
                           onClick={() => removeUpload(item.id)}
-                          className="absolute right-2 top-2 grid h-6 w-6 place-items-center rounded-md bg-black/60 text-white"
+                          className="absolute right-2 top-2 grid h-6 w-6 place-items-center rounded-md glass-button"
                         >
                           <X className="h-3 w-3" />
                         </button>
@@ -320,7 +320,7 @@ function SellItemModal({ isOpen, onClose, onCreated, productToEdit }: SellItemMo
             </div>
 
             {error && (
-              <div className="mt-3 rounded-lg border border-rose-500/40 bg-rose-500/10 px-3 py-2 text-xs text-rose-200">
+              <div className="mt-3 glass-card border-l-4 border-rose-500 px-3 py-2 text-xs text-rose-700">
                 {error}
               </div>
             )}
@@ -329,7 +329,7 @@ function SellItemModal({ isOpen, onClose, onCreated, productToEdit }: SellItemMo
               <button
                 type="button"
                 onClick={() => setStep((prev) => Math.max(prev - 1, 0))}
-                className="text-xs uppercase tracking-[0.2em] text-slate-400"
+                className="text-xs uppercase tracking-[0.2em] text-moonstone-400"
               >
                 Back
               </button>
@@ -337,7 +337,7 @@ function SellItemModal({ isOpen, onClose, onCreated, productToEdit }: SellItemMo
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="rounded-lg bg-emerald-300/20 px-4 py-2 text-sm font-semibold text-emerald-100 hover:bg-emerald-300/30"
+                  className="glass-button-primary rounded-lg px-4 py-2 text-sm font-semibold shadow-glow-moonstone hover:shadow-glow-moonstone-lg"
                 >
                   Next
                 </button>
@@ -345,7 +345,7 @@ function SellItemModal({ isOpen, onClose, onCreated, productToEdit }: SellItemMo
                 <button
                   type="button"
                   onClick={handleSubmit}
-                  className="rounded-lg bg-emerald-300/20 px-4 py-2 text-sm font-semibold text-emerald-100 hover:bg-emerald-300/30"
+                  className="glass-button-primary rounded-lg px-4 py-2 text-sm font-semibold shadow-glow-moonstone hover:shadow-glow-moonstone-lg"
                 >
                   Submit listing
                 </button>

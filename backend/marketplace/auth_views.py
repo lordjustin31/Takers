@@ -59,32 +59,32 @@ class GoogleAuthView(APIView):
         userinfo = {}
         if code:
             try:
-                print(f"🔍 GoogleAuthView: code={code[:20]}..., redirect_uri={redirect_uri}")
+                print(f"[INFO] GoogleAuthView: code={code[:20]}..., redirect_uri={redirect_uri}")
                 tokens = exchange_code_for_tokens(code, redirect_uri)
-                print("✅ Token exchange successful")
+                print("[SUCCESS] Token exchange successful")
             except ValueError as exc:
-                print(f"❌ Token exchange failed: {exc}")
+                print(f"[ERROR] Token exchange failed: {exc}")
                 return Response({"detail": str(exc)}, status=400)
             access_token = tokens.get("access_token")
             id_token = tokens.get("id_token")
             if id_token:
                 try:
                     id_payload = verify_id_token(id_token)
-                    print(f"✅ ID token verified: {id_payload.get('email')}")
+                    print(f"[SUCCESS] ID token verified: {id_payload.get('email')}")
                 except ValueError:
-                    print("⚠️ ID token verification failed")
+                    print("[WARNING] ID token verification failed")
                     id_payload = {}
             if access_token:
                 try:
                     verify_access_token(access_token)
-                    print("✅ Access token verified")
+                    print("[SUCCESS] Access token verified")
                 except ValueError:
-                    print("⚠️ Access token verification failed")
+                    print("[WARNING] Access token verification failed")
                 try:
                     userinfo = fetch_userinfo(access_token)
-                    print(f"✅ Got userinfo: {userinfo.get('email')}")
+                    print(f"[SUCCESS] Got userinfo: {userinfo.get('email')}")
                 except ValueError:
-                    print("❌ Failed to fetch userinfo")
+                    print("[ERROR] Failed to fetch userinfo")
                     userinfo = {}
         else:
             try:
@@ -97,13 +97,13 @@ class GoogleAuthView(APIView):
                 return Response({"detail": "Unable to fetch Google profile"}, status=400)
 
         email, name, picture = extract_profile(id_payload, userinfo)
-        print(f"📧 Profile: email={email}, name={name}")
+        print(f"[INFO] Profile: email={email}, name={name}")
         if not email:
             return Response({"detail": "Email not available"}, status=400)
 
         user = User.objects.filter(email=email).first()
         if not user:
-            print(f"👤 Creating new user: {email}")
+            print(f"[INFO] Creating new user: {email}")
             base = name or email.split("@", 1)[0]
             user = User.objects.create(
                 username=build_unique_username(base),
@@ -114,7 +114,7 @@ class GoogleAuthView(APIView):
             user.set_unusable_password()
             user.save(update_fields=["password"])
         else:
-            print(f"👤 Updating existing user: {email}")
+            print(f"[INFO] Updating existing user: {email}")
             updates = {}
             if name and user.display_name != name:
                 updates["display_name"] = name
@@ -125,7 +125,7 @@ class GoogleAuthView(APIView):
                     setattr(user, key, value)
                 user.save(update_fields=list(updates.keys()))
 
-        print(f"✅ Auth success: user {user.id} - {user.email}")
+        print(f"[SUCCESS] Auth success: user {user.id} - {user.email}")
         refresh = RefreshToken.for_user(user)
         return Response(
             {
@@ -220,8 +220,11 @@ class MeView(APIView):
                 return Response(UserMeSerializer(user, context={'request': request}).data)
             return Response(serializer.errors, status=400)
         except Exception as e:
+            import logging
+            logger = logging.getLogger("django.security")
+            logger.error(f"Profile update/upload failed for user {user.username}: {str(e)}")
             return Response(
-                {"detail": f"Upload failed: {str(e)}"}, 
+                {"detail": "Upload failed. Please try again with a valid image file."}, 
                 status=500
             )
 

@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence } from "framer-motion"
 import {
   MessageCircle,
   X,
@@ -30,17 +30,18 @@ interface MessageItem {
   sender: UserSummary
   recipient: number
   recipient_detail: UserSummary
+  product?: number | null
+  product_detail?: {
+    id: number
+    title: string
+    price: string
+  } | null
   body: string
   is_read: boolean
   delivered_at: string | null
   read_at: string | null
   created_at: string
   message_type: "general" | "marketplace"
-  product?: {
-    id: number
-    title: string
-    price: string
-  }
 }
 
 interface ThreadSummary {
@@ -66,6 +67,7 @@ function FloatingChat({ messageCount = 0 }: FloatingChatProps) {
   const [messageText, setMessageText] = useState("")
   const [searchQuery, setSearchQuery] = useState("")
   const [activeTab, setActiveTab] = useState<"general" | "marketplace">("general")
+  const [friendIds, setFriendIds] = useState<number[]>([])
   
   // Ref for auto-scrolling to bottom
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -81,10 +83,34 @@ function FloatingChat({ messageCount = 0 }: FloatingChatProps) {
   const fetchMessages = useCallback(async () => {
     if (!user) return
     try {
-      const response = await apiClient.get<{ results: MessageItem[] }>(
+      console.log("[FloatingChat] fetchMessages called, user:", user?.id)
+      const response = await apiClient.get<any>(
         "/messages/?ordering=-created_at"
       )
-      const messages = response.data?.results || []
+      console.log("[FloatingChat] API response status:", response.status)
+      console.log("[FloatingChat] Raw response data keys:", Object.keys(response.data))
+      const rawData = response.data
+      const messages: MessageItem[] = Array.isArray(rawData) ? rawData : (rawData?.results || [])
+      
+      // Debug logging
+      console.log("[FloatingChat] Fetched messages:", messages.length)
+      if (messages.length > 0) {
+        console.log("[FloatingChat] Sample message:", {
+          id: messages[0].id,
+          thread_id: messages[0].thread_id,
+          sender: messages[0].sender,
+          recipient: messages[0].recipient,
+          recipient_detail: messages[0].recipient_detail,
+          product: messages[0].product,
+          product_detail: messages[0].product_detail,
+          message_type: messages[0].message_type,
+          body: messages[0].body,
+          is_read: messages[0].is_read,
+          delivered_at: messages[0].delivered_at,
+          read_at: messages[0].read_at,
+          created_at: messages[0].created_at,
+        })
+      }
 
       // Group by thread
       const map = new Map<string, MessageItem[]>()
@@ -94,20 +120,69 @@ function FloatingChat({ messageCount = 0 }: FloatingChatProps) {
         map.set(message.thread_id, list)
       })
 
-      const threadsList = Array.from(map.entries()).map(([threadId, threadMessages]) => {
+      // Group by participant user ID instead of backend thread_id UUID
+      const participantMap = new Map<number, MessageItem[]>()
+      const currentUserId = user ? Number(user.id) : null
+
+      messages.forEach((message) => {
+        const senderId = typeof message.sender === 'object' && message.sender !== null ? Number(message.sender.id) : Number(message.sender)
+        const recipientId = Number(message.recipient)
+        
+        let otherUserId: number | null = null
+        if (currentUserId) {
+          if (senderId === currentUserId) {
+            otherUserId = recipientId
+          } else {
+            otherUserId = senderId
+          }
+        } else {
+          otherUserId = senderId
+        }
+
+        if (otherUserId) {
+          const list = participantMap.get(otherUserId) || []
+          list.push(message)
+          participantMap.set(otherUserId, list)
+        }
+      })
+
+      const threadsList = Array.from(participantMap.entries()).map(([participantId, threadMessages]) => {
         const sorted = [...threadMessages].sort(
           (a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
         )
         const lastMessage = sorted[sorted.length - 1]
-        const participant =
-          lastMessage.sender.id === user?.id ? lastMessage.recipient_detail : lastMessage.sender
+        const senderId = typeof lastMessage.sender === 'object' && lastMessage.sender !== null ? Number(lastMessage.sender.id) : Number(lastMessage.sender)
+        const currentUserId = user ? Number(user.id) : null
+
+        // Extract participant details dynamically
+        let participant: UserSummary
+        if (currentUserId && senderId === currentUserId) {
+          participant = lastMessage.recipient_detail || {
+            id: participantId,
+            username: `User ${participantId}`,
+            display_name: `User ${participantId}`,
+            avatar_url: "",
+          }
+        } else {
+          participant = (typeof lastMessage.sender === 'object' ? lastMessage.sender : null) || {
+            id: participantId,
+            username: `User ${participantId}`,
+            display_name: `User ${participantId}`,
+            avatar_url: "",
+          }
+        }
+
         const unreadCount = sorted.filter(
-          (message) => !message.is_read && message.recipient === user?.id
+          (message) => !message.is_read && Number(message.recipient) === (user ? Number(user.id) : null)
         ).length
-        // Get product ID from any message in thread (if it's a marketplace thread)
-        const productId = sorted.find(msg => msg.product)?.product?.id
+        
+        const productMsg = sorted.find(msg => msg.product || msg.product_detail)
+        const productId = typeof productMsg?.product === 'number' ? productMsg.product : productMsg?.product_detail?.id
+        
+        const effectiveThreadId = lastMessage.thread_id || `user_${participantId}`
+
         return {
-          threadId,
+          threadId: effectiveThreadId,
           messages: sorted,
           participant,
           unreadCount,
@@ -118,13 +193,24 @@ function FloatingChat({ messageCount = 0 }: FloatingChatProps) {
 
       setThreads(threadsList)
       
-      // Update active thread if it exists - use ref to avoid dependency
+      // Update active thread if it exists - match by threadId or participant.id
       const currentActiveThread = activeThreadRef.current
       if (currentActiveThread) {
-        const updatedThread = threadsList.find(t => t.threadId === currentActiveThread.threadId)
+        const updatedThread = threadsList.find(
+          (t) =>
+            t.threadId === currentActiveThread.threadId ||
+            (Number(t.participant.id) === Number(currentActiveThread.participant.id) &&
+              ((currentActiveThread.productId && t.productId === currentActiveThread.productId) ||
+                (!currentActiveThread.productId && !t.productId)))
+        )
         if (updatedThread) {
-          // Update even if message count is same (for is_read status changes)
           setActiveThread(updatedThread)
+        } else if (!currentActiveThread.threadId.startsWith("temp_")) {
+          // If active thread is non-temp but matches participant id in list
+          const sameParticipantThread = threadsList.find(t => Number(t.participant.id) === Number(currentActiveThread.participant.id))
+          if (sameParticipantThread) {
+            setActiveThread(sameParticipantThread)
+          }
         }
       }
     } catch (error: any) {
@@ -137,33 +223,89 @@ function FloatingChat({ messageCount = 0 }: FloatingChatProps) {
     }
   }, [user]) // Remove activeThread from dependencies
 
-  // Handle opening with specific user from context
-  // DON'T auto-select thread - let user manually select
+  // Handle opening with specific user and product from context - Auto select or create active thread
   useEffect(() => {
-    // Only switch to appropriate tab, don't auto-open thread
-    if (targetUserId && targetProductId && threads.length > 0) {
-      // Check if it's a marketplace conversation
+    if (isOpen && targetUserId) {
+      const numTargetUserId = Number(targetUserId)
+      const numTargetProductId = targetProductId ? Number(targetProductId) : null
+
+      if (numTargetProductId) {
+        setActiveTab("marketplace")
+      } else {
+        setActiveTab("general")
+      }
+
+      // Check if thread already exists for this user (matching marketplace vs general requirement if applicable)
       const existingThread = threads.find(
-        (thread) => thread.participant.id === targetUserId
+        (thread) =>
+          Number(thread.participant.id) === numTargetUserId &&
+          (numTargetProductId
+            ? thread.productId === numTargetProductId
+            : !thread.productId)
+      ) || threads.find(
+        (thread) => Number(thread.participant.id) === numTargetUserId
       )
-      
-      if (existingThread && existingThread.lastMessage?.message_type === "marketplace") {
-        setActiveTab("marketplace")
-      } else if (targetProductId) {
-        // New marketplace conversation
-        setActiveTab("marketplace")
+
+      if (existingThread) {
+        setActiveThread(existingThread)
+      } else {
+        // Fetch participant details or create a dummy thread structure for starting new conversation
+        apiClient.get(`/users/${numTargetUserId}/`).then((res) => {
+          const participantData: UserSummary = {
+            id: res.data.id,
+            username: res.data.username,
+            display_name: res.data.display_name || res.data.username,
+            avatar_url: res.data.avatar_url || "",
+          }
+          const tempThread: ThreadSummary = {
+            threadId: `temp_${numTargetUserId}_${Date.now()}`,
+            messages: [],
+            participant: participantData,
+            unreadCount: 0,
+            lastMessage: {
+              id: 0,
+              thread_id: "",
+              sender: user!,
+              recipient: numTargetUserId,
+              recipient_detail: participantData,
+              body: "",
+              is_read: true,
+              delivered_at: null,
+              read_at: null,
+              created_at: new Date().toISOString(),
+              message_type: numTargetProductId ? "marketplace" : "general",
+            },
+            productId: numTargetProductId || undefined,
+          }
+          setActiveThread(tempThread)
+        }).catch((err) => {
+          console.error("Failed to fetch target user details:", err)
+        })
       }
     }
-  }, [targetUserId, targetProductId, threads])
+  }, [isOpen, targetUserId, targetProductId, threads, user])
+
+  // Fetch friends list to identify friend user IDs
+  useEffect(() => {
+    if (user) {
+      apiClient.get('/friendships/friends/').then((res) => {
+        const friendsList = Array.isArray(res.data) ? res.data : []
+        setFriendIds(friendsList.map((f: any) => f.id).filter(Boolean))
+      }).catch((err) => {
+        console.warn("Failed to fetch friends list:", err)
+        setFriendIds([])
+      })
+    }
+  }, [user])
 
   useEffect(() => {
-    if (isOpen && user) {
+    if (user) {
       fetchMessages()
-      // Poll every 30 seconds to avoid rate limiting
+      // Poll every 30 seconds to reduce server load - messages will still be real-time when chat is open
       const interval = setInterval(fetchMessages, 30000)
       return () => clearInterval(interval)
     }
-  }, [isOpen, user, fetchMessages])
+  }, [user, fetchMessages])
 
   // Auto-scroll to bottom when messages change
   const scrollToBottom = () => {
@@ -211,27 +353,45 @@ function FloatingChat({ messageCount = 0 }: FloatingChatProps) {
 
       const response = await apiClient.post<MessageItem>("/messages/", payload)
 
-      setThreads((prev) =>
-        prev.map((thread) =>
-          thread.threadId === activeThread.threadId
-            ? {
-                ...thread,
-                messages: [...thread.messages, response.data],
-                lastMessage: response.data,
-              }
-            : thread
-        )
-      )
+      const newMessage = response.data
 
-      setActiveThread((prev) =>
-        prev
-          ? {
-              ...prev,
-              messages: [...prev.messages, response.data],
-              lastMessage: response.data,
-            }
-          : null
-      )
+      setActiveThread((prev) => {
+        if (!prev) return null
+        return {
+          ...prev,
+          threadId: newMessage.thread_id,
+          messages: [...prev.messages, newMessage],
+          lastMessage: newMessage,
+        }
+      })
+
+      setThreads((prev) => {
+        const exists = prev.some((t) => t.threadId === activeThread.threadId || t.threadId === newMessage.thread_id)
+        if (exists) {
+          return prev.map((thread) =>
+            thread.threadId === activeThread.threadId || thread.threadId === newMessage.thread_id
+              ? {
+                  ...thread,
+                  threadId: newMessage.thread_id,
+                  messages: [...thread.messages, newMessage],
+                  lastMessage: newMessage,
+                }
+              : thread
+          )
+        } else {
+          return [
+            ...prev,
+            {
+              threadId: newMessage.thread_id,
+              messages: [newMessage],
+              participant: activeThread.participant,
+              unreadCount: 0,
+              lastMessage: newMessage,
+              productId: targetProductId || activeThread.productId,
+            },
+          ]
+        }
+      })
 
       setMessageText("")
       
@@ -261,15 +421,27 @@ function FloatingChat({ messageCount = 0 }: FloatingChatProps) {
 
   const filteredThreads = (threads || [])
     .filter((thread) => {
+      if (!thread) return false
       const displayName = thread?.participant?.display_name || thread?.participant?.username || ""
       const username = thread?.participant?.username || ""
       const query = (searchQuery || "").toLowerCase()
-      return displayName.toLowerCase().includes(query) || username.toLowerCase().includes(query)
-    })
-    .filter((thread) => {
-      // Filter by message type (general or marketplace)
-      const messageType = thread.lastMessage.message_type || "general"
-      return messageType === activeTab
+      if (query && !displayName.toLowerCase().includes(query) && !username.toLowerCase().includes(query)) {
+        return false
+      }
+      
+      const isMarketplace = Boolean(
+        thread.productId ||
+        thread.messages?.some(m => Boolean(m.product || m.product_detail || m.message_type === "marketplace")) ||
+        thread.lastMessage?.message_type === "marketplace" ||
+        Boolean(thread.lastMessage?.product || thread.lastMessage?.product_detail)
+      )
+
+      if (activeTab === "marketplace") {
+        return isMarketplace
+      } else {
+        // Show non-marketplace threads in General tab. If there are no non-marketplace threads but user has conversations, display them so chat history is always visible.
+        return !isMarketplace || (threads.length > 0 && !threads.some(t => !t.productId && !t.messages?.some(m => m.product || m.product_detail || m.message_type === "marketplace")))
+      }
     })
 
   if (!user) return null
@@ -278,48 +450,45 @@ function FloatingChat({ messageCount = 0 }: FloatingChatProps) {
     <>
       {/* Floating Button */}
       {!isOpen && (
-        <motion.button
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
+        <button
           onClick={openChat}
-          className="fixed bottom-6 right-6 z-50 neu-card flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-glow-blue hover:from-blue-600 hover:to-blue-700"
+          className="fixed bottom-6 right-6 z-50 glass-button-primary flex h-16 w-16 items-center justify-center rounded-full shadow-glow-moonstone hover:shadow-glow-moonstone-lg transition-transform duration-200"
+          style={{ transform: 'scale(1)' }}
         >
           <MessageCircle className="h-7 w-7" />
           {messageCount > 0 && (
-            <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">
+            <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-moonstone-500 text-xs font-bold text-white">
               {messageCount > 9 ? "9+" : messageCount}
             </span>
           )}
-        </motion.button>
+        </button>
       )}
 
       {/* Chat Window */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className={`fixed bottom-6 right-6 z-50 flex w-[380px] flex-col overflow-hidden rounded-3xl border border-neu-300 bg-white shadow-2xl transition-all duration-300 ${
+          <div
+            className={`fixed bottom-6 right-6 z-50 flex w-[380px] flex-col overflow-hidden rounded-3xl glass-card shadow-glass-xl transition-all duration-300 ${
               isMinimized ? "h-auto" : "h-[600px]"
             }`}
+            style={{ opacity: 1, transform: 'translateY(0) scale(1)' }}
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-neu-200 bg-gradient-to-r from-blue-500 to-blue-600 px-5 py-4 text-white">
+            <div className="flex items-center justify-between border-b border-moonstone-200/50 bg-gradient-to-r from-moonstone-600 to-moonstone-700 px-5 py-3.5 text-white">
               <div className="flex items-center gap-3">
                 <MessageCircle className="h-6 w-6" />
                 <div>
                   <h3 className="text-lg font-bold">
                     {activeThread ? (
-                      activeThread.lastMessage?.product?.title || 
+                      activeThread.lastMessage?.product_detail?.title || 
                       activeThread.participant?.display_name || 
                       activeThread.participant?.username ||
                       "Chat"
                     ) : "Chats"}
                   </h3>
                   {activeThread && activeThread.participant && (
-                    <p className="text-xs text-blue-100">
-                      {activeThread.lastMessage?.product ? 
+                    <p className="text-xs text-moonstone-200">
+                      {activeThread.lastMessage?.product_detail ? 
                         `with ${activeThread.participant.display_name || activeThread.participant.username}` : 
                         "Active now"
                       }
@@ -330,17 +499,17 @@ function FloatingChat({ messageCount = 0 }: FloatingChatProps) {
               <div className="flex items-center gap-2">
                 {activeThread && (
                   <>
-                    <button className="neu-button rounded-full p-2 text-white hover:bg-white/20">
+                    <button className="rounded-full p-2 text-white/80 hover:bg-white/15 transition">
                       <Phone className="h-4 w-4" />
                     </button>
-                    <button className="neu-button rounded-full p-2 text-white hover:bg-white/20">
+                    <button className="rounded-full p-2 text-white/80 hover:bg-white/15 transition">
                       <Video className="h-4 w-4" />
                     </button>
                   </>
                 )}
                 <button
                   onClick={() => setIsMinimized(!isMinimized)}
-                  className="rounded-full p-2 hover:bg-white/20"
+                  className="rounded-full p-2 text-white/80 hover:bg-white/15 transition"
                 >
                   <Minus className="h-5 w-5" />
                 </button>
@@ -349,7 +518,7 @@ function FloatingChat({ messageCount = 0 }: FloatingChatProps) {
                     closeChat()
                     setActiveThread(null)
                   }}
-                  className="rounded-full p-2 hover:bg-white/20"
+                  className="rounded-full p-2 text-white/80 hover:bg-white/15 transition"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -363,24 +532,24 @@ function FloatingChat({ messageCount = 0 }: FloatingChatProps) {
                   // Threads List
                   <div className="flex-1 overflow-hidden">
                     {/* Tabs */}
-                    <div className="border-b border-neu-200 px-4 pt-4">
+                    <div className="border-b border-moonstone-200/30 px-4 pt-4">
                       <div className="flex gap-2">
                         <button
                           onClick={() => setActiveTab("general")}
-                          className={`flex-1 pb-3 text-sm font-semibold transition ${
+                          className={`flex-1 pb-3 text-sm font-bold transition ${
                             activeTab === "general"
-                              ? "border-b-2 border-blue-600 text-blue-600"
-                              : "text-neu-600 hover:text-neu-800"
+                              ? "border-b-2 border-moonstone-300 text-moonstone-100"
+                              : "text-moonstone-400 hover:text-moonstone-200"
                           }`}
                         >
                           General
                         </button>
                         <button
                           onClick={() => setActiveTab("marketplace")}
-                          className={`flex-1 pb-3 text-sm font-semibold transition ${
+                          className={`flex-1 pb-3 text-sm font-bold transition ${
                             activeTab === "marketplace"
-                              ? "border-b-2 border-blue-600 text-blue-600"
-                              : "text-neu-600 hover:text-neu-800"
+                              ? "border-b-2 border-moonstone-300 text-moonstone-100"
+                              : "text-moonstone-400 hover:text-moonstone-200"
                           }`}
                         >
                           Marketplace
@@ -389,28 +558,28 @@ function FloatingChat({ messageCount = 0 }: FloatingChatProps) {
                     </div>
 
                     {/* Search */}
-                    <div className="border-b border-neu-200 p-4">
-                      <div className="neu-card-inset flex items-center gap-2 rounded-full px-4 py-2">
-                        <Search className="h-4 w-4 text-neu-400" />
+                    <div className="border-b border-moonstone-200/30 p-4">
+                      <div className="glass-input flex items-center gap-2 rounded-full px-4 py-2">
+                        <Search className="h-4 w-4 text-moonstone-400" />
                         <input
                           type="text"
                           value={searchQuery}
                           onChange={(e) => setSearchQuery(e.target.value)}
                           placeholder="Search conversations..."
-                          className="flex-1 bg-transparent text-sm text-neu-800 placeholder:text-neu-400 focus:outline-none"
+                          className="flex-1 bg-transparent text-sm text-moonstone-100 placeholder:text-moonstone-400 focus:outline-none"
                         />
                       </div>
                     </div>
 
                     {/* Thread List */}
-                    <div className="overflow-y-auto" style={{ height: "calc(100% - 150px)" }}>
+                    <div className="flex-1 overflow-y-auto">
                       {filteredThreads.length === 0 ? (
                         <div className="flex h-full flex-col items-center justify-center p-8 text-center">
-                          <MessageCircle className="h-16 w-16 text-neu-300" />
-                          <p className="mt-4 text-sm font-medium text-neu-600">
+                          <MessageCircle className="h-16 w-16 text-moonstone-300" />
+                          <p className="mt-4 text-sm font-medium text-moonstone-200">
                             No {activeTab} conversations yet
                           </p>
-                          <p className="mt-1 text-xs text-neu-500">
+                          <p className="mt-1 text-xs text-moonstone-400">
                             {activeTab === "marketplace" 
                               ? "Message sellers about products"
                               : "Start messaging other users"}
@@ -421,11 +590,11 @@ function FloatingChat({ messageCount = 0 }: FloatingChatProps) {
                           <button
                             key={thread.threadId}
                             onClick={() => setActiveThread(thread)}
-                            className="flex w-full items-center gap-3 border-b border-neu-100 px-4 py-3 transition hover:bg-neu-50"
+                            className="flex w-full items-center gap-3 border-b border-moonstone-200/20 px-4 py-3 transition hover:bg-white/10"
                           >
                             {/* Avatar */}
                             <div className="relative">
-                              <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-400 to-blue-600">
+                              <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-moonstone-400 to-moonstone-600">
                                 {thread.participant?.avatar_url ? (
                                   <img
                                     src={thread.participant.avatar_url}
@@ -451,31 +620,32 @@ function FloatingChat({ messageCount = 0 }: FloatingChatProps) {
                             <div className="flex-1 text-left">
                               <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-2">
-                                  <p className="text-sm font-semibold text-neu-900">
-                                    {thread.lastMessage?.product?.title || 
+                                  <p className="text-sm font-semibold text-moonstone-100">
+                                    {thread.lastMessage?.product_detail?.title || 
                                      thread.participant?.display_name ||
                                      thread.participant?.username ||
                                      "Unknown"}
                                   </p>
-                                  {thread.lastMessage?.message_type === "marketplace" && (
-                                    <span className="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700">
+                                  {((thread.lastMessage?.message_type === "marketplace" || thread.productId) &&
+                                    (!friendIds.includes(thread.participant.id) || !thread.messages.every(m => m.is_read || m.sender.id === user?.id))) && (
+                                    <span className="rounded-full bg-moonstone-500/30 border border-moonstone-400/40 px-2 py-0.5 text-xs font-medium text-moonstone-200">
                                       Marketplace
                                     </span>
                                   )}
                                 </div>
-                                <span className="text-xs text-neu-500">
+                                <span className="text-xs text-moonstone-400">
                                   {thread.lastMessage?.created_at ? timeAgo(thread.lastMessage.created_at) : ""}
                                 </span>
                               </div>
                               <div className="flex items-center justify-between">
-                                <p className="line-clamp-1 text-xs text-neu-600">
-                                  {thread.lastMessage?.product ? 
+                                <p className="line-clamp-1 text-xs text-moonstone-300">
+                                  {thread.lastMessage?.product_detail ? 
                                     `${thread.participant?.display_name || thread.participant?.username}: ${thread.lastMessage?.body || ""}` :
                                     thread.lastMessage?.body || "No messages yet"
                                   }
                                 </p>
                                 {thread.unreadCount > 0 && (
-                                  <span className="ml-2 flex h-5 w-5 items-center justify-center rounded-full bg-blue-500 text-xs font-bold text-white">
+                                  <span className="ml-2 flex h-5 w-5 items-center justify-center rounded-full bg-moonstone-500 text-xs font-bold text-white">
                                     {thread.unreadCount}
                                   </span>
                                 )}
@@ -492,13 +662,13 @@ function FloatingChat({ messageCount = 0 }: FloatingChatProps) {
                     {/* Back Button */}
                     <button
                       onClick={() => setActiveThread(null)}
-                      className="flex-shrink-0 border-b border-neu-200 px-4 py-2 text-left text-sm text-blue-600 hover:bg-neu-50"
+                      className="flex-shrink-0 border-b border-moonstone-200/50 px-4 py-2 text-left text-sm text-moonstone-600 hover:bg-moonstone-50"
                     >
                       ← Back to chats
                     </button>
 
                     {/* Messages Container - Flex 1 to take remaining space */}
-                    <div className="flex-1 overflow-y-auto bg-neu-50 p-4">
+                    <div className="flex-1 overflow-y-auto bg-moonstone-50/50 p-4">
                       <div className="flex flex-col gap-3">
                         {activeThread.messages?.length > 0 ? (
                           activeThread.messages.map((message, index) => {
@@ -514,7 +684,7 @@ function FloatingChat({ messageCount = 0 }: FloatingChatProps) {
                               >
                                 {/* Avatar */}
                                 {!isOwn && showAvatar && message.sender && (
-                                  <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-400 to-blue-600">
+                                  <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-moonstone-400 to-moonstone-600">
                                     {message.sender.avatar_url ? (
                                       <img
                                         src={message.sender.avatar_url}
@@ -539,8 +709,8 @@ function FloatingChat({ messageCount = 0 }: FloatingChatProps) {
                                 <div
                                   className={`max-w-[240px] break-words rounded-2xl px-4 py-2 text-sm ${
                                     isOwn
-                                      ? "rounded-br-md bg-blue-500 text-white"
-                                      : "rounded-bl-md bg-white text-neu-900"
+                                      ? "rounded-br-md bg-moonstone-600 text-white"
+                                      : "rounded-bl-md bg-white/80 backdrop-blur-sm text-moonstone-900 border border-moonstone-200/30"
                                   }`}
                                 >
                                   {message.body}
@@ -550,7 +720,7 @@ function FloatingChat({ messageCount = 0 }: FloatingChatProps) {
                                 {isOwn && (
                                   <div className="flex items-center gap-1 text-xs px-1">
                                     {message.read_at ? (
-                                      <div className="flex items-center gap-0.5 text-blue-400">
+                                      <div className="flex items-center gap-0.5 text-moonstone-500">
                                         <span>✓✓</span>
                                         <span className="text-[10px]">Seen</span>
                                       </div>
@@ -572,7 +742,7 @@ function FloatingChat({ messageCount = 0 }: FloatingChatProps) {
                           )
                         })
                         ) : (
-                          <div className="flex h-full items-center justify-center text-center text-slate-400">
+                          <div className="flex h-full items-center justify-center text-center text-moonstone-400">
                             <p className="text-sm">Start the conversation...</p>
                           </div>
                         )}
@@ -582,33 +752,33 @@ function FloatingChat({ messageCount = 0 }: FloatingChatProps) {
                     </div>
 
                     {/* Input - Fixed at Bottom */}
-                    <div className="flex-shrink-0 border-t border-neu-200 bg-white p-3">
+                    <div className="flex-shrink-0 border-t border-moonstone-200/50 bg-white/70 backdrop-blur-sm p-3">
                       <div className="flex items-center gap-2">
-                        <button className="neu-button flex-shrink-0 rounded-full p-2 text-blue-600">
+                        <button className="glass-button flex-shrink-0 rounded-full p-2 text-moonstone-600">
                           <Paperclip className="h-5 w-5" />
                         </button>
-                        <div className="neu-card-inset flex flex-1 items-center gap-2 rounded-full px-4 py-2">
+                        <div className="glass-input flex flex-1 items-center gap-2 rounded-full px-4 py-2">
                           <input
                             type="text"
                             value={messageText}
                             onChange={(e) => setMessageText(e.target.value)}
                             onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
                             placeholder="Type a message..."
-                            className="flex-1 bg-transparent text-sm text-neu-800 placeholder:text-neu-400 focus:outline-none"
+                            className="flex-1 bg-transparent text-sm text-moonstone-800 placeholder:text-moonstone-400 focus:outline-none"
                           />
-                          <button className="flex-shrink-0 text-neu-400 hover:text-neu-600">
+                          <button className="flex-shrink-0 text-moonstone-400 hover:text-moonstone-600">
                             <Smile className="h-5 w-5" />
                           </button>
                         </div>
                         {messageText.trim() ? (
                           <button
                             onClick={handleSendMessage}
-                            className="neu-button flex-shrink-0 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 p-2 text-white shadow-glow-blue"
+                            className="glass-button-primary flex-shrink-0 rounded-full p-2 shadow-glow-moonstone"
                           >
                             <Send className="h-5 w-5" />
                           </button>
                         ) : (
-                          <button className="neu-button flex-shrink-0 rounded-full p-2 text-blue-600">
+                          <button className="glass-button flex-shrink-0 rounded-full p-2 text-moonstone-600">
                             <Mic className="h-5 w-5" />
                           </button>
                         )}
@@ -618,7 +788,7 @@ function FloatingChat({ messageCount = 0 }: FloatingChatProps) {
                 )}
               </>
             )}
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </>

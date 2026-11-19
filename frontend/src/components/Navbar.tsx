@@ -68,11 +68,11 @@ function Navbar() {
 
   return (
     <>
-      <nav className="glass fixed left-1/2 top-6 z-50 flex w-[min(1200px,92vw)] -translate-x-1/2 items-center justify-between rounded-full px-6 py-3 shadow-glass">
+      <nav className="glass-nav fixed left-1/2 top-6 z-50 flex w-[min(1200px,92vw)] -translate-x-1/2 items-center justify-between rounded-full px-6 py-3 shadow-glass">
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-emerald-300 via-sky-300 to-amber-300" />
-            <span className="font-display text-xl font-semibold text-white">
+            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-moonstone-500 via-moonstone-400 to-moonstone-300" />
+            <span className="font-display text-xl font-semibold text-moonstone-900">
               Takers
             </span>
           </div>
@@ -80,7 +80,7 @@ function Navbar() {
           <div className="relative hidden items-center gap-3 lg:flex">
             <button
               type="button"
-              className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-100"
+              className="glass-button px-4 py-2 text-sm"
               onClick={() =>
                 setOpenDropdown((prev) =>
                   prev === "categories" ? null : "categories",
@@ -90,29 +90,29 @@ function Navbar() {
               Categories
               <ChevronDown className="h-4 w-4" />
             </button>
-            <div className="rounded-full border border-emerald-300/30 bg-emerald-300/10 px-4 py-2 text-sm text-emerald-100">
+            <span className="glass-button px-4 py-2 text-sm">
               Marketplace
-            </div>
+            </span>
             <AnimatePresence>
               {openDropdown === "categories" && (
                 <motion.div
                   {...dropdownMotion}
-                  className="absolute left-0 top-14 w-80 rounded-2xl border border-white/10 bg-night-800/90 p-4 shadow-glass"
+                  className="absolute left-0 top-14 w-80 rounded-2xl glass-card p-4 shadow-glass"
                 >
-                  <p className="text-xs uppercase tracking-[0.3em] text-emerald-200/70">
+                  <p className="text-xs uppercase tracking-[0.3em] text-moonstone-500">
                     Explore
                   </p>
                   <div className="mt-4 grid gap-4">
                     {categories.map((category) => (
                       <div key={category.name}>
-                        <p className="text-sm font-semibold text-white">
+                        <p className="text-sm font-semibold text-moonstone-900">
                           {category.name}
                         </p>
                         <div className="mt-2 flex flex-wrap gap-2">
                           {category.sub.map((item) => (
                             <span
                               key={item}
-                              className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200"
+                              className="glass-button px-3 py-1 text-xs"
                             >
                               {item}
                             </span>
@@ -128,24 +128,24 @@ function Navbar() {
         </div>
 
         <div className="relative flex-1 px-6">
-          <div className="hidden items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 md:flex">
-            <Search className="h-4 w-4 text-slate-300" />
+          <div className="hidden items-center gap-3 glass-input md:flex">
+            <Search className="h-4 w-4 text-moonstone-500" />
             <input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               onFocus={() => setOpenDropdown("search")}
               onBlur={() => setTimeout(() => setOpenDropdown(null), 150)}
               placeholder="Search products, brands, or locations"
-              className="w-full bg-transparent text-sm text-slate-100 placeholder:text-slate-400 focus:outline-none"
+              className="w-full bg-transparent text-sm text-moonstone-900 placeholder:text-moonstone-500 focus:outline-none"
             />
           </div>
           <AnimatePresence>
             {openDropdown === "search" && (
               <motion.div
                 {...dropdownMotion}
-                className="absolute left-6 right-6 top-12 hidden rounded-2xl border border-white/10 bg-night-800/95 p-4 shadow-glass md:block"
+                className="absolute left-6 right-6 top-12 hidden rounded-2xl glass-card p-4 shadow-glass md:block"
               >
-                <p className="text-xs uppercase tracking-[0.3em] text-slate-400">
+                <p className="text-xs uppercase tracking-[0.3em] text-moonstone-500">
                   Suggestions
                 </p>
                 <div className="mt-3 grid gap-2">
@@ -153,10 +153,10 @@ function Navbar() {
                     <button
                       key={item.label}
                       type="button"
-                      className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-left text-sm text-slate-100 transition hover:border-emerald-300/50"
+                      className="glass-card px-3 py-2 text-left text-sm text-moonstone-900 transition hover:shadow-glass-lg"
                     >
                       <span>{item.label}</span>
-                      <span className="text-xs uppercase tracking-[0.2em] text-slate-400">
+                      <span className="text-xs uppercase tracking-[0.2em] text-moonstone-500">
                         {item.meta}
                       </span>
                     </button>
@@ -170,7 +170,7 @@ function Navbar() {
         <div className="flex items-center gap-3">
           <button
             type="button"
-            className="hidden items-center gap-2 rounded-full bg-emerald-300/20 px-4 py-2 text-sm font-semibold text-emerald-100 shadow-glow transition hover:bg-emerald-300/30 md:flex"
+            className="hidden items-center gap-2 glass-button-primary px-4 py-2 text-sm md:flex"
             onClick={() => {
               setSellStep(0)
               dispatch(openSellModal())
@@ -182,21 +182,21 @@ function Navbar() {
 
           <button
             type="button"
-            className="relative grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 text-slate-200"
+            className="relative glass-button h-10 w-10"
           >
             <Heart className="h-4 w-4" />
-            <span className="absolute -right-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-emerald-400 text-[10px] font-semibold text-night-900">
+            <span className="absolute -right-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-moonstone-500 text-[10px] font-semibold text-white">
               3
             </span>
           </button>
 
           <button
             type="button"
-            className="relative grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 text-slate-200"
+            className="relative glass-button h-10 w-10"
             onClick={() => setIsChatOpen((prev) => !prev)}
           >
             <MessageCircle className="h-4 w-4" />
-            <span className="absolute -right-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-sky-400 text-[10px] font-semibold text-night-900">
+            <span className="absolute -right-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-moonstone-500 text-[10px] font-semibold text-white">
               2
             </span>
           </button>
@@ -204,7 +204,7 @@ function Navbar() {
           <div className="relative">
             <button
               type="button"
-              className="relative grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 text-slate-200"
+              className="relative glass-button h-10 w-10"
               onClick={() =>
                 setOpenDropdown((prev) =>
                   prev === "notifications" ? null : "notifications",
@@ -212,7 +212,7 @@ function Navbar() {
               }
             >
               <Bell className="h-4 w-4" />
-              <span className="absolute -right-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-orange-400 text-[10px] font-semibold text-night-900">
+              <span className="absolute -right-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-moonstone-500 text-[10px] font-semibold text-white">
                 5
               </span>
             </button>
@@ -220,20 +220,20 @@ function Navbar() {
               {openDropdown === "notifications" && (
                 <motion.div
                   {...dropdownMotion}
-                  className="absolute right-0 top-12 w-72 rounded-2xl border border-white/10 bg-night-800/95 p-4 shadow-glass"
+                  className="absolute right-0 top-12 w-72 rounded-2xl glass-card p-4 shadow-glass"
                 >
-                  <p className="text-xs uppercase tracking-[0.3em] text-slate-400">
+                  <p className="text-xs uppercase tracking-[0.3em] text-moonstone-500">
                     Activity
                   </p>
                   <div className="mt-3 grid gap-3">
                     {notifications.map((item) => (
                       <div
                         key={item.title}
-                        className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-100"
+                        className="glass-card px-3 py-2 text-sm text-moonstone-900"
                       >
-                        <p className="font-medium text-white">{item.title}</p>
-                        <p className="text-xs text-slate-300">{item.detail}</p>
-                        <p className="mt-1 text-[10px] uppercase tracking-[0.3em] text-slate-400">
+                        <p className="font-medium text-moonstone-900">{item.title}</p>
+                        <p className="text-xs text-moonstone-600">{item.detail}</p>
+                        <p className="mt-1 text-[10px] uppercase tracking-[0.3em] text-moonstone-500">
                           {item.time}
                         </p>
                       </div>
@@ -247,7 +247,7 @@ function Navbar() {
           <div className="relative">
             <button
               type="button"
-              className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-100"
+              className="flex items-center gap-2 glass-button px-3 py-2 text-sm"
               onClick={() =>
                 setOpenDropdown((prev) => (prev === "profile" ? null : "profile"))
               }
@@ -260,23 +260,23 @@ function Navbar() {
               {openDropdown === "profile" && (
                 <motion.div
                   {...dropdownMotion}
-                  className="absolute right-0 top-12 w-56 rounded-2xl border border-white/10 bg-night-800/95 p-4 shadow-glass"
+                  className="absolute right-0 top-12 w-56 rounded-2xl glass-card p-4 shadow-glass"
                 >
                   <button
                     type="button"
-                    className="w-full rounded-lg px-3 py-2 text-left text-sm text-slate-100 transition hover:bg-white/10"
+                    className="w-full glass-button text-left"
                   >
                     My Shop
                   </button>
                   <button
                     type="button"
-                    className="w-full rounded-lg px-3 py-2 text-left text-sm text-slate-100 transition hover:bg-white/10"
+                    className="w-full glass-button text-left"
                   >
                     Purchases
                   </button>
                   <button
                     type="button"
-                    className="w-full rounded-lg px-3 py-2 text-left text-sm text-slate-100 transition hover:bg-white/10"
+                    className="w-full glass-button text-left"
                   >
                     Analytics
                   </button>
@@ -287,7 +287,7 @@ function Navbar() {
 
           <button
             type="button"
-            className="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 text-slate-200"
+            className="glass-button h-10 w-10"
             onClick={() => dispatch(toggleTheme())}
           >
             <Settings className="h-4 w-4" />
@@ -301,13 +301,13 @@ function Navbar() {
             initial={{ x: 320, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: 320, opacity: 0 }}
-            className="glass fixed right-6 top-24 z-40 w-72 rounded-2xl border border-white/10 p-4 shadow-glass"
+            className="glass-card fixed right-6 top-24 z-40 w-72 rounded-2xl p-4 shadow-glass"
           >
             <div className="flex items-center justify-between">
-              <p className="text-sm font-semibold text-white">Messages</p>
+              <p className="text-sm font-semibold text-moonstone-900">Messages</p>
               <button
                 type="button"
-                className="text-xs uppercase tracking-[0.3em] text-emerald-200/70"
+                className="text-xs uppercase tracking-[0.3em] text-emerald-600"
                 onClick={() => setIsChatOpen(false)}
               >
                 Close
@@ -317,10 +317,10 @@ function Navbar() {
               {messages.map((item) => (
                 <div
                   key={item.name}
-                  className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-100"
+                  className="glass-card rounded-xl px-3 py-2 text-sm text-moonstone-900"
                 >
-                  <p className="font-medium text-white">{item.name}</p>
-                  <p className="text-xs text-slate-300">{item.preview}</p>
+                  <p className="font-medium text-moonstone-900">{item.name}</p>
+                  <p className="text-xs text-moonstone-500">{item.preview}</p>
                 </div>
               ))}
             </div>
@@ -340,15 +340,15 @@ function Navbar() {
               initial={{ y: 40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 40, opacity: 0 }}
-              className="glass w-[min(520px,90vw)] rounded-3xl border border-white/10 p-6 shadow-glass"
+              className="glass-card w-[min(520px,90vw)] rounded-3xl p-6 shadow-glass-xl"
             >
               <div className="flex items-center justify-between">
-                <p className="text-sm uppercase tracking-[0.3em] text-emerald-200/70">
+                <p className="text-sm uppercase tracking-[0.3em] text-emerald-600">
                   Sell item
                 </p>
                 <button
                   type="button"
-                  className="text-xs uppercase tracking-[0.3em] text-slate-400"
+                  className="text-xs uppercase tracking-[0.3em] text-moonstone-400"
                   onClick={() => dispatch(closeSellModal())}
                 >
                   Close
@@ -357,7 +357,7 @@ function Navbar() {
               <div className="mt-6 space-y-4">
                 {sellStep === 0 && (
                   <div>
-                    <p className="text-lg font-semibold text-white">
+                    <p className="text-lg font-semibold text-moonstone-900">
                       Choose a category
                     </p>
                     <div className="mt-3 grid grid-cols-2 gap-3">
@@ -365,7 +365,7 @@ function Navbar() {
                         <button
                           key={category.name}
                           type="button"
-                          className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-left text-sm text-slate-100"
+                          className="glass-button rounded-2xl px-4 py-3 text-left text-sm text-moonstone-700"
                         >
                           {category.name}
                         </button>
@@ -375,20 +375,20 @@ function Navbar() {
                 )}
                 {sellStep === 1 && (
                   <div>
-                    <p className="text-lg font-semibold text-white">
+                    <p className="text-lg font-semibold text-moonstone-900">
                       Add listing details
                     </p>
                     <div className="mt-3 space-y-3">
                       <input
-                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-100 focus:outline-none"
+                        className="glass-input w-full rounded-xl px-4 py-3 text-sm text-moonstone-800 placeholder:text-moonstone-400 focus:outline-none"
                         placeholder="Title"
                       />
                       <input
-                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-100 focus:outline-none"
+                        className="glass-input w-full rounded-xl px-4 py-3 text-sm text-moonstone-800 placeholder:text-moonstone-400 focus:outline-none"
                         placeholder="Price"
                       />
                       <textarea
-                        className="min-h-[120px] w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-100 focus:outline-none"
+                        className="glass-input min-h-[120px] w-full rounded-xl px-4 py-3 text-sm text-moonstone-800 placeholder:text-moonstone-400 focus:outline-none"
                         placeholder="Description"
                       />
                     </div>
@@ -396,15 +396,15 @@ function Navbar() {
                 )}
                 {sellStep === 2 && (
                   <div>
-                    <p className="text-lg font-semibold text-white">
+                    <p className="text-lg font-semibold text-moonstone-900">
                       Review & publish
                     </p>
-                    <p className="mt-2 text-sm text-slate-300">
+                    <p className="mt-2 text-sm text-moonstone-500">
                       Your listing goes live instantly and appears in the
                       marketplace feed.
                     </p>
-                    <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-slate-100">
-                      Premium streetwear bundle · $220 · Ready to publish
+                    <div className="mt-4 glass-card rounded-2xl p-4 text-sm text-moonstone-700">
+                      Premium streetwear bundle · ₱13,200 · Ready to publish
                     </div>
                   </div>
                 )}
@@ -412,7 +412,7 @@ function Navbar() {
               <div className="mt-6 flex items-center justify-between">
                 <button
                   type="button"
-                  className="text-xs uppercase tracking-[0.3em] text-slate-400"
+                  className="text-xs uppercase tracking-[0.3em] text-moonstone-400"
                   disabled={sellStep === 0}
                   onClick={() => setSellStep((prev) => Math.max(prev - 1, 0))}
                 >
@@ -420,7 +420,7 @@ function Navbar() {
                 </button>
                 <button
                   type="button"
-                  className="rounded-full bg-emerald-300/20 px-4 py-2 text-sm font-semibold text-emerald-100"
+                  className="glass-button-primary rounded-full px-4 py-2 text-sm font-semibold shadow-glow-moonstone hover:shadow-glow-moonstone-lg"
                   onClick={() =>
                     setSellStep((prev) => (prev === 2 ? 0 : prev + 1))
                   }

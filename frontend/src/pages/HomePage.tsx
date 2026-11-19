@@ -10,7 +10,6 @@ import {
   Flame,
   Users,
   Send,
-  X,
 } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
@@ -18,6 +17,7 @@ import { useNavigate } from "react-router-dom"
 import apiClient from "../api/client"
 import { useAuth } from "../auth/AuthContext"
 import SellItemModal from "../components/marketplace/SellItemModal"
+import HomePageSidebar from "../components/layout/HomePageSidebar"
 
 interface Comment {
   id: number
@@ -215,7 +215,7 @@ function HomePage() {
     }
   }
 
-  const handleReply = async (productId: number, commentId: number) => {
+  const handleReply = async (_productId: number, commentId: number) => {
     if (!user) {
       navigate("/?auth=1")
       return
@@ -314,7 +314,7 @@ function HomePage() {
   const renderComment = (productId: number, comment: Comment, depth = 0) => (
     <div key={comment.id} className={`flex gap-3 ${depth > 0 ? "ml-3 sm:ml-6" : ""}`}>
       <div
-        className="neu-card h-8 w-8 overflow-hidden rounded-full flex-shrink-0 cursor-pointer"
+        className="glass-card h-8 w-8 overflow-hidden rounded-full flex-shrink-0 cursor-pointer"
         onClick={() => navigate(`/shop/${comment.user.id}`)}
       >
         {comment.user.avatar_url ? (
@@ -324,44 +324,44 @@ function HomePage() {
             className="h-full w-full object-cover"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-purple-400 to-purple-600 text-xs font-bold text-white">
+          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-moonstone-400 to-moonstone-600 text-xs font-bold text-white">
             {(comment.user.display_name || comment.user.username).slice(0, 2).toUpperCase()}
           </div>
         )}
       </div>
       <div className="flex-1 min-w-0">
-        <div className="neu-card p-3">
+        <div className="glass-card p-3">
           <div className="flex items-center justify-between gap-3">
-            <p className="font-semibold text-sm text-neu-900 truncate">
+            <p className="font-semibold text-sm text-moonstone-100 truncate">
               {comment.user.display_name || comment.user.username}
             </p>
-            <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-neu-500 flex-shrink-0">
+            <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-moonstone-400 flex-shrink-0">
               {comment.is_private && <span>Private</span>}
               <span>{timeAgo(comment.created_at)}</span>
             </div>
           </div>
-          <p className="text-sm text-neu-700 mt-1 break-words whitespace-pre-wrap">{comment.body}</p>
+          <p className="text-sm text-moonstone-200 mt-1 break-words whitespace-pre-wrap">{comment.body}</p>
         </div>
-        <div className="mt-2 flex flex-wrap gap-2 px-2 text-xs text-neu-500">
-          <button type="button" onClick={() => handleReact(productId, comment.id)} className="rounded-full border border-neu-200 px-3 py-1 hover:border-emerald-300 hover:text-emerald-600">
+        <div className="mt-2 flex flex-wrap gap-2 px-2 text-xs text-moonstone-400">
+          <button type="button" onClick={() => handleReact(productId, comment.id)} className="glass-button rounded-full px-3 py-1 text-xs hover:text-emerald-400">
             React {comment.reaction_count ? `(${comment.reaction_count})` : ""}
           </button>
-          <button type="button" onClick={() => handleReply(productId, comment.id)} className="rounded-full border border-neu-200 px-3 py-1 hover:border-blue-300 hover:text-blue-600">
+          <button type="button" onClick={() => handleReply(productId, comment.id)} className="glass-button rounded-full px-3 py-1 text-xs hover:text-blue-400">
             Reply {comment.reply_count ? `(${comment.reply_count})` : ""}
           </button>
           {canManageComment(comment) && (
-            <button type="button" onClick={() => handleDeleteComment(productId, comment.id)} className="rounded-full border border-neu-200 px-3 py-1 hover:border-rose-300 hover:text-rose-600">
+            <button type="button" onClick={() => handleDeleteComment(productId, comment.id)} className="glass-button rounded-full px-3 py-1 text-xs hover:text-rose-400">
               Delete
             </button>
           )}
           {user && user.id === comment.user.id && (
-            <button type="button" onClick={() => handleTogglePrivacy(productId, comment)} className="rounded-full border border-neu-200 px-3 py-1 hover:border-amber-300 hover:text-amber-600">
+            <button type="button" onClick={() => handleTogglePrivacy(productId, comment)} className="glass-button rounded-full px-3 py-1 text-xs hover:text-amber-400">
               {comment.is_private ? "Make Public" : "Make Private"}
             </button>
           )}
         </div>
         {replyingCommentId === comment.id && user && (
-          <div className="mt-3 rounded-xl border border-neu-200 bg-white p-3">
+          <div className="mt-3 glass-card p-3">
             <textarea
               value={replyDrafts[comment.id] || ""}
               onChange={(event) =>
@@ -369,13 +369,13 @@ function HomePage() {
               }
               placeholder="Write a reply..."
               rows={3}
-              className="w-full rounded-lg border border-neu-200 bg-neu-50 px-3 py-2 text-sm text-neu-800 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full glass-input px-3 py-2 text-sm text-moonstone-100 placeholder:text-moonstone-400 focus:outline-none"
             />
             <div className="mt-2 flex justify-end gap-2">
               <button
                 type="button"
                 onClick={() => setReplyingCommentId(null)}
-                className="rounded-lg border border-neu-200 px-3 py-2 text-xs uppercase tracking-[0.18em] text-neu-500"
+                className="glass-button rounded-lg px-3 py-2 text-xs uppercase tracking-[0.18em] text-moonstone-500"
               >
                 Cancel
               </button>
@@ -383,7 +383,7 @@ function HomePage() {
                 type="button"
                 onClick={() => handleReplySubmit(productId, comment.id)}
                 disabled={!replyDrafts[comment.id]?.trim()}
-                className="rounded-lg bg-blue-500 px-3 py-2 text-xs uppercase tracking-[0.18em] text-white disabled:opacity-50"
+                className="glass-button-primary rounded-lg px-3 py-2 text-xs uppercase tracking-[0.18em] disabled:opacity-50"
               >
                 Reply
               </button>
@@ -407,66 +407,21 @@ function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-neu-50 pb-20 pt-16">
-      <div className="flex">
-        {/* Left Sidebar - Fixed to left edge */}
-        <aside className="fixed left-0 top-16 hidden h-[calc(100vh-4rem)] w-[280px] overflow-y-auto border-r border-neu-200 bg-white lg:block">
-          <div className="p-4 space-y-3">
-              {/* Quick Actions */}
-              <div className="neu-card p-4">
-                <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-neu-600">
-                  Quick Menu
-                </h3>
-                <div className="space-y-2">
-                  <button className="neu-button flex w-full items-center gap-3 px-4 py-3 text-left">
-                    <ShoppingBag className="h-5 w-5 text-blue-600" />
-                    <span className="text-sm font-medium text-neu-800">Browse All</span>
-                  </button>
-                  <button className="neu-button flex w-full items-center gap-3 px-4 py-3 text-left">
-                    <TrendingUp className="h-5 w-5 text-orange-600" />
-                    <span className="text-sm font-medium text-neu-800">Trending</span>
-                  </button>
-                  <button className="neu-button flex w-full items-center gap-3 px-4 py-3 text-left">
-                    <MapPin className="h-5 w-5 text-green-600" />
-                    <span className="text-sm font-medium text-neu-800">Near You</span>
-                  </button>
-                  <button className="neu-button flex w-full items-center gap-3 px-4 py-3 text-left">
-                    <Heart className="h-5 w-5 text-rose-600" />
-                    <span className="text-sm font-medium text-neu-800">Saved Items</span>
-                  </button>
-                </div>
-              </div>
+    <div className="min-h-screen bg-gradient-to-b from-moonstone-50 to-moonstone-100 pb-20 pt-16">
+      {/* Beautiful Collapsible Sidebar */}
+      <HomePageSidebar />
 
-              {/* Categories */}
-              <div className="neu-card p-4">
-                <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-neu-600">
-                  Categories
-                </h3>
-                <div className="space-y-2 text-sm">
-                  {["Electronics", "Fashion", "Home", "Sports", "Books", "Toys"].map((cat) => (
-                    <button
-                      key={cat}
-                      className="block w-full rounded-xl px-3 py-2 text-left text-neu-700 transition hover:bg-neu-200"
-                    >
-                      {cat}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-        </aside>
-
-        {/* Main Feed - With left margin to account for sidebar */}
-        <main className="flex-1 lg:ml-[280px]">
-          <div className="mx-auto max-w-[680px] px-4 pt-8">
+      {/* Main Feed - With responsive margin for sidebar */}
+      <main className="transition-all duration-300 lg:ml-[280px]">
+        <div className="mx-auto max-w-[680px] px-4 pt-8 lg:px-6">
             {/* Filter Bar */}
-            <div className="neu-card mb-6 flex items-center gap-3 p-3">
+            <div className="glass-card mb-6 flex items-center gap-3 p-3">
               <button
                 onClick={() => setActiveFilter("friends")}
-                className={`neu-button flex items-center gap-2 px-4 py-2 text-sm font-medium transition ${
+                className={`glass-button flex items-center gap-2 px-4 py-2 text-sm font-medium transition ${
                   activeFilter === "friends"
-                    ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-glow-blue"
-                    : "text-neu-700"
+                    ? "glass-button-primary shadow-glow-moonstone"
+                    : "text-moonstone-200"
                 }`}
               >
                 <Users className="h-4 w-4" />
@@ -474,10 +429,10 @@ function HomePage() {
               </button>
               <button
                 onClick={() => setActiveFilter("all")}
-                className={`neu-button flex items-center gap-2 px-4 py-2 text-sm font-medium transition ${
+                className={`glass-button flex items-center gap-2 px-4 py-2 text-sm font-medium transition ${
                   activeFilter === "all"
-                    ? "bg-blue-500 text-white shadow-glow-blue"
-                    : "text-neu-700"
+                    ? "glass-button-primary shadow-glow-moonstone"
+                    : "text-moonstone-200"
                 }`}
               >
                 <ShoppingBag className="h-4 w-4" />
@@ -485,10 +440,10 @@ function HomePage() {
               </button>
               <button
                 onClick={() => setActiveFilter("trending")}
-                className={`neu-button flex items-center gap-2 px-4 py-2 text-sm font-medium transition ${
+                className={`glass-button flex items-center gap-2 px-4 py-2 text-sm font-medium transition ${
                   activeFilter === "trending"
-                    ? "bg-orange-500 text-white shadow-glow"
-                    : "text-neu-700"
+                    ? "glass-button-primary shadow-glow-moonstone"
+                    : "text-moonstone-200"
                 }`}
               >
                 <Flame className="h-4 w-4" />
@@ -496,10 +451,10 @@ function HomePage() {
               </button>
               <button
                 onClick={() => setActiveFilter("new")}
-                className={`neu-button flex items-center gap-2 px-4 py-2 text-sm font-medium transition ${
+                className={`glass-button flex items-center gap-2 px-4 py-2 text-sm font-medium transition ${
                   activeFilter === "new"
-                    ? "bg-green-500 text-white shadow-glow"
-                    : "text-neu-700"
+                    ? "glass-button-primary shadow-glow-moonstone"
+                    : "text-moonstone-200"
                 }`}
               >
                 <Clock className="h-4 w-4" />
@@ -511,7 +466,7 @@ function HomePage() {
             <div className="space-y-6">
               {loading ? (
                 Array.from({ length: 3 }).map((_, i) => (
-                  <div key={i} className="neu-card h-96 animate-pulse p-6" />
+                  <div key={i} className="glass-card h-96 animate-pulse p-6" />
                 ))
               ) : (
                 <AnimatePresence>
@@ -521,23 +476,23 @@ function HomePage() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.05 }}
-                      className="neu-card overflow-hidden"
+                      className="glass-card overflow-hidden"
                     >
                       {/* Post Header */}
                       <div className="flex items-center justify-between p-4">
                         <div className="flex items-center gap-3">
                           <div
-                            className="neu-card h-12 w-12 cursor-pointer overflow-hidden rounded-full"
+                            className="glass-card h-12 w-12 cursor-pointer overflow-hidden rounded-full"
                             onClick={() => navigate(`/shop/${item.seller.id}`)}
                           >
                             {item.seller.avatar_url ? (
                               <img
                                 src={item.seller.avatar_url}
-                                alt={item.seller.display_name}
+                                alt={`${item.seller.display_name || item.seller.username}'s profile picture`}
                                 className="h-full w-full object-cover"
                               />
                             ) : (
-                              <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-400 to-blue-600 text-sm font-bold text-white">
+                              <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-moonstone-400 to-moonstone-600 text-sm font-bold text-white">
                                 {(item.seller.display_name || item.seller.username)
                                   .slice(0, 2)
                                   .toUpperCase()}
@@ -545,11 +500,11 @@ function HomePage() {
                             )}
                           </div>
                           <div>
-                            <p className="flex items-center gap-2 font-semibold text-neu-900">
+                            <p className="flex items-center gap-2 font-semibold text-moonstone-100">
                               {item.seller.display_name || item.seller.username}
                               {item.seller.is_verified_seller && (
                                 <svg
-                                  className="h-4 w-4 text-blue-600"
+                                  className="h-4 w-4 text-moonstone-400"
                                   fill="currentColor"
                                   viewBox="0 0 20 20"
                                 >
@@ -561,7 +516,7 @@ function HomePage() {
                                 </svg>
                               )}
                             </p>
-                            <div className="flex items-center gap-2 text-xs text-neu-500">
+                            <div className="flex items-center gap-2 text-xs text-moonstone-400">
                               <Clock className="h-3 w-3" />
                               {timeAgo(item.created_at)}
                               <span>•</span>
@@ -577,25 +532,24 @@ function HomePage() {
                                 e.stopPropagation();
                                 setActivePostMenu(activePostMenu === item.id ? null : item.id);
                               }}
-                              className="neu-button p-2"
+                              className="glass-button p-2 text-moonstone-300 hover:text-moonstone-100"
                             >
                               <svg
-                                className="h-5 w-5 text-neu-600"
-                                fill="currentColor"
+                                className="h-5 w-5 fill-current"
                                 viewBox="0 0 20 20"
                               >
                                 <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
                               </svg>
                             </button>
                             {activePostMenu === item.id && (
-                              <div className="absolute right-0 top-full mt-1 w-32 rounded-xl border border-neu-200 bg-white p-1 z-30 shadow-lg">
+                              <div className="absolute right-0 top-full mt-1 w-32 rounded-xl glass-card p-1 z-30 shadow-glass">
                                 <button
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     handleEditPost(item);
                                     setActivePostMenu(null);
                                   }}
-                                  className="w-full text-left px-3 py-2 text-sm text-neu-700 hover:bg-neu-100 rounded-lg flex items-center gap-2"
+                                  className="w-full text-left px-3 py-2 text-sm text-moonstone-200 hover:bg-white/10 rounded-lg flex items-center gap-2"
                                 >
                                   Edit Post
                                 </button>
@@ -605,7 +559,7 @@ function HomePage() {
                                     handleDeletePost(item.id);
                                     setActivePostMenu(null);
                                   }}
-                                  className="w-full text-left px-3 py-2 text-sm text-rose-600 hover:bg-rose-50 rounded-lg flex items-center gap-2"
+                                  className="w-full text-left px-3 py-2 text-sm text-rose-400 hover:bg-rose-500/10 rounded-lg flex items-center gap-2"
                                 >
                                   Delete
                                 </button>
@@ -619,11 +573,11 @@ function HomePage() {
 
                       {/* Post Content */}
                       <div className="px-4 pb-3">
-                        <h2 className="text-lg font-bold text-neu-900">{item.title}</h2>
-                        <p className="mt-1 text-2xl font-bold text-green-600">
+                        <h2 className="text-lg font-bold text-moonstone-100">{item.title}</h2>
+                        <p className="mt-1 text-2xl font-bold text-emerald-400">
                           {item.currency} {item.price}
                         </p>
-                        <p className="mt-2 line-clamp-2 text-sm text-neu-600">
+                        <p className="mt-2 line-clamp-2 text-sm text-moonstone-200">
                           {item.description}
                         </p>
                       </div>
@@ -631,7 +585,7 @@ function HomePage() {
                       {/* Post Image */}
                       {item.image_urls?.length > 0 && (
                         <div
-                          className="relative cursor-pointer overflow-hidden bg-neu-200"
+                          className="relative cursor-pointer overflow-hidden bg-moonstone-900/60"
                           style={{ aspectRatio: "16 / 10" }}
                           onClick={() => navigate(`/products/${item.id}`)}
                         >
@@ -641,7 +595,7 @@ function HomePage() {
                             className="h-full w-full object-cover"
                           />
                           {item.image_urls.length > 1 && (
-                            <div className="absolute bottom-4 right-4 neu-button flex items-center gap-1 px-3 py-1 text-sm font-medium text-neu-800">
+                            <div className="absolute bottom-4 right-4 glass-button flex items-center gap-1 px-3 py-1 text-sm font-medium text-moonstone-100">
                               <svg
                                 className="h-4 w-4"
                                 fill="currentColor"
@@ -660,14 +614,14 @@ function HomePage() {
                       )}
 
                       {/* Post Actions */}
-                      <div className="flex flex-wrap items-center justify-between gap-3 border-t border-neu-200 p-4">
+                      <div className="flex flex-wrap items-center justify-between gap-3 border-t border-moonstone-200/20 p-4">
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => toggleFavorite(item.id)}
-                            className={`neu-button flex items-center gap-2 px-3 py-2 sm:px-4 text-sm font-medium transition ${
+                            className={`glass-button flex items-center gap-2 px-3 py-2 sm:px-4 text-sm font-medium transition ${
                               item.is_favorite
-                                ? "text-rose-600"
-                                : "text-neu-600 hover:text-rose-600"
+                                ? "text-rose-400"
+                                : "text-moonstone-200 hover:text-rose-400"
                             }`}
                           >
                             <Heart
@@ -677,7 +631,7 @@ function HomePage() {
                           </button>
                           <button 
                             onClick={() => toggleComments(item.id)}
-                            className="neu-button flex items-center gap-2 px-3 py-2 sm:px-4 text-sm font-medium text-neu-600 hover:text-blue-600"
+                            className="glass-button flex items-center gap-2 px-3 py-2 sm:px-4 text-sm font-medium text-moonstone-200 hover:text-blue-400"
                           >
                             <MessageCircle className="h-5 w-5" />
                             <span className="hidden sm:inline">Comment</span>
@@ -685,16 +639,16 @@ function HomePage() {
                           <div className="relative">
                             <button 
                               onClick={() => handleShare(item.id)}
-                              className="neu-button flex items-center gap-2 px-3 py-2 sm:px-4 text-sm font-medium text-neu-600 hover:text-green-600"
+                              className="glass-button flex items-center gap-2 px-3 py-2 sm:px-4 text-sm font-medium text-moonstone-200 hover:text-green-400"
                             >
                               <Share2 className="h-5 w-5" />
                               <span className="hidden sm:inline">Share</span>
                             </button>
                             {shareMenu === item.id && (
-                              <div className="absolute left-0 top-full mt-2 w-48 neu-card p-2 z-30 shadow-lg bg-white">
+                              <div className="absolute left-0 top-full mt-2 w-48 glass-card p-2 z-30 shadow-glass">
                                 <button
                                   onClick={() => copyLink(item.id)}
-                                  className="w-full text-left px-3 py-2 text-sm text-neu-700 hover:bg-neu-200 rounded-lg"
+                                  className="w-full text-left px-3 py-2 text-sm text-moonstone-200 hover:bg-white/10 rounded-lg"
                                 >
                                   Copy Link
                                 </button>
@@ -703,7 +657,7 @@ function HomePage() {
                                     window.open(`https://www.facebook.com/sharer/sharer.php?u=${window.location.origin}/products/${item.id}`, '_blank')
                                     setShareMenu(null)
                                   }}
-                                  className="w-full text-left px-3 py-2 text-sm text-neu-700 hover:bg-neu-200 rounded-lg"
+                                  className="w-full text-left px-3 py-2 text-sm text-moonstone-200 hover:bg-white/10 rounded-lg"
                                 >
                                   Share to Facebook
                                 </button>
@@ -714,13 +668,13 @@ function HomePage() {
                         <div className="flex flex-1 sm:flex-initial items-center justify-end gap-2">
                           <button
                             onClick={() => handleMessage(item)}
-                            className="neu-button flex-1 sm:flex-initial bg-gradient-to-r from-green-500 to-green-600 px-3 py-2 sm:px-4 text-xs sm:text-sm font-semibold text-white shadow-glow hover:from-green-600 hover:to-green-700 whitespace-nowrap"
+                            className="glass-button-primary flex-1 sm:flex-initial px-3 py-2 sm:px-4 text-xs sm:text-sm font-semibold shadow-glow-moonstone hover:shadow-glow-moonstone-lg whitespace-nowrap"
                           >
                             Message Seller
                           </button>
                           <button
                             onClick={() => navigate(`/products/${item.id}`)}
-                            className="neu-button flex-1 sm:flex-initial bg-gradient-to-r from-blue-500 to-blue-600 px-3 py-2 sm:px-4 text-xs sm:text-sm font-semibold text-white shadow-glow-blue hover:from-blue-600 hover:to-blue-700 whitespace-nowrap"
+                            className="glass-button-primary flex-1 sm:flex-initial px-3 py-2 sm:px-4 text-xs sm:text-sm font-semibold shadow-glow-moonstone hover:shadow-glow-moonstone-lg whitespace-nowrap"
                           >
                             View Details
                           </button>
@@ -729,19 +683,19 @@ function HomePage() {
 
                       {/* Comments Section */}
                       {showComments[item.id] && (
-                        <div className="border-t border-neu-200 p-4 bg-neu-100">
+                        <div className="border-t border-moonstone-200/20 p-4 bg-moonstone-950/40">
                           {/* Comment Input */}
                           {user && (
                             <div className="flex gap-3 mb-4">
-                              <div className="neu-card h-10 w-10 overflow-hidden rounded-full flex-shrink-0">
+                              <div className="glass-card h-10 w-10 overflow-hidden rounded-full flex-shrink-0">
                                 {user.avatar_url ? (
                                   <img
                                     src={user.avatar_url}
-                                    alt={user.display_name || user.username}
+                                    alt={`Your profile picture`}
                                     className="h-full w-full object-cover"
                                   />
                                 ) : (
-                                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-400 to-blue-600 text-xs font-bold text-white">
+                                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-moonstone-400 to-moonstone-600 text-xs font-bold text-white">
                                     {(user.display_name || user.username).slice(0, 2).toUpperCase()}
                                   </div>
                                 )}
@@ -760,12 +714,12 @@ function HomePage() {
                                     }
                                   }}
                                   placeholder="Write a comment..."
-                                  className="flex-1 neu-card px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                  className="flex-1 glass-input px-4 py-2 text-sm text-moonstone-100 placeholder:text-moonstone-400 focus:outline-none"
                                 />
                                 <button
                                   onClick={() => handleCommentSubmit(item.id)}
                                   disabled={!commentText[item.id]?.trim()}
-                                  className="neu-button bg-blue-500 text-white px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                  className="glass-button-primary px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                   <Send className="h-4 w-4" />
                                 </button>
@@ -776,11 +730,11 @@ function HomePage() {
                           {/* Comments List */}
                           <div className="space-y-3 max-h-96 overflow-y-auto">
                             {loadingComments[item.id] ? (
-                              <div className="text-center py-4 text-sm text-neu-500">Loading comments...</div>
+                              <div className="text-center py-4 text-sm text-moonstone-400">Loading comments...</div>
                             ) : comments[item.id]?.length > 0 ? (
                               comments[item.id].map((comment) => renderComment(item.id, comment))
                             ) : (
-                              <div className="text-center py-4 text-sm text-neu-500">
+                              <div className="text-center py-4 text-sm text-moonstone-400">
                                 No comments yet. Be the first to comment!
                               </div>
                             )}
@@ -789,7 +743,7 @@ function HomePage() {
                       )}
 
                       {/* Stats */}
-                      <div className="border-t border-neu-200 px-4 py-3 text-xs text-neu-500">
+                      <div className="border-t border-moonstone-200/20 px-4 py-3 text-xs text-moonstone-400">
                         <div className="flex items-center gap-4">
                           <span>{item.view_count} views</span>
                           <span>•</span>
@@ -810,14 +764,14 @@ function HomePage() {
               )}
 
               {!loading && feed.length === 0 && (
-                <div className="neu-card p-12 text-center">
-                  <ShoppingBag className="mx-auto h-16 w-16 text-neu-300" />
-                  <p className="mt-4 text-lg font-semibold text-neu-600">
+                <div className="glass-card p-12 text-center">
+                  <ShoppingBag className="mx-auto h-16 w-16 text-moonstone-300" />
+                  <p className="mt-4 text-lg font-semibold text-moonstone-600">
                     {activeFilter === "friends" 
                       ? "No posts from friends yet" 
                       : "No items in the feed yet"}
                   </p>
-                  <p className="mt-2 text-sm text-neu-500">
+                  <p className="mt-2 text-sm text-moonstone-500">
                     {activeFilter === "friends"
                       ? "Add friends and wait for them to post products!"
                       : "Start selling to see your posts here!"}
@@ -827,22 +781,22 @@ function HomePage() {
             </div>
           </div>
         </main>
-      <SellItemModal
-        isOpen={isEditModalOpen}
-        onClose={() => {
-          setIsEditModalOpen(false)
-          setProductToEdit(null)
-        }}
-        onCreated={() => {
-          setIsEditModalOpen(false)
-          setProductToEdit(null)
-          setRefreshTrigger((prev) => prev + 1)
-        }}
-        productToEdit={productToEdit}
-      />
+
+        <SellItemModal
+          isOpen={isEditModalOpen}
+          onClose={() => {
+            setIsEditModalOpen(false)
+            setProductToEdit(null)
+          }}
+          onCreated={() => {
+            setIsEditModalOpen(false)
+            setProductToEdit(null)
+            setRefreshTrigger((prev) => prev + 1)
+          }}
+          productToEdit={productToEdit}
+        />
       </div>
-    </div>
-  )
-}
+    )
+  }
 
 export default HomePage

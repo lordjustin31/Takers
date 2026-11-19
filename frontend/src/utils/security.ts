@@ -129,11 +129,16 @@ export function containsSuspiciousContent(content: string): boolean {
  */
 export class RateLimiter {
   private attempts: Map<string, number[]> = new Map()
+  private maxAttempts: number
+  private windowMs: number
   
   constructor(
-    private maxAttempts: number = 5,
-    private windowMs: number = 60000 // 1 minute
-  ) {}
+    maxAttempts: number = 5,
+    windowMs: number = 60000 // 1 minute
+  ) {
+    this.maxAttempts = maxAttempts
+    this.windowMs = windowMs
+  }
   
   /**
    * Check if action is allowed
@@ -286,7 +291,7 @@ export function debounce<T extends (...args: any[]) => any>(
   func: T,
   wait: number
 ): (...args: Parameters<T>) => void {
-  let timeout: NodeJS.Timeout | null = null
+  let timeout: ReturnType<typeof setTimeout> | null = null
   
   return function executedFunction(...args: Parameters<T>) {
     const later = () => {
@@ -323,7 +328,7 @@ export function throttle<T extends (...args: any[]) => any>(
  * Log security events (for monitoring)
  */
 export function logSecurityEvent(event: string, details?: any): void {
-  if (process.env.NODE_ENV === 'development') {
+  if (import.meta.env.DEV) {
     console.warn('[Security Event]', event, details)
   }
   

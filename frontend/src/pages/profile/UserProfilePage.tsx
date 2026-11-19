@@ -128,7 +128,7 @@ function UserProfilePage() {
     return Array.from({ length: 5 }, (_, index) => (
       <Star
         key={index}
-        className={`h-5 w-5 ${index < Math.round(rating) ? "fill-amber-400 text-amber-400" : "text-neu-300"}`}
+        className={`h-5 w-5 ${index < Math.round(rating) ? "fill-amber-400 text-amber-400" : "text-moonstone-300"}`}
       />
     ))
   }
@@ -187,7 +187,7 @@ function UserProfilePage() {
   if (loading || !seller) {
     return (
       <section className="mx-auto max-w-6xl px-6 pb-20 pt-28 md:px-10">
-        <div className="glass rounded-3xl border border-white/10 p-10 text-center text-slate-200">
+        <div className="glass-card rounded-3xl p-10 text-center text-moonstone-500">
           <p>Loading seller shop…</p>
         </div>
       </section>
@@ -195,18 +195,18 @@ function UserProfilePage() {
   }
 
   return (
-    <section className="min-h-screen bg-neu-50 pb-24 pt-28">
+    <section className="min-h-screen bg-gradient-to-b from-moonstone-50 to-moonstone-100 pb-24 pt-28">
       <div className="mx-auto max-w-6xl px-4">
         {/* Profile Header */}
-        <div className="neu-card mb-8 overflow-hidden">
+        <div className="glass-card mb-8 overflow-hidden">
           {/* Cover/Banner */}
-          <div className="h-32 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+          <div className="h-32 bg-gradient-to-r from-moonstone-400 via-moonstone-500 to-moonstone-600"></div>
           
           {/* Profile Info */}
           <div className="relative px-8 pb-8">
             {/* Avatar - overlapping the banner */}
             <div className="absolute -top-16 left-8">
-              <div className="h-32 w-32 overflow-hidden rounded-3xl border-4 border-white shadow-xl">
+              <div className="glass-card h-32 w-32 overflow-hidden rounded-3xl border-4 border-white/80 shadow-xl">
                 {seller.avatar_url ? (
                   <img
                     src={seller.avatar_url}
@@ -214,7 +214,7 @@ function UserProfilePage() {
                     className="h-full w-full object-cover"
                   />
                 ) : (
-                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-400 to-blue-600">
+                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-moonstone-400 to-moonstone-600">
                     <UserCircle2 className="h-16 w-16 text-white" />
                   </div>
                 )}
@@ -228,7 +228,7 @@ function UserProfilePage() {
                   <button
                     type="button"
                     onClick={() => openThreadWithUser(seller.id)}
-                    className="neu-button flex items-center gap-2 px-5 py-2.5 font-semibold text-blue-600 hover:scale-105"
+                    className="glass-button-primary flex items-center gap-2 px-5 py-2.5 font-semibold shadow-glow-moonstone hover:shadow-glow-moonstone-lg active:scale-95"
                   >
                     <MessageCircle className="h-5 w-5" />
                     Message
@@ -243,7 +243,7 @@ function UserProfilePage() {
                       <div className="relative group">
                         <button
                           type="button"
-                          className="neu-button flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 px-5 py-2.5 font-semibold text-white shadow-lg"
+                          className="glass-button-primary flex items-center gap-2 px-5 py-2.5 font-semibold shadow-glow-emerald hover:shadow-glow-emerald-lg"
                         >
                           <UserCheck className="h-5 w-5" />
                           Friends
@@ -252,7 +252,7 @@ function UserProfilePage() {
                         <div className="absolute right-0 top-full mt-2 hidden w-48 group-hover:block">
                           <button
                             onClick={handleUnfriend}
-                            className="neu-card w-full p-3 text-left text-sm font-semibold text-red-600 hover:bg-red-50"
+                            className="glass-card w-full p-3 text-left text-sm font-semibold text-rose-600 hover:bg-rose-50"
                           >
                             <UserX className="mr-2 inline-block h-4 w-4" />
                             Unfriend
@@ -264,7 +264,7 @@ function UserProfilePage() {
                       <button
                         type="button"
                         disabled
-                        className="neu-button flex items-center gap-2 bg-gray-400 px-5 py-2.5 font-semibold text-white opacity-75 cursor-not-allowed"
+                        className="glass-button flex items-center gap-2 bg-gray-400 px-5 py-2.5 font-semibold text-white opacity-75 cursor-not-allowed"
                       >
                         <Clock className="h-5 w-5" />
                         {friendshipStatus.requester_id === user?.id ? "Request Sent" : "Pending Request"}
@@ -274,7 +274,7 @@ function UserProfilePage() {
                       <button
                         type="button"
                         onClick={handleAddFriend}
-                        className="neu-button flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 px-5 py-2.5 font-semibold text-white shadow-glow-blue hover:scale-105"
+                        className="glass-button-primary flex items-center gap-2 px-5 py-2.5 font-semibold shadow-glow-moonstone hover:shadow-glow-moonstone-lg active:scale-95"
                       >
                         <UserPlus className="h-5 w-5" />
                         Add Friend
@@ -288,11 +288,11 @@ function UserProfilePage() {
             {/* User Info */}
             <div className="mt-20">
               <div className="flex flex-wrap items-center gap-3">
-                <h1 className="text-3xl font-bold text-neu-900">
+                <h1 className="text-3xl font-bold text-moonstone-900">
                   {seller.display_name || seller.username}
                 </h1>
                 {seller.is_verified_seller && (
-                  <span className="flex items-center gap-1 rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700">
+                  <span className="flex items-center gap-1 rounded-full glass-card bg-moonstone-100 px-3 py-1 text-sm font-medium text-moonstone-700">
                     <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                       <path
                         fillRule="evenodd"
@@ -305,16 +305,16 @@ function UserProfilePage() {
                 )}
               </div>
               
-              <p className="mt-2 text-sm text-neu-600">
+              <p className="mt-2 text-sm text-moonstone-600">
                 Member since {new Date(seller.date_joined).toLocaleDateString()}
               </p>
               
               {seller.bio && (
-                <p className="mt-3 text-neu-700">{seller.bio}</p>
+                <p className="mt-3 text-moonstone-700">{seller.bio}</p>
               )}
               
               {seller.location && (
-                <p className="mt-2 flex items-center gap-1 text-sm text-neu-600">
+                <p className="mt-2 flex items-center gap-1 text-sm text-moonstone-600">
                   <Store className="h-4 w-4" />
                   {seller.location}
                 </p>
@@ -325,39 +325,39 @@ function UserProfilePage() {
 
         {/* Stats Cards */}
         <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-3">
-          <div className="neu-card p-6 text-center">
+          <div className="glass-card p-6 text-center shadow-glass">
             <div className="flex items-center justify-center gap-1 text-amber-500">
               {formatStars(seller.average_rating)}
             </div>
-            <p className="mt-2 text-3xl font-bold text-neu-900">
+            <p className="mt-2 text-3xl font-bold text-moonstone-900">
               {seller.average_rating.toFixed(1)}
             </p>
-            <p className="text-sm text-neu-600">Average Rating</p>
+            <p className="text-sm text-moonstone-600">Average Rating</p>
           </div>
           
-          <div className="neu-card p-6 text-center">
-            <p className="text-3xl font-bold text-neu-900">{seller.review_count}</p>
-            <p className="text-sm text-neu-600">Total Reviews</p>
-            <p className="mt-1 text-xs text-neu-500">Based on completed sales</p>
+          <div className="glass-card p-6 text-center shadow-glass">
+            <p className="text-3xl font-bold text-moonstone-900">{seller.review_count}</p>
+            <p className="text-sm text-moonstone-600">Total Reviews</p>
+            <p className="mt-1 text-xs text-moonstone-500">Based on completed sales</p>
           </div>
           
-          <div className="neu-card p-6 text-center">
-            <p className="text-3xl font-bold text-green-600">{seller.total_sales}</p>
-            <p className="text-sm text-neu-600">Items Sold</p>
-            <p className="mt-1 text-xs text-neu-500">Successful transactions</p>
+          <div className="glass-card p-6 text-center shadow-glass">
+            <p className="text-3xl font-bold text-emerald-600">{seller.total_sales}</p>
+            <p className="text-sm text-moonstone-600">Items Sold</p>
+            <p className="mt-1 text-xs text-moonstone-500">Successful transactions</p>
           </div>
         </div>
 
         {/* Tabs */}
-        <div className="neu-card mb-6 p-3">
+        <div className="glass-card mb-6 p-3">
           <div className="flex gap-3">
             <button
               type="button"
               onClick={() => setActiveTab("listings")}
               className={`flex-1 rounded-xl px-6 py-3 font-semibold transition ${
                 activeTab === "listings"
-                  ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-glow-blue"
-                  : "text-neu-600 hover:bg-neu-100"
+                  ? "glass-button-primary shadow-glow-moonstone"
+                  : "glass-button text-moonstone-700"
               }`}
             >
               Active Listings
@@ -367,8 +367,8 @@ function UserProfilePage() {
               onClick={() => setActiveTab("reviews")}
               className={`flex-1 rounded-xl px-6 py-3 font-semibold transition ${
                 activeTab === "reviews"
-                  ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-glow-blue"
-                  : "text-neu-600 hover:bg-neu-100"
+                  ? "glass-button-primary shadow-glow-moonstone"
+                  : "glass-button text-moonstone-700"
               }`}
             >
               Reviews ({seller.review_count})
@@ -388,8 +388,8 @@ function UserProfilePage() {
               {listings.length ? (
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {listings.map((product) => (
-                    <div key={product.id} className="neu-card group overflow-hidden transition hover:shadow-xl">
-                      <div className="relative h-64 overflow-hidden bg-neu-200">
+                    <div key={product.id} className="glass-card group overflow-hidden transition hover:shadow-xl">
+                      <div className="relative h-64 overflow-hidden bg-moonstone-200">
                         {product.image_urls?.length ? (
                           <img 
                             src={product.image_urls[0]} 
@@ -397,25 +397,25 @@ function UserProfilePage() {
                             className="h-full w-full object-cover transition duration-300 group-hover:scale-110" 
                           />
                         ) : (
-                          <div className="flex h-full w-full items-center justify-center text-neu-400">
+                          <div className="flex h-full w-full items-center justify-center text-moonstone-400">
                             <Store className="h-16 w-16" />
                           </div>
                         )}
                       </div>
                       <div className="p-5">
-                        <h3 className="font-bold text-neu-900">{product.title}</h3>
-                        <p className="mt-2 text-2xl font-bold text-green-600">
+                        <h3 className="font-bold text-moonstone-900">{product.title}</h3>
+                        <p className="mt-2 text-2xl font-bold text-emerald-600">
                           ₱{product.price}
                         </p>
                         {product.location && (
-                          <p className="mt-2 text-sm text-neu-600">{product.location}</p>
+                          <p className="mt-2 text-sm text-moonstone-600">{product.location}</p>
                         )}
                         <div className="mt-4 flex flex-wrap gap-2">
                           <button
                             type="button"
                             onClick={() => toggleFavorite(product.id)}
-                            className={`neu-button flex items-center gap-2 px-4 py-2 text-sm font-medium ${
-                              product.is_favorite ? "text-rose-600" : "text-neu-600 hover:text-rose-600"
+                            className={`glass-button flex items-center gap-2 px-4 py-2 text-sm font-medium ${
+                              product.is_favorite ? "text-rose-600" : "text-moonstone-600 hover:text-rose-600"
                             }`}
                           >
                             <Heart className={`h-4 w-4 ${product.is_favorite ? "fill-current" : ""}`} />
@@ -424,7 +424,7 @@ function UserProfilePage() {
                           <button
                             type="button"
                             onClick={() => navigate(`/products/${product.id}`)}
-                            className="neu-button px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700"
+                            className="glass-button px-4 py-2 text-sm font-medium text-moonstone-600 hover:text-moonstone-700"
                           >
                             Comment
                           </button>
@@ -434,12 +434,12 @@ function UserProfilePage() {
                   ))}
                 </div>
               ) : (
-                <div className="neu-card p-12 text-center">
-                  <Store className="mx-auto h-16 w-16 text-neu-300" />
-                  <p className="mt-4 text-lg font-semibold text-neu-600">
+                <div className="glass-card p-12 text-center">
+                  <Store className="mx-auto h-16 w-16 text-moonstone-300" />
+                  <p className="mt-4 text-lg font-semibold text-moonstone-600">
                     No active listings
                   </p>
-                  <p className="mt-2 text-sm text-neu-500">
+                  <p className="mt-2 text-sm text-moonstone-500">
                     This seller has no products available right now.
                   </p>
                 </div>
@@ -454,7 +454,7 @@ function UserProfilePage() {
               className="space-y-4"
             >
               {/* Note about review system */}
-              <div className="neu-card-inset rounded-xl bg-blue-50 p-4">
+              <div className="glass-card rounded-xl bg-blue-50 p-4">
                 <p className="text-sm text-blue-800">
                   <strong>Note:</strong> Reviews can only be left by buyers who have completed a purchase from this seller.
                 </p>
@@ -463,10 +463,10 @@ function UserProfilePage() {
               {reviews.length ? (
                 <div className="space-y-4">
                   {reviews.map((review) => (
-                    <div key={review.id} className="neu-card p-6">
+                    <div key={review.id} className="glass-card p-6 shadow-glass">
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex items-center gap-3">
-                          <div className="h-12 w-12 overflow-hidden rounded-full">
+                          <div className="glass-card h-12 w-12 overflow-hidden rounded-full">
                             {review.reviewer.avatar_url ? (
                               <img
                                 src={review.reviewer.avatar_url}
@@ -474,7 +474,7 @@ function UserProfilePage() {
                                 className="h-full w-full object-cover"
                               />
                             ) : (
-                              <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-400 to-blue-600 text-sm font-bold text-white">
+                              <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-moonstone-400 to-moonstone-600 text-sm font-bold text-white">
                                 {(review.reviewer.display_name || review.reviewer.username)
                                   .slice(0, 2)
                                   .toUpperCase()}
@@ -482,10 +482,10 @@ function UserProfilePage() {
                             )}
                           </div>
                           <div>
-                            <p className="font-semibold text-neu-900">
+                            <p className="font-semibold text-moonstone-900">
                               {review.reviewer.display_name || review.reviewer.username}
                             </p>
-                            <p className="text-xs text-neu-500">
+                            <p className="text-xs text-moonstone-500">
                               {new Date(review.created_at).toLocaleDateString()}
                             </p>
                           </div>
@@ -497,25 +497,25 @@ function UserProfilePage() {
                               className={`h-5 w-5 ${
                                 index < review.rating
                                   ? "fill-amber-400 text-amber-400"
-                                  : "text-neu-300"
+                                  : "text-moonstone-300"
                               }`}
                             />
                           ))}
                         </div>
                       </div>
                       {review.comment && (
-                        <p className="mt-4 text-neu-700">{review.comment}</p>
+                        <p className="mt-4 text-moonstone-700">{review.comment}</p>
                       )}
                     </div>
                   ))}
                 </div>
               ) : (
-                <div className="neu-card p-12 text-center">
-                  <Star className="mx-auto h-16 w-16 text-neu-300" />
-                  <p className="mt-4 text-lg font-semibold text-neu-600">
+                <div className="glass-card p-12 text-center">
+                  <Star className="mx-auto h-16 w-16 text-moonstone-300" />
+                  <p className="mt-4 text-lg font-semibold text-moonstone-600">
                     No reviews yet
                   </p>
-                  <p className="mt-2 text-sm text-neu-500">
+                  <p className="mt-2 text-sm text-moonstone-500">
                     This seller hasn't received any reviews from buyers.
                   </p>
                 </div>
