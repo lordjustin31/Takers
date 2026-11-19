@@ -1,6 +1,8 @@
 import secrets
 from typing import Optional
 
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 from django.utils.text import slugify
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
@@ -227,6 +229,39 @@ class MeView(APIView):
                 {"detail": "Upload failed. Please try again with a valid image file."}, 
                 status=500
             )
+
+
+class PasswordChangeView(APIView):
+    permission_classes = [IsAuthenticated]
+    throttle_classes = [AuthRateThrottle]
+
+    def post(self, request):
+        current_password = str(request.data.get("current_password") or "")
+        new_password = str(request.data.get("new_password") or "")
+
+        if not request.user.check_password(current_password):
+            return Response(
+                {"detail": "Current password is incorrect."},
+                status=400,
+            )
+
+        if new_password == current_password:
+            return Response(
+                {"detail": "New password must be different from the current password."},
+                status=400,
+            )
+
+        try:
+            validate_password(new_password, request.user)
+        except ValidationError as exc:
+            return Response(
+                {"detail": exc.messages},
+                status=400,
+            )
+
+        request.user.set_password(new_password)
+        request.user.save(update_fields=["password"])
+        return Response({"detail": "Password changed successfully."})
 
 
 class EmailTokenObtainPairSerializer(TokenObtainPairSerializer):

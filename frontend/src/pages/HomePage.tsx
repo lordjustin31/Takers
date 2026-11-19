@@ -4,7 +4,6 @@ import {
   MessageCircle,
   Share2,
   ShoppingBag,
-  TrendingUp,
   MapPin,
   Clock,
   Flame,

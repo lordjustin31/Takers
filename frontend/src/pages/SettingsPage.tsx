@@ -117,13 +117,24 @@ function SettingsPage() {
     }
     setSaving(true)
     try {
-      // Note: You'll need to add a password change endpoint in your backend
+      await apiClient.post("/auth/password/change/", {
+        current_password: currentPassword,
+        new_password: newPassword,
+      })
       showMessage("success", "Password changed successfully!")
       setCurrentPassword("")
       setNewPassword("")
       setConfirmPassword("")
-    } catch (error) {
-      showMessage("error", "Failed to change password")
+    } catch (error: unknown) {
+      const responseData =
+        typeof error === "object" && error !== null && "response" in error
+          ? (error as { response?: { data?: { detail?: string | string[] } } }).response?.data
+          : null
+      const detail = responseData?.detail
+      showMessage(
+        "error",
+        Array.isArray(detail) ? detail[0] || "Failed to change password" : detail || "Failed to change password",
+      )
     } finally {
       setSaving(false)
     }

@@ -23,6 +23,7 @@ from marketplace.auth_views import (
     GoogleAuthView,
     LogoutView,
     MeView,
+    PasswordChangeView,
     RegisterView,
     ThrottledTokenObtainPairView,
     ThrottledTokenRefreshView,
@@ -57,6 +58,7 @@ urlpatterns = [
     path('api/auth/register/', RegisterView.as_view(), name='register'),
     path('api/auth/logout/', LogoutView.as_view(), name='logout'),
     path('api/auth/me/', MeView.as_view(), name='auth_me'),
+    path('api/auth/password/change/', PasswordChangeView.as_view(), name='password_change'),
 ]
 
 # Serve media files in development
